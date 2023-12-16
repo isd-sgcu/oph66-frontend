@@ -28,6 +28,12 @@ Please install the following.
    > cd oph66-frontend
    > ```
 
+   > 📣 For **Windows** users, please run the following command to prevent line ending issues.
+   >
+   > ```bash
+   > git config --global core.autocrlf false
+   > ```
+
 1. Install dependencies
    ```bash
    pnpm install
@@ -39,14 +45,6 @@ Please install the following.
 1. Open [localhost:4321](http://localhost:4321) in your browser. Done!
 
 ## Contributing
-
-1. For **Windows** users, please run
-
-   > ```bash
-   > git config --global core.autocrlf false
-   > ```
-
-   to prevent line ending issues.
 
 1. Create a new branch
 
