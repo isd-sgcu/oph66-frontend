@@ -40,6 +40,14 @@ Please install the following.
 
 ## Contributing
 
+1. For **Windows** users, please run
+
+   > ```bash
+   > git config --global core.autocrlf false
+   > ```
+
+   to prevent line ending issues.
+
 1. Create a new branch
 
    ```bash
@@ -101,7 +109,7 @@ The commit message should start with one of the following types:
 - fix: A bug fix
 - refactor: A code change that neither fixes a bug nor adds a feature
 - style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
-- doc: Documentation only changes
+- docs: Documentation only changes
 - chore: Changes to the build process or auxiliary tools and libraries
 
 For more information, please read the [conventional commit format](https://www.conventionalcommits.org/en/v1.0.0/) documentation.
