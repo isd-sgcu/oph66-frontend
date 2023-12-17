@@ -9,7 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write .",
-    "lint": "eslint --ext .js,.astro src && prettier --check .",
+    "lint": "eslint --ext .astro,.js,.jsx,.ts,.tsx, src && prettier --check .",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -49,6 +49,7 @@
   },
   "lint-staged": {
     "*.{astro,js,jsx,ts,tsx}": [
+      "eslint --fix",
       "prettier --write"
     ]
   }
