@@ -9,7 +9,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write .",
-    "lint": "prettier --check .",
+    "lint": "eslint --ext .js,.astro src && prettier --check .",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -31,6 +31,7 @@
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "eslint": "^8.56.0",
     "eslint-plugin-astro": "^0.31.0",
