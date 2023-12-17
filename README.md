@@ -52,7 +52,7 @@ Please install the following.
    git checkout -b <branch-name> origin/dev
    ```
 
-   > Note: Please copy the branch name from Linear and use it as the branch name.
+   > Note: In case you don't confident about how to name your branch, the branch name from Linear is a good choice.
 
 1. Make your changes
 1. Stage and commit your changes
