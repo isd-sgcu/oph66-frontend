@@ -42,6 +42,10 @@
     "prettier-plugin-organize-imports": "^3.2.4",
     "prettier-plugin-tailwindcss": "^0.5.9"
   },
+  "engines": {
+    "node": "^18.12",
+    "pnpm": "^8"
+  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
