@@ -94,7 +94,8 @@ Please install the following.
    Make sure that all dependencies are installed successfully. And husky should be install!
 
    The output should look like this:
-   [After installlation output](./docs/assets/after-install.png)
+
+   <img src="./docs/assets/after-install.png" alt="after-install" width="300"/>
 
 1. Run the development server
    ```bash
