@@ -2,15 +2,66 @@
 
 Frontend interface for the Openhouse 2566 website.
 
-> ⚠️ Warning: This document is still in a process of being proofread and edited. If you have any problems or questions, please contact _Leon_ on Discord.
+> ⚠️ Warning: This document might not be zero-error. If you encounter any problems, please contact _Leon_ on Discord.
 
 ## Prerequisites
 
 Please install the following.
 
-- [Node.js](https://nodejs.org/en/)
-- [pnpm](https://pnpm.io/)
-- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/en/): **v20 or above** is required. **v20.8.1** is recommended.
+- [pnpm](https://pnpm.io/): **v8 or above** is required. latest version is recommended.
+- [Git](https://git-scm.com/): latest version is recommended.
+
+## Setting Up the Development Environment
+
+1.  [VSCode](https://code.visualstudio.com/) is recommended for development.
+1.  Install the following extensions (Optional but highly recommended):
+    - [Astro](https://marketplace.visualstudio.com/items?itemName=astro.astro)
+    - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+    - [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+    - [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+1.  Setting the VSCode workspace settings (Optional but highly recommended):
+
+    1.  Open the command palette (Ctrl + Shift + P)
+    1.  Type "Preferences: Open Settings (JSON)" and press Enter
+    1.  Insert the following code into the settings.json file
+
+        ```json
+        {
+          "tailwindCSS.experimental.classRegex": [
+            ["clsx\\(([^)]_)\\)", "(?:'|\"|`)([^']_)(?:'|\"|`)"]
+          ],
+          "prettier.documentSelectors": ["**/*.astro"],
+          "[astro]": {
+            "editor.defaultFormatter": "esbenp.prettier-vscode"
+          },
+          "eslint.validate": [
+            "javascript",
+            "javascriptreact",
+            "astro",
+            "typescript",
+            "typescriptreact"
+          ],
+          "files.insertFinalNewline": true
+        }
+        ```
+
+        > Note: Please make sure you understand what you are doing before changing the settings.
+        >
+        > Here is a brief explanation of the settings.
+        >
+        > `tailwindCSS.experimental.classRegex` is for the Tailwind CSS and clsx() support.
+        >
+        > `prettier.documentSelectors (astro)`
+        > and
+        > `[astro]: { "editor.defaultFormatter": "esbenp.prettier-vscode" }`
+        > are for the Prettier support for Astro files.
+        >
+        > `eslint.validate` is for the ESLint support.
+        >
+        > `files.insertFinalNewline` is for the final newline at the end of the file which if set to `false`, you may encounter some problems with Prettier.
+
+1.  Save the file and you are done!
 
 ## Getting Started
 
@@ -35,9 +86,16 @@ Please install the following.
    > ```
 
 1. Install dependencies
+
    ```bash
    pnpm install
    ```
+
+   Make sure that all dependencies are installed successfully. And husky should be install!
+
+   The output should look like this:
+   [After installlation output](./docs/assets/after-install.png)
+
 1. Run the development server
    ```bash
    pnpm dev
