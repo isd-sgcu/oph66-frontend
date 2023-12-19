@@ -1,0 +1,38 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Day from "@/components/Day";
+---
+
+<BaseLayout>
+  <div class="flex w-full flex-col justify-center bg-black text-white">
+    <div class="flex justify-evenly">
+      <div class="flex flex-col">
+        <div class="my-2.5 mt-14 h-28 w-64 md:h-auto md:w-auto">
+          <img src="./Logo.svg" alt="logo" width="522" height="233" />
+        </div>
+        <h1 class="ml-10 mt-2.5 font-libre text-3xl font-bold">
+          Chula Open House 2024
+        </h1>
+        <p class="mb-10 ml-10 text-base font-medium">20-21 January 2024</p>
+        <button class="ml-10 w-64 rounded-2xl border-2 p-2 px-5 py-2 font-bold">
+          ลงทะเบียน / Register</button
+        >
+      </div>
+      <Day />
+    </div>
+    <div
+      class="mb-24 mt-16 flex flex-col items-center justify-center text-base font-medium"
+    >
+      <p>ทุกความฝันที่สวยงามล้วนเริ่มต้นจากชิ้นส่วนเล็ก ๆ เสมอ</p>
+
+      <p>ไม่เป็นอะไรเลยถ้าตอนนี้ทุกคนยังไม่เห็นภาพเส้นทางที่จะเดินไปในอนาคต</p>
+
+      <p>
+        เพราะการมางาน CU Open House 2024
+        จะช่วยเติมเต็มภาพเหล่านั้นให้ชัดเจนขึ้นได้แน่นอน
+      </p>
+      <p>อย่าลืมมาร่วมต่อชิ้นส่วนแห่งความฝันและตัวตนไปด้วยกันนะ!</p>
+    </div>
+  </div>
+</BaseLayout>
+ @/pages/Day
