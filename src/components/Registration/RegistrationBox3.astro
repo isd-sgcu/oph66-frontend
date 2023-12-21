@@ -11,43 +11,43 @@ import CheckBox from "../CheckBox.astro";
                 <p class="text-medium text-base text-white mb-3">ทราบข่าวการจัดงานจากช่องทางใด (ตอบได้มากกว่า 1 ข้อ) / 
                     How did you hear about the event? (Check all that apply)*</p>
                 <div class="flex flex-row">
-                    <CheckBox value="facebook"/>               
+                    <CheckBox value="facebook" name="sourceOfNews"/>               
                     <label class="text-medium text-base text-white">
                         Facebook Page: CU Openhouse
                     </label>
                   </div>
                   <div class="flex flex-row">
-                    <CheckBox  value="instragram"/>                  
+                    <CheckBox  value="instragram" name="sourceOfNews"/>                  
                     <label class="text-medium text-base text-white">
                         Instagram: @cuopenhouse
                     </label>
                   </div>
                   <div class="flex flex-row">
-                    <CheckBox  value="faculties"/>                
+                    <CheckBox  value="faculties" name="sourceOfNews"/>                
                     <label class="text-medium text-base text-white">
                         ช่องทางของคณะต่าง ๆ / Faculties’ official pages
                     </label>
                   </div>
                   <div class="flex flex-row">
-                    <CheckBox  value="chulaStudent"/>               
+                    <CheckBox  value="chulaStudent" name="sourceOfNews"/>               
                     <label class="text-medium text-base text-white">
                         นิสิตจุฬาฯ / Chula students
                     </label>
                   </div>
                   <div class="flex flex-row">
-                    <CheckBox  value="friends"/>                   
+                    <CheckBox  value="friends" name="sourceOfNews"/>                   
                     <label class="text-medium text-base text-white">
                         เพื่อน / Friends
                     </label>
                   </div>
-                  <div class="flex flex-row">
-                    <CheckBox  value="parents" />                    
+                  <div class="flex flex-row" >
+                    <CheckBox  value="parents" name="sourceOfNews"/>                    
                     <label class="text-medium text-base text-white">
                         ผู้ปกครอง / Parents
                     </label>
                   </div>
                   <div class="flex flex-row">
-                    <CheckBox />
+                    <CheckBox value="school" name="sourceOfNews"/>
                     <label class="text-medium text-base text-white"> โรงเรียน / School </label>
                   </div>
             </div>

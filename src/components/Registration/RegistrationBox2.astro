@@ -11,50 +11,50 @@ import TextBox from "../TextBox.astro";
                 <label class="text-white text-base">สถานภาพ / Status*</label>
                 <div class="w-full h-fit flex flex-col space-y-1 mt-3">
                     <div class="flex flex-row">
-                        <RadioBox radioName="status" value="student"/>                          
+                        <RadioBox name="status" value="student"/>                          
                         <label class="text-white text-medium">นักเรียน / Student</label>
                     </div>
                     <div class="ml-6 flex flex-col space-y-1">
                         <label class="text-white text-base">ระดับการศึกษา / Education Level</label>
                         <div class="flex flex-row">
-                            <RadioBox radioName="educationLevel" value="middleSchool"/>
+                            <RadioBox name="educationLevel" value="middleSchool"/>
                             <label class="text-white text-base">ม.ต้น / Middle school</label>
                         </div>
                         <div class="flex flex-row">
-                            <RadioBox radioName="educationLevel" value="highSchool"/>
+                            <RadioBox name="educationLevel" value="highSchool"/>
                             <label class="text-white text-base">ม.ปลาย / High school</label>
                         </div>
                         <div class="flex flex-row">
-                            <RadioBox radioName="educationLevel" value="vocCert"/>
+                            <RadioBox name="educationLevel" value="vocCert"/>
                             <label class="text-white text-base">ปวช. หรือ ปวศ. / Voc. Cert. or High Voc. Cert.</label>
                         </div>
                         <div class="flex flex-row">
-                            <RadioBox radioName="educationLevel" value="other"/>
+                            <RadioBox name="educationLevel" value="other"/>
                             <label class="text-white text-base">อื่น ๆ / Other</label>    
                         </div>
                         <div class="w-1/2 ml-6 h-8">
-                            <TextBox textName="otherEducationLevel"/>
+                            <TextBox name="otherEducationLevel"/>
                         </div>
                         
                     </div>
                     <div class="flex flex-row">
-                        <RadioBox radioName="status" value="homeSchool"/>
+                        <RadioBox name="status" value="homeSchool"/>
                         <label class="text-white text-medium">เด็กบ้านเรียน / Home School</label>
                     </div>
                     <div class="flex flex-row">
-                        <RadioBox radioName="status" value="reapplying"/>
+                        <RadioBox name="status" value="reapplying"/>
                         <label class="text-white text-medium">เด็กซิ่ว / Reapplying </label>
                     </div>
                     <div class="flex flex-row">
-                        <RadioBox radioName="status" value="parent"/>
+                        <RadioBox name="status" value="parent"/>
                         <label class="text-white text-medium">ผู้ปกครอง / Parent</label>
                     </div>
                     <div class="flex flex-row">
-                        <RadioBox radioName="status" value="other"/>
+                        <RadioBox name="status" value="other"/>
                         <label class="text-white text-medium">อื่น ๆ / Other</label>
                     </div>
                     <div class="w-1/2 ml-6 h-8">
-                        <TextBox textName="otherStatus"/>
+                        <TextBox name="otherStatus"/>
                     </div>
                 </div>
             </div>
