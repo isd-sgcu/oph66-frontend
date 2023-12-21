@@ -1,0 +1,54 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout withNav={false} withFooter={false}>
+  <div class="w-full h-14 flex">
+    <h1>Chula Open House 2024 </h1>
+</div>
+  <div class="block w-screen h-max overflow-clip" style="background-image: url('/public/detailBackground.svg'); background-size: cover; background-position: center;">
+    <!-- <div class="absolute x-10 y-64 block">
+      <div class="topic flex h-auto">SSS</div>
+    </div> -->
+    <div class="mx-8">
+      <div class="flex whitespace-normal break-normal mt-12 w-auto h-fit w-screen; text-white font-semibold text-4xl leading-14 tracking-tight">
+        SESSION TALK WITH AJARN
+      </div>
+      <div class="mt-2 w-3/4 break-normal text-white font-bold text-lg leading-6 underline">
+        คณะสถาปัตยกรรมศาสตร์ /
+        Faculty of Architecture
+      </div>
+      <div class="text-white font-medium text-base leading-normal tracking-tight">
+        ภาควิชาxxxxx สาขาวิชาxxxxx
+      </div>
+      <div class="flex place-items-center my-1 gap-2 text-white text-center font-medium text-xs leading-normal tracking-tight" style="letter-spacing: -0.1px;">
+        <div class="flex bg-pinkButton px-1.5 pinkButton rounded-xl">
+          <div class="fit flex ">ต้องลงทะเบียน / Limited seats</div>
+        </div>
+        <div class="flex items-center justify-center px-1 rounded-xl border-white border">
+          <div class="flex items-center justify-center">999/999</div>
+        </div>
+      </div>
+      <div class="mt-8 px-3.5 w-full border-white border-2 rounded-2xl">
+        <div class="flex px-2">
+          <div class=""></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .topic {
+    color: #FDFFFC;
+    font-family: 'IBM Plex Sans Thai';
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 48px;
+    letter-spacing: -0.48px;
+  }
+  .pinkButton{
+    background-color: #DE5C8E;
+  }
+</style>
