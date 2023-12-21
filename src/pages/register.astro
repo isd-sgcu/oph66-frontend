@@ -43,16 +43,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       <!-- RegisterBox6 -->
       <RegistrationBox6 />
       <div class="flex mb-16">
-        <CheckBox />
+        <CheckBox name="agreement" value="agreed"/>
         <label class="text-white text-base">ยอมรับนโยบายความเป็นส่วนตัวและข้อตกลงการใช้งาน</label>
       </div>
       <button type="submit" class="border border-white bg-transparent text-white px-4 py-2 rounded-md place-self-center"> ลงทะเบียน / Register</button>
     </form>
     
-
-</BaseLayout>
-
-
 <script>
     const form = document.getElementById('form');
     form.addEventListener("submit", (e)=>{
@@ -60,5 +56,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       const formData = new FormData(form as HTMLFormElement);
       const data = Object.fromEntries(formData);
       console.log(data);
+      const checkbox3Data = getCheckBoxesValue("sourceOfNews");
+      console.log(checkbox3Data);
+      const checkboxAgreement = getCheckBoxesValue("agreement");
+      console.log(checkboxAgreement)
+      // const checkboxAgreement = getCheckBoxesValue
     })
+    function getCheckBoxesValue(name: string){
+        return [].slice.apply(document.querySelectorAll("input[type=checkbox][name="+name+"]"))
+           .filter(function(c){ return c.checked; })
+           .map(function(c){ return c.value; });
+    }
 </script>
+
+</BaseLayout>
