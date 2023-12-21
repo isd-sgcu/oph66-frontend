@@ -1,0 +1,79 @@
+---
+import TextBox from "../TextBox.astro";
+import DropDown from "../DropDown.astro";
+import CheckBox from "../CheckBox.astro";
+import RadioBox from "../RadioBox.astro";
+const days: string[] = Array.from({ length: 31 }, (_, index) => (index + 1).toString());
+const months: string[] = [
+  "มกราคม / January",
+  "กุมภาพันธ์ / February",
+  "มีนาคม / March",
+  "เมษายน / April",
+  "พฤษภาคม / May",
+  "มิถุนายน / June",
+  "กรกฎาคม / July",
+  "สิงหาคม / August",
+  "กันยายน / September",
+  "ตุลาคม / October",
+  "พฤศจิกายน / November",
+  "ธันวาคม / December",
+];
+const years: string[] = ["2547 / 2004"]
+---
+
+<registrationBox1>
+    <div class="w-screen flex flex-shrink-0 flex-col items-center p-0 mb-12">
+        <div class="min-w-min w-2/5 p-0 m-0 flex-col flex items-center">
+            <div class="h-fit w-full rounded-2xl border-2 border-solid border-white p-9 mb-1  shadow-inner backdrop-blur-md">
+              <label class="text-base font-medium text-white">
+                ชื่อ (และชื่อกลาง) / First name (and middle name)*
+              </label>
+              <div class="mb-4">
+                <TextBox/ placeHolder="ไม่ต้องใส่คำนำหน้า / without titles" textName="firstName">
+              </div>
+              <label class="text-base font-medium text-white">นามสกุล / Last name*</label>
+              <div class="mb-12">
+                <TextBox textName="lastName"/>
+              </div>
+              <label class="text-base font-medium text-white">
+                วัน เดือน ปีเกิด / Birth date
+              </label>
+              <div class="flex mb-16 justify-between space-x-3 w-full">
+                <div class="w-1/3 h-12">
+                  <DropDown defaultVal="วันที่ / Date" dropDownOptions={days} dropDownName="dayOfBirth"/>
+                </div>
+                <div class="w-1/3 h-12">
+                  <DropDown defaultVal="เดือน / Month" dropDownOptions={months} dropDownName="monthOfBirth"/>
+                </div>
+                <div class="w-1/3 h-12">
+                  <DropDown defaultVal="ปี / Year" dropDownOptions={years} dropDownName="yearOfBirth"/>
+                </div>
+              </div>
+              <label class="text-base font-medium text-white">ที่อยู่ / Residence*</label>
+              <div class="flex flex-row justify-between mb-6">
+                <div class="w-1/2">
+                  <RadioBox radioName="residence" radioName="residence" value="Thailand"/>
+                  <label class="text-medium text-base text-white">ในประเทศไทย / Thailand</label>
+                </div>
+                <div class="w-1/2 h-12">
+                  <DropDown defaultVal="จังหวัด / Province" dropDownName="province"/>
+                </div>
+                
+              </div>
+              <div class="flex flex-row justify-between">
+                <div class="w-1/2">
+                  <RadioBox radioName="residence" radioName="residence" value="Other countries"/>
+                  <label class="text-medium text-base text-white">ต่างประเทศ / Other countries</label>
+                </div>
+                <div class="w-1/2 h-12">
+                  <DropDown defaultVal="ประเทศ / Country" dropDownName="country"/>
+                </div>
+              </div>
+            </div>
+            <p class="place-self-end text-xs text-white">
+              จำเป็นต้องกรอก / Must be filled*
+            </p>
+          </div>
+    </div>
+  
+</registrationBox1>

@@ -1,0 +1,14 @@
+---
+import DropDown from "../DropDown.astro";
+const{dropDownLabel} = Astro.props
+---
+
+<dropDownWithLabel>
+    <div class="flex flex-col space-y-1 h-fit">
+        <label class="text-white text-base">{dropDownLabel}</label>
+        <div class="w-4/5 h-12">
+            <DropDown defaultVal={dropDownLabel} />
+        </div>
+    </div>
+    
+</dropDownWithLabel>

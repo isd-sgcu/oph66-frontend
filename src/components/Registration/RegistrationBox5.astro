@@ -1,0 +1,29 @@
+---
+import FacultyBox from "./FacultyDetailBox.astro";
+---
+
+<registrationBox5>
+    <div class="w-screen flex flex-shrink-0 flex-col items-center p-0 mb-12">
+        <div class="min-w-min w-2/5 p-0 m-0 flex-col flex items-center">
+            <div class="h-fit w-full rounded-2xl border-2 border-solid border-white p-9 mb-1 flex flex-col items-center">
+                <p class="text-medium text-base text-white mb-5">คณะที่สนใจที่สุด (ไม่เกิน 3 คณะ) / Faculties interested (maximum: 3)</p>
+                <div class="w-full" id="facultyBoxes">
+                    <FacultyBox number="1" haveDepartMent="true" haveFaculty="true" haveSection="true"/>
+                    <FacultyBox number="2" haveDepartMent="true" haveFaculty="true" haveSection="true"/>
+                </div>
+                <input type="button" value="เพิ่ม / Add more +" class="bg-white rounded-2xl p-1 text-pink-500 text-xs w-32 h-6 place-self-end" id="addButton"/>
+            </div>
+            
+        </div>
+    </div>
+</registrationBox5>
+
+<script>
+    const addButton = document.getElementById('addButton')
+    const facultyBoxes = document.getElementById('facultyBoxes')
+    addButton.addEventListener('click', ()=>{
+        facultyBoxes.innerHTML += `<FacultyBox number="3" />`
+    })
+    
+</script>
+

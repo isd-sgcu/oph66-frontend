@@ -1,7 +1,64 @@
 ---
+// import CheckBox from "@/components/CheckBox.astro";
+// import TextBox from "@/components/TextBox.astro";
+// import DropDown from "@/components/DropDown.astro";
+// import RadioBox from "@/components/RadioBox.astro";
+import CheckBox from "@/components/CheckBox.astro";
+import RegistrationBox1 from "@/components/Registration/RegistrationBox1.astro";
+import RegistrationBox2 from "@/components/Registration/RegistrationBox2.astro";
+import RegistrationBox3 from "@/components/Registration/RegistrationBox3.astro";
+import RegistrationBox4 from "@/components/Registration/RegistrationBox4.astro";
+import RegistrationBox5 from "@/components/Registration/RegistrationBox5.astro";
+import RegistrationBox6 from "@/components/Registration/RegistrationBox6.astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout withNav={false} withFooter={false}>
-  <h1>Register page</h1>
+  <style>
+    :global(body) {
+      background-color: black;
+    }
+  </style>
+  <div class="m-16 flex w-full flex-col items-center">
+    <h1 class="text-white text-shadow-lg text-6xl font-bold tracking-wide leading-normal">
+      ลงทะเบียน
+    </h1>
+    <h1 class="text-white font-libre text-3xl font-bold">
+      Registration
+    </h1> 
+    <svg xmlns="http://www.w3.org/2000/svg" width="200" height="3" viewBox="0 0 208 3" fill="none" class="mb-12">
+      <path d="M0 1.5H208" stroke="#FDFFFC" stroke-width="2"/>
+    </svg>
+    <form id="form" class="flex flex-col items-center">
+      <!-- registerBox1 -->
+      <RegistrationBox1 />
+      <!-- RegisterBox2 -->
+      <RegistrationBox2 />
+      <!-- RegisterBox3 -->
+      <RegistrationBox3 />
+      <!-- RegisterBox4 -->
+      <RegistrationBox4 />
+      <!-- RegisterBox5 -->
+      <RegistrationBox5 />
+      <!-- RegisterBox6 -->
+      <RegistrationBox6 />
+      <div class="flex mb-16">
+        <CheckBox />
+        <label class="text-white text-base">ยอมรับนโยบายความเป็นส่วนตัวและข้อตกลงการใช้งาน</label>
+      </div>
+      <button type="submit" class="border border-white bg-transparent text-white px-4 py-2 rounded-md place-self-center"> ลงทะเบียน / Register</button>
+    </form>
+    
+
 </BaseLayout>
+
+
+<script>
+    const form = document.getElementById('form');
+    form.addEventListener("submit", (e)=>{
+      e.preventDefault();
+      const formData = new FormData(form as HTMLFormElement);
+      const data = Object.fromEntries(formData);
+      console.log(data);
+    })
+</script>

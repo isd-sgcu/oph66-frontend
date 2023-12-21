@@ -1,0 +1,44 @@
+---
+import RadioBox from "../RadioBox.astro";
+import TextBox from "../TextBox.astro";
+
+---
+
+<registrationBox4>
+    <div class="w-screen flex flex-shrink-0 flex-col items-center p-0 mb-12">
+        <div class="min-w-min w-2/5 p-0 m-0 flex-col flex items-center">
+            <div class="h-fit w-full rounded-2xl border-2 border-solid border-white p-9 mb-1">
+                <p class="text-medium text-base text-white mb-2">อยากเข้าจุฬาฯ รอบไหน / Desired round of admission</p>
+                <div class=" flex flex-col space-y-1 mb-10">
+                    <div class="flex flex-row">
+                        <RadioBox radioName="roundOfAdmission" value="1"/>               
+                        <label class="text-medium text-base text-white">รอบ 1 / Round 1</label>
+                    </div>
+                    <div class="flex flex-row">
+                        <RadioBox radioName="roundOfAdmission" value="2"/>               
+                        <label class="text-medium text-base text-white">รอบ 2 / Round 2</label>
+                    </div>
+                    <div class="flex flex-row">
+                        <RadioBox radioName="roundOfAdmission" value="3"/>               
+                        <label class="text-medium text-base text-white">รอบ 3 / Round 3</label>
+                    </div>
+                    <div class="flex flex-row">
+                        <RadioBox radioName="roundOfAdmission" value="other"/>               
+                        <label class="text-medium text-base text-white">อื่น ๆ / Other</label>
+                    </div>
+                    <div class="w-1/2 ml-6 h-8">
+                        <TextBox textName="otherRoundOfAdmission"/>
+                    </div>
+                </div>
+                <p class="text-medium text-base text-white mb-3">ทำไมอยากเข้าจุฬาฯ
+                    / Reason for applying to Chula</p>
+                <div class="w-full h-20">
+                    <TextBox textName="reasonForApplying"/>
+                </div>
+            </div>
+        </div>
+       
+
+
+</registrationBox4>
+
