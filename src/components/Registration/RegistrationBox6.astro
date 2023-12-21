@@ -11,7 +11,7 @@ import FacultyBox from "./FacultyDetailBox.astro";
                     <FacultyBox number="1" haveFaculty="true"/>
                     <FacultyBox number="2" haveFaculty="true"/>
                 </div>
-                <input type="button" value="เพิ่ม / Add more +" class="bg-white rounded-2xl p-1 text-pink-500 text-xs w-32 h-6 place-self-end" id="addButton"/>
+                <input type="button" value="เพิ่ม / Add more +" class="bg-white rounded-2xl p-1 text-pink-500 text-xs w-32 h-6 place-self-end" id="addButton6"/>
             </div>
         </div>
        
@@ -19,4 +19,30 @@ import FacultyBox from "./FacultyDetailBox.astro";
     
 
 </registrationBox6>
+<script>
+const addButton = document.getElementById('addButton6')
+    const FacultyDetailBoxes = document.getElementById('facultyBoxes')
+    addButton.addEventListener('click', ()=>{
+        FacultyDetailBoxes.innerHTML += `
+        <div class="w-full border-2 border-solid border-white h-fit flex p-6 rounded-2xl mb-8">
+            <p class="text-white text-3xl mr-12 p-1">3</p>
+            <div class="flex flex-col w-4/5 space-y-3">
+                <div class="flex flex-col space-y-1 h-fit">
+                    <label class="text-white text-base">คณะ / Faculty</label>
+                    <div class="w-4/5 h-12">
+                        <select class="rounded-2xl w-full h-full p-1 text-pink-400 text-xs">
+                            <option value="-" selected disabled >คณะ / Faculty</option>
+                            {faculties.map((option) => (
+                                <option value={option}>{option}</option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
 
+            </div>
+        </div>
+        `
+        addButton.hidden = true;
+    })
+    
+</script>
