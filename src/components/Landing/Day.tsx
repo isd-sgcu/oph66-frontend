@@ -8,11 +8,11 @@ const Day = () => {
   return (
     <div className="mt-14">
       <img src="/Union.svg" />
-      <div className="absolute -translate-y-72 translate-x-[5.3rem] rotate-2 font-libre text-4xl font-normal">
+      <div className="absolute -translate-y-64 translate-x-[5.3rem] rotate-2 font-libre text-4xl font-normal">
         {result != 0 ? (
           <div>
             <div className="flex w-44 -translate-x-8 justify-center">
-              <h1 className="mb-20 rotate-3 font-ibm text-[10rem]">{result}</h1>
+              <h1 className="mb-12 rotate-3 font-ibm text-[10rem]">{result}</h1>
             </div>
 
             <h1>DAYS</h1>
