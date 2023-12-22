@@ -67,20 +67,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
            .filter(function(c){ return c.checked; })
            .map(function(c){ return c.value; });
     }
-    const checkBox = document.querySelectorAll("input[type=checkbox]")
-    checkBox.forEach((c)=>{
-      c.addEventListener('change', function () {
-        console.log('clicked')
-        var innerCircle = c.parentElement.querySelector('.inner-circle');
-        if(innerCircle) console.log("found")
-        if (c.checked) {
-            innerCircle.classList.remove('hidden');
-            console.log("appear")
-        } else {
-            innerCircle.classList.add('hidden');
-        }
-        });
-    })
+    
 </script>
 
 </BaseLayout>
