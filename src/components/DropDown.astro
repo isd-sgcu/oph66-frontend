@@ -2,12 +2,27 @@
 const {defaultVal, name,options =[]} = Astro.props
 ---
 <dropdown >
-    <select class="rounded-2xl w-full h-full p-1 text-pink-400 text-xs" name={name}>
-        <option value="-" selected disabled >{defaultVal}</option>
-        {options.map((option) => (
-            <option value={option}>{option}</option>
-          ))}
-    </select>
+    <div class="relative w-full h-full inline-block">
+        <div class="arrow absolute inset-y-0 flex items-center pointer-events-none ">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" viewBox="0 0 16 8" fill="none">
+                <path d="M8 8L16 -9.48178e-07H9.48178e-07L8 8Z" fill="#DE87A8"/>
+            </svg>
+        </div>
+        <select class="rounded-2xl w-full h-full p-1 text-pink-400 text-xs m-0" name={name}>
+            <option value="-" selected disabled class="text-pink-400">{defaultVal}</option>
+            {options.map((option) => (
+                <option value={option} class="text-base text-black">{option}</option>
+              ))}
+        </select>
+    </div>
+    
 </dropdown>
+
+<style>
+    .arrow{
+        right:3px;
+        top:1px
+    }
+</style>
         
 
