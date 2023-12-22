@@ -3,7 +3,7 @@ const {name, value, id} = Astro.props;
 ---
 <checkbox>
     <div class="flex relative mr-2 w-5 h-5">
-        <div class="w-5 h-5 border border-white rounded-full mr-2 bg-white absolute z-10"></div>
+        <div class="w-5 h-5 absolute rounded-full mr-2 bg-white z-10"></div>
         <input
         value={value}
         name={name}
@@ -11,8 +11,7 @@ const {name, value, id} = Astro.props;
         type="checkbox"
         class="w-5 h-5 absolute inline-block appearance-none rounded-full z-30"
         />
-        
-        <div class="inner-circle hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-pink-500 rounded-full z-20"></div>
+        <div class="m-0 inner-circle hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-pink-500 rounded-full z-20"></div>
     </div>
     
 </checkbox>
