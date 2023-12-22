@@ -1,63 +1,75 @@
-
 ---
 import CheckBox from "../CheckBox.astro";
-
 ---
 
 <registrationBox3>
-    <div class="w-screen flex flex-shrink-0 flex-col items-center p-0 mb-12">
-        <div class="max-w-xl w-full p-0 m-0 flex-col flex items-center">
-            <div class="h-fit w-full rounded-2xl border-2 border-solid border-white p-9 mb-1 flex flex-col space-y-1">
-                <p class="text-medium text-base text-white mb-3">ทราบข่าวการจัดงานจากช่องทางใด (ตอบได้มากกว่า 1 ข้อ) / 
-                    How did you hear about the event? (Check all that apply)*</p>
-                <div class="flex flex-row">
-                    <CheckBox value="facebook" name="sourceOfNews" id="facebookSource"/>               
-                    <label class="text-medium text-base text-white">
-                        Facebook Page: CU Openhouse
-                    </label>
-                  </div>
-                  <div class="flex flex-row">
-                    <CheckBox  value="instragram" name="sourceOfNews" id="instragramSource"/>                  
-                    <label class="text-medium text-base text-white">
-                        Instagram: @cuopenhouse
-                    </label>
-                  </div>
-                  <div class="flex flex-row">
-                    <CheckBox  value="faculties" name="sourceOfNews" id="facultiesSource"/>                
-                    <label class="text-medium text-base text-white">
-                        ช่องทางของคณะต่าง ๆ / Faculties’ official pages
-                    </label>
-                  </div>
-                  <div class="flex flex-row">
-                    <CheckBox  value="chulaStudent" name="sourceOfNews" id="chulaStudentsSource"/>               
-                    <label class="text-medium text-base text-white">
-                        นิสิตจุฬาฯ / Chula students
-                    </label>
-                  </div>
-                  <div class="flex flex-row">
-                    <CheckBox  value="friends" name="sourceOfNews" id="friendsSource"/>                   
-                    <label class="text-medium text-base text-white">
-                        เพื่อน / Friends
-                    </label>
-                  </div>
-                  <div class="flex flex-row" >
-                    <CheckBox  value="parents" name="sourceOfNews" id="parentsSource"/>                    
-                    <label class="text-medium text-base text-white">
-                        ผู้ปกครอง / Parents
-                    </label>
-                  </div>
-                  <div class="flex flex-row">
-                    <CheckBox value="school" name="sourceOfNews" id="schoolSource"/>
-                    <label class="text-medium text-base text-white"> โรงเรียน / School </label>
-                  </div>
-            </div>
-            <p class="text-xs text-white place-self-end">
-                จำเป็นต้องกรอก / Must be filled*
-            </p>
+  <div class="mb-12 flex w-screen flex-shrink-0 flex-col items-center p-0">
+    <div class="m-0 flex w-4/5 max-w-xl flex-col items-center p-0">
+      <div
+        class="mb-1 flex h-fit w-full flex-col space-y-1 rounded-2xl border-2 border-solid border-white p-9"
+      >
+        <p class="text-medium mb-3 text-base text-white">
+          ทราบข่าวการจัดงานจากช่องทางใด (ตอบได้มากกว่า 1 ข้อ) / How did you hear
+          about the event? (Check all that apply)*
+        </p>
+        <div class="flex flex-row">
+          <CheckBox value="facebook" name="sourceOfNews" id="facebookSource" />
+          <label class="text-medium text-base text-white">
+            Facebook Page: CU Openhouse
+          </label>
         </div>
-       
+        <div class="flex flex-row">
+          <CheckBox
+            value="instragram"
+            name="sourceOfNews"
+            id="instragramSource"
+          />
+          <label class="text-medium text-base text-white">
+            Instagram: @cuopenhouse
+          </label>
+        </div>
+        <div class="flex flex-row">
+          <CheckBox
+            value="faculties"
+            name="sourceOfNews"
+            id="facultiesSource"
+          />
+          <label class="text-medium text-base text-white">
+            ช่องทางของคณะต่าง ๆ / Faculties’ official pages
+          </label>
+        </div>
+        <div class="flex flex-row">
+          <CheckBox
+            value="chulaStudent"
+            name="sourceOfNews"
+            id="chulaStudentsSource"
+          />
+          <label class="text-medium text-base text-white">
+            นิสิตจุฬาฯ / Chula students
+          </label>
+        </div>
+        <div class="flex flex-row">
+          <CheckBox value="friends" name="sourceOfNews" id="friendsSource" />
+          <label class="text-medium text-base text-white">
+            เพื่อน / Friends
+          </label>
+        </div>
+        <div class="flex flex-row">
+          <CheckBox value="parents" name="sourceOfNews" id="parentsSource" />
+          <label class="text-medium text-base text-white">
+            ผู้ปกครอง / Parents
+          </label>
+        </div>
+        <div class="flex flex-row">
+          <CheckBox value="school" name="sourceOfNews" id="schoolSource" />
+          <label class="text-medium text-base text-white">
+            โรงเรียน / School
+          </label>
+        </div>
+      </div>
+      <p class="place-self-end text-xs text-white">
+        จำเป็นต้องกรอก / Must be filled*
+      </p>
     </div>
-    
-
+  </div>
 </registrationBox3>
-

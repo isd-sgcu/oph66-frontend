@@ -3,45 +3,65 @@ import FacultyBox from "./FacultyDetailBox.astro";
 ---
 
 <registrationBox6>
-    <div class="w-screen flex flex-shrink-0 flex-col items-center p-0 mb-12">
-        <div class="max-w-xl w-full p-0 m-0 flex-col flex items-center">
-            <div class="h-fit w-full rounded-2xl border-2 border-solid border-white p-9 mb-1 flex flex-col items-center">
-                <p class="text-medium text-base text-white mb-5 place-self-start">คณะที่อยากไปในวันงาน (ไม่เกิน 3 คณะ) / Faculties planned to visit (maximum: 3)</p>
-                <div class="w-full" id="facultyBoxes">
-                    <FacultyBox number="1" haveFaculty="true" name="planned1"/>
-                    <FacultyBox number="2" haveFaculty="true" name="planned2"/>
-                </div>
-                <input type="button" value="เพิ่ม / Add more +" class="bg-white rounded-2xl p-1 text-pink-500 text-xs w-32 h-6 place-self-end" id="addButton6"/>
-            </div>
+  <div class="mb-12 flex w-screen flex-shrink-0 flex-col items-center p-0">
+    <div class="m-0 flex w-4/5 max-w-xl flex-col items-center p-0">
+      <div
+        class="mb-1 flex h-fit w-full flex-col items-center rounded-2xl border-2 border-solid border-white p-9"
+      >
+        <p class="text-medium mb-5 place-self-start text-base text-white">
+          คณะที่อยากไปในวันงาน (ไม่เกิน 3 คณะ) / Faculties planned to visit
+          (maximum: 3)
+        </p>
+        <div class="w-full" id="facultyBoxes">
+          <FacultyBox number="1" haveFaculty="true" name="planned1" />
+          <FacultyBox number="2" haveFaculty="true" name="planned2" />
         </div>
+        <input
+          type="button"
+          value="เพิ่ม / Add more +"
+          class="h-6 w-32 place-self-end rounded-2xl bg-white p-1 text-xs text-pink-500"
+          id="addButton6"
+        />
+      </div>
     </div>
-    
-
+  </div>
 </registrationBox6>
 <script>
-const addButton = document.getElementById('addButton6')
-    const FacultyDetailBoxes = document.getElementById('facultyBoxes')
-    addButton.addEventListener('click', ()=>{
-        FacultyDetailBoxes.innerHTML += `
-        <div class="w-full border-2 border-solid border-white h-fit flex p-6 rounded-2xl mb-8">
-            <p class="text-white text-3xl mr-12 p-1">3</p>
+  const addButton = document.getElementById("addButton6");
+  const FacultyDetailBoxes = document.getElementById("facultyBoxes");
+  addButton.addEventListener("click", () => {
+    FacultyDetailBoxes.innerHTML += `
+        <div class="w-full border-2 border-solid border-white h-fit flex flex-col items-center lg:items-start lg:flex-row p-6 rounded-2xl mb-8">
+            <p class="text-white text-3xl mr-0 lg:mr-12 p-1">3</p>
             <div class="flex flex-col w-4/5 space-y-3">
                 <div class="flex flex-col space-y-1 h-fit">
                     <label class="text-white text-base">คณะ / Faculty</label>
-                    <div class="w-4/5 h-12">
-                        <select class="rounded-2xl w-full h-full p-1 text-pink-400 text-xs" name="planned3Faculty">
-                            <option value="-" selected disabled >คณะ / Faculty</option>
-                            {faculties.map((option) => (
-                                <option value={option}>{option}</option>
-                            ))}
-                        </select>
+                    <div class="full h-12">
+                        <div class="relative w-full h-full inline-block">
+                            <div class="arrow absolute inset-y-0 flex items-center pointer-events-none ">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" viewBox="0 0 16 8" fill="none">
+                                    <path d="M8 8L16 -9.48178e-07H9.48178e-07L8 8Z" fill="#DE87A8"/>
+                                </svg>
+                            </div>
+                            <select class="rounded-2xl w-full h-full p-1 text-pink-400 text-xs m-0" name="planned3Faculty">
+                                <option value="-" selected disabled class="text-pink-400">คณะ / Faculty</option>
+                                {options.map((option) => (
+                                    <option value={option} class="text-base text-black">{option}</option>
+                                ))}
+                            </select>
+                        </div>
                     </div>
                 </div>
 
             </div>
         </div>
-        `
-        addButton.hidden = true;
-    })
-    
+        <style>
+            .arrow{
+                right:0.1em;
+                top:0.1em;
+            }
+        </style>
+        `;
+    addButton.hidden = true;
+  });
 </script>

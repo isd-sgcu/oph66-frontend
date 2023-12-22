@@ -1,69 +1,72 @@
 ---
 import RadioBox from "../RadioBox.astro";
 import TextBox from "../TextBox.astro";
-
 ---
 
 <registrationBox2>
-    <div class="w-screen flex flex-shrink-0 flex-col items-center p-0 mb-12">
-        <div class="max-w-xl w-full p-0 m-0 flex-col flex items-center">
-            <div class="h-fit w-full rounded-2xl border-2 border-solid border-white p-9 mb-1">
-                <label class="text-white text-base">สถานภาพ / Status*</label>
-                <div class="w-full h-fit flex flex-col space-y-1 mt-3">
-                    <div class="flex flex-row">
-                        <RadioBox name="status" value="student"/>                          
-                        <label class="text-white text-medium">นักเรียน / Student</label>
-                    </div>
-                    <div class="ml-6 flex flex-col space-y-1">
-                        <label class="text-white text-base">ระดับการศึกษา / Education Level</label>
-                        <div class="flex flex-row">
-                            <RadioBox name="educationLevel" value="middleSchool"/>
-                            <label class="text-white text-base">ม.ต้น / Middle school</label>
-                        </div>
-                        <div class="flex flex-row">
-                            <RadioBox name="educationLevel" value="highSchool"/>
-                            <label class="text-white text-base">ม.ปลาย / High school</label>
-                        </div>
-                        <div class="flex flex-row">
-                            <RadioBox name="educationLevel" value="vocCert"/>
-                            <label class="text-white text-base">ปวช. หรือ ปวศ. / Voc. Cert. or High Voc. Cert.</label>
-                        </div>
-                        <div class="flex flex-row">
-                            <RadioBox name="educationLevel" value="other"/>
-                            <label class="text-white text-base">อื่น ๆ / Other</label>    
-                        </div>
-                        <div class="w-1/2 ml-6 h-8">
-                            <TextBox name="otherEducationLevel"/>
-                        </div>
-                        
-                    </div>
-                    <div class="flex flex-row">
-                        <RadioBox name="status" value="homeSchool"/>
-                        <label class="text-white text-medium">เด็กบ้านเรียน / Home School</label>
-                    </div>
-                    <div class="flex flex-row">
-                        <RadioBox name="status" value="reapplying"/>
-                        <label class="text-white text-medium">เด็กซิ่ว / Reapplying </label>
-                    </div>
-                    <div class="flex flex-row">
-                        <RadioBox name="status" value="parent"/>
-                        <label class="text-white text-medium">ผู้ปกครอง / Parent</label>
-                    </div>
-                    <div class="flex flex-row">
-                        <RadioBox name="status" value="other"/>
-                        <label class="text-white text-medium">อื่น ๆ / Other</label>
-                    </div>
-                    <div class="w-1/2 ml-6 h-8">
-                        <TextBox name="otherStatus"/>
-                    </div>
-                </div>
+  <div class="mb-12 flex w-screen flex-shrink-0 flex-col items-center p-0">
+    <div class="m-0 flex w-4/5 max-w-xl flex-col items-center p-0">
+      <div
+        class="mb-1 h-fit w-full rounded-2xl border-2 border-solid border-white p-9"
+      >
+        <label class="text-base text-white">สถานภาพ / Status*</label>
+        <div class="mt-3 flex h-fit w-full flex-col space-y-1">
+          <div class="flex flex-row">
+            <RadioBox name="status" value="student" />
+            <label class="text-medium text-white">นักเรียน / Student</label>
+          </div>
+          <div class="ml-6 flex flex-col space-y-1">
+            <label class="text-base text-white"
+              >ระดับการศึกษา / Education Level</label
+            >
+            <div class="flex flex-row">
+              <RadioBox name="educationLevel" value="middleSchool" />
+              <label class="text-base text-white">ม.ต้น / Middle school</label>
             </div>
-            <p class="text-xs text-white place-self-end">
-                จำเป็นต้องกรอก / Must be filled*
-            </p>
+            <div class="flex flex-row">
+              <RadioBox name="educationLevel" value="highSchool" />
+              <label class="text-base text-white">ม.ปลาย / High school</label>
+            </div>
+            <div class="flex flex-row">
+              <RadioBox name="educationLevel" value="vocCert" />
+              <label class="text-base text-white"
+                >ปวช. หรือ ปวศ. / Voc. Cert. or High Voc. Cert.</label
+              >
+            </div>
+            <div class="flex flex-row">
+              <RadioBox name="educationLevel" value="other" />
+              <label class="text-base text-white">อื่น ๆ / Other</label>
+            </div>
+            <div class="ml-6 h-8 w-1/2">
+              <TextBox name="otherEducationLevel" />
+            </div>
+          </div>
+          <div class="flex flex-row">
+            <RadioBox name="status" value="homeSchool" />
+            <label class="text-medium text-white"
+              >เด็กบ้านเรียน / Home School</label
+            >
+          </div>
+          <div class="flex flex-row">
+            <RadioBox name="status" value="reapplying" />
+            <label class="text-medium text-white">เด็กซิ่ว / Reapplying</label>
+          </div>
+          <div class="flex flex-row">
+            <RadioBox name="status" value="parent" />
+            <label class="text-medium text-white">ผู้ปกครอง / Parent</label>
+          </div>
+          <div class="flex flex-row">
+            <RadioBox name="status" value="other" />
+            <label class="text-medium text-white">อื่น ๆ / Other</label>
+          </div>
+          <div class="ml-6 h-8 w-1/2">
+            <TextBox name="otherStatus" />
+          </div>
         </div>
-       
+      </div>
+      <p class="place-self-end text-xs text-white">
+        จำเป็นต้องกรอก / Must be filled*
+      </p>
     </div>
-    
-
+  </div>
 </registrationBox2>
