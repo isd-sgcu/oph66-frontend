@@ -2,7 +2,33 @@
 const{name, value} = Astro.props;
 ---
 <radioBox>
-    <input type="radio" name={name}  value={value}/>
+    <div class="relative flex mr-2 w-5 h-5">
+        <input type="radio" name={name}  value={value} class="w-5 h-5 absolute inline-block appearance-none rounded-full z-30"/>
+        <div class="w-5 h-5 absolute rounded-full mr-2 bg-white z-10"></div>
+        <div class="m-0 inner-circle hidden absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-pink-500 rounded-full z-20"></div>
+    </div>
+    
+
 </radioBox>
+<script>
+    const radioBox = document.querySelectorAll("input[type=radio]")
+    radioBox.forEach((r)=>{
+      r.addEventListener('change', function () {
+        const radioWithSameName = document.querySelectorAll("input[type=radio][name="+r.name+"]")
+        radioWithSameName.forEach((radio)=>{
+            // console.log('clicked')
+            var innerCircle = radio.parentElement.querySelector('.inner-circle');
+            // if(innerCircle) console.log("found")
+            if (radio.checked) {
+                innerCircle.classList.remove('hidden');
+                // console.log("appear")
+            } else {
+                innerCircle.classList.add('hidden');
+            }
+            });
+        })
+        
+    })
+</script>
 
 
