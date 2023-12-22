@@ -6,10 +6,10 @@ import FacultyDetailBox from "./FacultyDetailBox.astro";
     <div class="w-screen flex flex-shrink-0 flex-col items-center p-0 mb-12">
         <div class="min-w-min w-2/5 p-0 m-0 flex-col flex items-center">
             <div class="h-fit w-full rounded-2xl border-2 border-solid border-white p-9 mb-1 flex flex-col items-center">
-                <p class="text-medium text-base text-white mb-5">คณะที่สนใจที่สุด (ไม่เกิน 3 คณะ) / Faculties interested (maximum: 3)</p>
+                <p class="text-medium text-base text-white mb-5 place-self-start">คณะที่สนใจที่สุด (ไม่เกิน 3 คณะ) / Faculties interested (maximum: 3)</p>
                 <div class="w-full" id="FacultyDetailBoxes">
-                    <FacultyDetailBox number="1" haveDepartMent="true" haveFaculty="true" haveSection="true"/>
-                    <FacultyDetailBox number="2" haveDepartMent="true" haveFaculty="true" haveSection="true"/>
+                    <FacultyDetailBox number="1" haveDepartMent="true" haveFaculty="true" haveSection="true" name="interested1"/>
+                    <FacultyDetailBox number="2" haveDepartMent="true" haveFaculty="true" haveSection="true" name="interested2"/>
                 </div>
                 <input type="button" value="เพิ่ม / Add more +" class="bg-white rounded-2xl p-1 text-pink-500 text-xs w-32 h-6 place-self-end" id="addButton5"/>
             </div>
@@ -29,7 +29,7 @@ import FacultyDetailBox from "./FacultyDetailBox.astro";
                 <div class="flex flex-col space-y-1 h-fit">
                     <label class="text-white text-base">คณะ / Faculty</label>
                     <div class="w-4/5 h-12">
-                        <select class="rounded-2xl w-full h-full p-1 text-pink-400 text-xs">
+                        <select class="rounded-2xl w-full h-full p-1 text-pink-400 text-xs" name="interested3Faculty">
                             <option value="-" selected disabled >คณะ / Faculty</option>
                             {faculties.map((option) => (
                                 <option value={option}>{option}</option>
@@ -40,7 +40,7 @@ import FacultyDetailBox from "./FacultyDetailBox.astro";
                 <div class="flex flex-col space-y-1 h-fit">
                     <label class="text-white text-base">ภาควิชา / Department</label>
                     <div class="w-4/5 h-12">
-                        <select class="rounded-2xl w-full h-full p-1 text-pink-400 text-xs">
+                        <select class="rounded-2xl w-full h-full p-1 text-pink-400 text-xs" name="interested3Department">
                             <option value="-" selected disabled >ภาควิชา / Department</option>
                             {departments.map((option) => (
                                 <option value={option}>{option}</option>
@@ -51,7 +51,7 @@ import FacultyDetailBox from "./FacultyDetailBox.astro";
                 <div class="flex flex-col space-y-1 h-fit">
                     <label class="text-white text-base">สาขาวิชา / Section</label>
                     <div class="w-4/5 h-12">
-                        <select class="rounded-2xl w-full h-full p-1 text-pink-400 text-xs">
+                        <select class="rounded-2xl w-full h-full p-1 text-pink-400 text-xs" name="interested3Section">
                             <option value="-" selected disabled >สาขาวิชา / Section</option>
                             {sections.map((option) => (
                                 <option value={option}>{option}</option>

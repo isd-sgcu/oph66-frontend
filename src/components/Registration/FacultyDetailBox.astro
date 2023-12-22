@@ -1,14 +1,14 @@
 ---
 import DropDownWithLabel from "./DropDownWithLabel.astro";
-const {number, haveFaculty, haveDepartMent , haveSection} = Astro.props
+const {number, haveFaculty, haveDepartMent , haveSection, name} = Astro.props
 ---
 <facultyDetailBox>
     <div class="w-full border-2 border-solid border-white h-fit flex p-6 rounded-2xl mb-8">
         <p class="text-white text-3xl mr-12 p-1">{number}</p>
         <div class="flex flex-col w-4/5 space-y-3">
-        {haveFaculty && <DropDownWithLabel dropDownLabel="คณะ / Faculty" />}
-        {haveDepartMent &&<DropDownWithLabel dropDownLabel="ภาควิชา / Department" />}
-        {haveSection && <DropDownWithLabel dropDownLabel="สาขาวิชา / Section" />}
+        {haveFaculty && <DropDownWithLabel dropDownLabel="คณะ / Faculty" name={name+"Faculty"} />}
+        {haveDepartMent &&<DropDownWithLabel dropDownLabel="ภาควิชา / Department" name={name+"Department"}/>}
+        {haveSection && <DropDownWithLabel dropDownLabel="สาขาวิชา / Section" name={name+"Section"}/>}
     </div>
     
 </facultyDetailBox>
