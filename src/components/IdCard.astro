@@ -1,0 +1,94 @@
+---
+import "@fontsource/ibm-plex-sans-thai";
+
+interface Props {
+  fullName?: string;
+  id?: number;
+  faculties?: {
+    first_thai?: string;
+    first_eng?: string;
+    second_thai?: string;
+    second_eng?: string;
+    third_thai?: string;
+    third_eng?: string;
+  };
+}
+
+const {
+  fullName = "JRP",
+  id = 6531307521,
+  faculties = {
+    first_thai: "string",
+    first_eng: "string",
+    second_thai: "string",
+    second_eng: "string",
+    third_thai: "string",
+    third_eng: "string",
+  },
+} = Astro.props;
+
+const qrCode = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${id}`;
+---
+
+<div
+  style="background-image: url(/idCard_bg.svg)"
+  class="h-[503px] w-[330px] bg-cover bg-center bg-no-repeat md:h-[640px] md:w-[420px] md:bg-cover"
+>
+  <div class="flex w-full flex-col">
+    <div class="flex w-full flex-col gap-1 px-5 py-3 md:gap-6 md:px-7 md:py-5">
+      <img class="h-20 w-40 md:h-20 md:w-40" src="/idCard_logo.svg" />
+      <div class="flex flex-col">
+        <p class="font-ibm text-2xl font-bold text-white">{fullName}</p>
+        <p class="font-ibm text-base font-medium text-white">ID: {id}</p>
+      </div>
+    </div>
+    <div class="flex w-full flex-col">
+      <div class="mt-3 flex flex-col gap-2 px-5 md:mt-6 md:gap-3.5 md:px-7">
+        <p
+          class="w-fit rounded-3xl bg-white px-3 py-0.5 font-ibm text-sm font-medium text-pink-400 md:px-4 md:py-2 md:text-base"
+        >
+          คณะที่สนใจที่สุด / Faculties interested
+        </p>
+        <div class="flex w-fit flex-col">
+          <p class="px-2 font-ibm text-base font-medium text-white">
+            1. {faculties.first_thai}
+          </p>
+          <p class="px-6 font-ibm text-xs font-medium text-white">
+            Faculty of {faculties.first_eng}
+          </p>
+        </div>
+        <div class="flex w-fit flex-col">
+          <p class="px-2 font-ibm text-base font-medium text-white">
+            1. {faculties.second_thai}
+          </p>
+          <p class="px-6 font-ibm text-xs font-medium text-white">
+            Faculty of {faculties.second_eng}
+          </p>
+        </div>
+        <div class="flex w-fit flex-col">
+          <p class="px-2 font-ibm text-base font-medium text-white">
+            1. {faculties.third_thai}
+          </p>
+          <p class="px-6 font-ibm text-xs font-medium text-white">
+            Faculty of {faculties.third_eng}
+          </p>
+        </div>
+        <div class="md:h-fi flex flex-row justify-between md:px-2">
+          <div class="mt-3 flex flex-col gap-1 md:justify-center">
+            <p
+              class="font-libre text-base font-bold leading-4 text-white md:leading-normal"
+            >
+              Chula<br />
+               Open House<br />
+               2024
+            </p>
+            <p class="font-libre text-xs font-medium text-white">
+              20-21 January 2024
+            </p>
+          </div>
+          <img class="h-20 w-20 md:h-28 md:w-28" src=`${qrCode}` />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
