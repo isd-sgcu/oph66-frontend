@@ -6,47 +6,45 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
   <div class="w-full h-14 flex">
     <h1>Chula Open House 2024 </h1>
 </div>
-  <div class="block w-screen h-max overflow-clip " style="background-image: url('/public/detailBackground.svg'); background-size: cover; background-position: center;">
-    <!-- <div class="absolute x-10 y-64 block">
-      <div class="topic flex h-auto">SSS</div>
-    </div> -->
-    <div class="mx-8">
-      <div class="flex whitespace-normal break-normal mt-12 w-auto h-fit w-screen; text-white font-semibold text-4xl leading-14 tracking-tight">
+  <div class="block px-8 lg:px-60 lg:pt-20 w-screen h-max overflow-clip font-ibm" style="background-image: url('/public/detailBackground.svg'); background-size: cover; background-position: center;">
+      <div class="pr-10 whitespace-normal break-normal mt-12 w-auto lg:w-3/4 h-fit topic ">
         SESSION TALK WITH AJARN
       </div>
-      <div class="mt-2 w-3/4 break-normal text-white font-bold text-lg leading-6 underline">
-        คณะสถาปัตยกรรมศาสตร์ /
+      <div class="mt-2 w-3/4 break-normal faculty">
+        คณะสถาปัตยกรรมศาสตร์ / 
         Faculty of Architecture
       </div>
-      <div class="text-white font-medium text-base leading-normal tracking-tight">
+      <div class="text-ibm text-white tracking-tight text-base lg:text-2xl">
         ภาควิชาxxxxx สาขาวิชาxxxxx
       </div>
-      <div class="flex place-items-center my-1 gap-2 text-white text-center font-medium text-xs leading-normal tracking-tight" style="letter-spacing: -0.1px;">
-        <div class="flex w-fit items-center justify-center bg-pinkButton px-1.5 pinkButton rounded-xl">
-          <div class="flex h-fit">ต้องลงทะเบียน / Limited seats</div>
+      <div class="flex place-items-center my-1 lg:mt-7 lg:mb-6 gap-2 lg:gap-2.5 register text-center ">
+        <div class="flex w-fit items-center justify-center bg-pinkButton px-2.5 lg:px-4 pt-0.5 pb-px lg-py-1 pinkButton rounded-xl lg:rounded-2xl">
+          <div class="register flex my-auto lg:text-base">ต้องลงทะเบียน / Limited seats</div>
         </div>
-        <div class="flex w-fit items-center justify-center px-1 rounded-xl border-white border">
-          <div class="flex h-fit items-baseline">999/999</div>
-        </div>
-      </div>
-      <div class="mt-8 px-3.5 py-3 gap-2 w-full border-white border-2 rounded-2xl">
-        <div class="flex p-0.5 gap-2 items-center">
-          <img src="public/calenda.svg">
-          <div class="flex detail align-middle">20-21 January 2024</div>
-        </div>
-        <div class="flex p-0.5 gap-2 items-center">
-          <img src="public/clock.svg">
-          <div class="flex detail align-middle">10:00-17:00</div>
-        </div>
-        <div class="flex p-0.5 gap-2 items-center">
-          <img src="public/location.svg">
-          <div class="flex h-full detail">คณะสถาปัตยกรรมศาสตร์ / Faculty of Architecture </div>
+        <div class="flex w-fit items-center justify-center px-1 lg:px-2 pt-0.5 pb-px rounded-xl lg:rounded-2xl border-white border">
+          <p class="flex register ">999/999</p>
         </div>
       </div>
-      <div class="rounded-2xl my-6 w-fit border-white border-2 py-1.5 px-5 mx-auto text-center text-white font-bold text-lg leading-normal tracking-tight">
+
+      <div class="p-0 lg:flex">
+      <div class="mt-2.5 px-3.5 lg:pr-8 py-3 lg:py-4 gap-2 text-base w-full lg:w-96 border-white border-2 rounded-2xl detail">
+        <div class="flex p-0.5 gap-2 items-center">
+          <img src="public/calenda.svg" class="w-6 h-6">
+          <div class="flex align-text-bottom  ">20-21 January 2024</div>
+        </div>
+        <div class="flex p-0.5 gap-2 items-center">
+          <img src="public/clock.svg" class="w-6 h-6">
+          <div class="flex detail align-text-bottom">10:00-17:00</div>
+        </div>
+        <div class="flex p-0.5 gap-2 items-center">
+          <img src="public/location.svg" class="w-6 h-6 mb-auto">
+          <div class="flex h-full detail align-text-bottom">คณะสถาปัตยกรรมศาสตร์ / Faculty of Architecture </div>
+        </div>
+      </div>
+      <div class="rounded-2xl my-6 w-fit border-white border-2 py-1.5 lg:py-2.5 px-5 mx-auto lg:ml-auto lg:mr-0 lg:mt-auto lg:mb-0 text-center text-white font-bold text-lg lg:test-2xl leading-normal tracking-tight bg-gradient-to-b from-pink-400 via-pink-500 to-transparent backdrop-blur-2xl">
         ลงทะเบียน / Register
       </div>
-    </div>
+      </div>
   </div>
   <div class="px-8 py-6 block w-full h-fit bg-gradient-to-b from-white via-rose-100 to-rose-600">
     <div class="det h-10">
@@ -75,12 +73,38 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 <style>
   .topic {
     color: #FDFFFC;
-    font-family: 'IBM Plex Sans Thai';
-    font-size: 48px;
+    font-family: IBM Plex Sans Thai;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 35px; /* 109.375% */
+    letter-spacing: -0.32px;
+  }
+
+  @media (min-width: 768px) {
+    .topic {
+      font-size: 48px;
+      line-height: 56px;
+      letter-spacing: -0.48px;
+    }
+  }
+  .faculty {
+    color: #FFF;
+    font-family: IBM Plex Sans Thai;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
-    line-height: 48px;
-    letter-spacing: -0.48px;
+    line-height: 150%; /* 24px */
+    letter-spacing: -0.16px;
+    text-decoration-line: underline;
+  }
+  @media (min-width: 768px) {
+    .faculty {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: normal;
+    letter-spacing: -0.24px;
+    }
   }
   .pinkButton{
     background-color: #DE5C8E;
@@ -93,6 +117,17 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     font-weight: 500;
     line-height: 166.667%; /* 20px */
     letter-spacing: -0.24px;
+  }
+  @media (min-width: 768px) {
+    .detail{
+      color: #FDFFFC;
+font-family: IBM Plex Sans Thai;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.32px;
+    }
   }
   .det{
     color: #CA4072;
@@ -112,4 +147,35 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     line-height: normal;
     letter-spacing: -0.32px;
       }
+  .register{
+    color: #FDFFFC;
+text-align: center;
+font-family: IBM Plex Sans Thai;
+font-size: 10px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.1px;
+  }
+  @media (min-width: 768px) {
+    .register{
+      color: #FDFFFC;
+text-align: center;
+font-family: IBM Plex Sans Thai;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+letter-spacing: -0.16px;
+    }
+  }
+  .calenda{
+    color: #FFF;
+font-family: IBM Plex Sans Thai;
+font-size: 12px;
+font-style: normal;
+font-weight: 500;
+line-height: 166.667%; /* 20px */
+letter-spacing: -0.12px;
+  }
 </style>
