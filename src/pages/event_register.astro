@@ -1,0 +1,129 @@
+---
+import EventRegisterBox1 from "@/components/EventRegister/EventRegisterBox1.astro";
+import EventRegisterBox2 from "@/components/EventRegister/EventRegisterBox2.astro";
+import EventRegisterBox3 from "@/components/EventRegister/EventRegisterBox3.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+const {
+  eventName = "SESSION TALK WITH AJARN",
+  eventDate = "20-21 January 2024",
+  eventFaculty = "คณะสถาปัตยกรรมศาสตร์ / Faculty of Architecture",
+  eventTime = "10:00-17:00",
+  eventDepartment = "XXXX",
+  eventSection = "XXXX",
+  eventMaxSeats = "999",
+  eventBookedSeats = "996",
+  eventSessions = [],
+} = Astro.props;
+---
+
+<BaseLayout withNav={false} withFooter={false}>
+  <div class="m-16 flex max-w-xl flex-col items-center">
+    <h1
+      class="text-shadow-lg text-6xl font-bold leading-normal tracking-wide text-white"
+    >
+      ลงทะเบียนกิจกรรม
+    </h1>
+    <h1
+      class="mb-12 font-libre text-3xl font-bold text-white underline underline-offset-[10px]"
+    >
+      Event registration
+    </h1>
+    <h1 class="mb-4 text-center text-5xl font-bold text-white">{eventName}</h1>
+    <h2 class="text-center text-xl font-bold text-white underline">
+      {eventFaculty}
+    </h2>
+    <h2 class="mb-4 text-center text-xl font-medium text-white">
+      {"ภาควิชา" + eventDepartment + " สาขาวิชา" + eventSection}
+    </h2>
+    <div class="mb-6 flex space-x-2">
+      <div class="h-6 w-60 rounded-2xl bg-pink-500">
+        <p class="text-center text-base text-white">
+          ต้องลงทะเบียน / Limited seats
+        </p>
+      </div>
+      <div
+        class="h-6 w-24 rounded-2xl border-2 border-solid border-white bg-pink-500"
+      >
+        <p class="text-center text-base text-white">
+          {eventBookedSeats + " / " + eventMaxSeats}
+        </p>
+      </div>
+    </div>
+    <div
+      class="mb-28 flex h-36 w-96 flex-col justify-between rounded-2xl border-2 border-solid border-white p-4"
+    >
+      <div class="flex text-white">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          class="icon-[mdi--calendar-blank-outline] mr-3 mt-1 p-0"
+        >
+        </svg>
+        <p class="text-base">{eventDate}</p>
+      </div>
+      <div class="flex text-white">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          class="icon-[mdi--alarm-clock] mr-3 mt-1 rounded-full"
+        >
+        </svg>
+        <p class="text-base text-white">{eventTime}</p>
+      </div>
+      <div class="flex text-white">
+        <svg
+          width="26"
+          height="26"
+          viewBox="0 0 26 26"
+          fill="none"
+          class="icon-[mdi--location] mr-3 mt-1"
+        >
+        </svg>
+        <p class="text-base">{eventFaculty}</p>
+      </div>
+    </div>
+
+    <form id="form" class="flex flex-col items-center">
+      <EventRegisterBox1 options={eventSessions} />
+      <EventRegisterBox2 />
+      <EventRegisterBox3 />
+      <button
+        type="submit"
+        class="place-self-center rounded-md border border-white bg-transparent px-4 py-2 text-white"
+      >
+        ลงทะเบียน / Register</button
+      >
+    </form>
+
+    <script>
+      const form = document.getElementById("form");
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const formData = new FormData(form as HTMLFormElement);
+        const data = Object.fromEntries(formData);
+        console.log(data);
+        const checkbox3Data = getCheckBoxesValue("sourceOfNews");
+        console.log(checkbox3Data);
+        const checkboxAgreement = getCheckBoxesValue("agreement");
+        console.log(checkboxAgreement);
+        // const checkboxAgreement = getCheckBoxesValue
+      });
+      function getCheckBoxesValue(name: string) {
+        return [].slice
+          .apply(
+            document.querySelectorAll("input[type=checkbox][name=" + name + "]")
+          )
+          .filter(function (c) {
+            return c.checked;
+          })
+          .map(function (c) {
+            return c.value;
+          });
+      }
+    </script>
+  </div>
+</BaseLayout>

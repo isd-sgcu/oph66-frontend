@@ -1,6 +1,6 @@
 ---
 import DropDown from "../DropDown";
-const { options = [], name } = Astro.props;
+const { options = [] } = Astro.props;
 ---
 
 <eventRegisterBox2>
@@ -16,7 +16,7 @@ const { options = [], name } = Astro.props;
           <div class="h-12 w-3/5">
             <DropDown
               defaultVal={"เลือก / Select"}
-              name={name}
+              name="Session"
               options={options}
             />
           </div>
