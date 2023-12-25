@@ -1,18 +1,22 @@
 ---
 import "@fontsource/ibm-plex-sans-thai";
+
 import Nav from "@/components/Nav.astro";
 import Footer from "@/components/Footer.astro";
+import Background from "@/components/Background.tsx";
 
 interface Props {
   pageTitle?: string;
   withNav?: boolean;
   withFooter?: boolean;
+  withJigsaw?: boolean;
 }
 
 const {
   pageTitle = "Openhouse Chula",
   withNav = true,
   withFooter = true,
+  withJigsaw = true,
 } = Astro.props;
 ---
 
@@ -25,10 +29,15 @@ const {
     <title>{pageTitle}</title>
   </head>
   <body>
-    {withNav && <Nav />}
-    <main class="flex w-full flex-col items-center">
-      <slot />
-    </main>
-    {withFooter && <Footer />}
+    <section
+      class="relative flex h-full min-h-screen w-full flex-col items-center"
+    >
+      {withNav && <Nav />}
+      <main class="flex w-full flex-col items-center">
+        <slot />
+      </main>
+      {withFooter && <Footer />}
+      <Background withJigsaw={withJigsaw} />
+    </section>
   </body>
 </html>
