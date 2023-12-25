@@ -1,0 +1,30 @@
+---
+import DropDown from "../DropDown";
+const { options = [], name } = Astro.props;
+---
+
+<eventRegisterBox2>
+  <div class="mb-12 flex w-screen flex-shrink-0 flex-col items-center p-0">
+    <div class="m-0 flex w-4/5 max-w-xl flex-col items-center p-0">
+      <div
+        class="mb-1 h-fit w-full rounded-2xl border-2 border-solid border-white p-9 shadow-inner backdrop-blur-2xl"
+      >
+        <div class="flex h-fit flex-col space-y-1">
+          <label class="text-base text-white"
+            >รอบที่ต้องการเข้าร่วม / Session</label
+          >
+          <div class="h-12 w-3/5">
+            <DropDown
+              defaultVal={"เลือก / Select"}
+              name={name}
+              options={options}
+            />
+          </div>
+        </div>
+      </div>
+      <p class="place-self-end text-xs text-white">
+        จำเป็นต้องกรอก / Must be filled*
+      </p>
+    </div>
+  </div>
+</eventRegisterBox2>

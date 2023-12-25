@@ -1,0 +1,98 @@
+---
+import CheckBox from "../CheckBox.tsx";
+---
+
+<eventRegistrationBox2>
+  <div class="mb-12 flex w-screen flex-shrink-0 flex-col items-center p-0">
+    <div class="m-0 flex w-4/5 max-w-xl flex-col items-center p-0">
+      <div
+        class="mb-1 flex h-fit w-full flex-col space-y-1 rounded-2xl border-2 border-solid border-white p-9 shadow-inner backdrop-blur-2xl"
+      >
+        <p class="text-medium mb-3 text-base text-white">
+          ทราบข่าวการจัดกิจกรรมนี้จากช่องทางใด (ตอบได้มากกว่า 1 ข้อ) / How did
+          you hear about the event? (Check all that apply)*
+        </p>
+        <div class="flex flex-row">
+          <CheckBox
+            value="facebook"
+            name="sourceOfNewsEvent"
+            id="facebookSource"
+            client:load
+          />
+          <label class="text-medium text-base text-white">
+            Facebook Page: CU Openhouse
+          </label>
+        </div>
+        <div class="flex flex-row">
+          <CheckBox
+            value="instragram"
+            name="sourceOfNewsEvent"
+            id="instragramSource"
+            client:load
+          />
+          <label class="text-medium text-base text-white">
+            Instagram: @cuopenhouse
+          </label>
+        </div>
+        <div class="flex flex-row">
+          <CheckBox
+            value="faculties"
+            name="sourceOfNewsEvent"
+            id="facultiesSource"
+            client:load
+          />
+          <label class="text-medium text-base text-white">
+            ช่องทางของคณะต่าง ๆ / Faculties’ official pages
+          </label>
+        </div>
+        <div class="flex flex-row">
+          <CheckBox
+            value="chulaStudent"
+            name="sourceOfNewsEvent"
+            id="chulaStudentsSource"
+            client:load
+          />
+          <label class="text-medium text-base text-white">
+            นิสิตจุฬาฯ / Chula students
+          </label>
+        </div>
+        <div class="flex flex-row">
+          <CheckBox
+            value="friends"
+            name="sourceOfNewsEvent"
+            id="friendsSource"
+            client:load
+          />
+          <label class="text-medium text-base text-white">
+            เพื่อน / Friends
+          </label>
+        </div>
+        <div class="flex flex-row">
+          <CheckBox
+            value="parents"
+            name="sourceOfNewsEvent"
+            id="parentsSource"
+            client:load
+          />
+          <label class="text-medium text-base text-white">
+            ผู้ปกครอง / Parents
+          </label>
+        </div>
+        <div class="flex flex-row">
+          <CheckBox
+            value="school"
+            name="sourceOfNewsEvent"
+            id="schoolSource"
+            client:load
+          />
+          <label class="text-medium text-base text-white">
+            โรงเรียน / School
+          </label>
+        </div>
+      </div>
+      <p class="place-self-end text-xs text-white">
+        จำเป็นต้องกรอก / Must be filled*
+      </p>
+    </div>
+  </div>
+</eventRegistrationBox2>
