@@ -1,0 +1,22 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout withNav={false} withFooter={false}>
+  <div
+    class="flex flex-col items-center justify-between text-white md:justify-normal"
+  >
+    <div class="mb-12">
+      <div class="mb-10 mt-16 h-28 w-80 md:mb-3.5 md:h-auto md:w-auto">
+        <img src="./Logo.svg" alt="logo" width="522" height="233" />
+      </div>
+      <div class="my-3.5 flex flex-col items-center justify-center">
+        <h1 class="font-libre md:text-3xl">Chula Open House 2024</h1>
+        <p class="text-xs font-medium md:text-base">20-21 January 2024</p>
+      </div>
+    </div>
+
+    <p class="text-md font-bold md:text-3xl">ลงทะเบียนกิจกรรมเสร็จสิ้น !</p>
+    <p class="font-bold md:text-xl">Registration completed !</p>
+  </div>
+</BaseLayout>
