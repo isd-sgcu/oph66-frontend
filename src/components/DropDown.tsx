@@ -3,17 +3,10 @@ interface Props {
   defaultVal: string;
   name: string;
 }
-const DropDown = ({ options, defaultVal, name }: Props) => {
-  const dropDownArrow = {
-    right: "0.1em",
-    top: "0.1em",
-  };
+const DropDown = ({ options = [], defaultVal, name }: Props) => {
   return (
     <div className="relative inline-block h-full w-full">
-      <div
-        className="pointer-events-none absolute inset-y-0 flex items-center "
-        style={dropDownArrow}
-      >
+      <div className="pointer-events-none absolute inset-y-0 right-[0.1em] top-[0.1em] flex items-center text-pink-400">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
