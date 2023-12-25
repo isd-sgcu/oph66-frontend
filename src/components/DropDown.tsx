@@ -21,11 +21,11 @@ const DropDown = ({ options = [], defaultVal, name }: Props) => {
         className="m-0 h-full w-full rounded-2xl p-1 text-xs text-pink-400"
         name={name}
       >
-        <option value="-" selected disabled className="text-pink-400">
+        <option value="-" key="-" selected disabled className="text-pink-400">
           {defaultVal}
         </option>
         {options.map((option) => (
-          <option value={option} className="text-base text-black">
+          <option value={option} className="text-base text-black" key={option}>
             {option}
           </option>
         ))}
