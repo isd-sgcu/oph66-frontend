@@ -1,6 +1,6 @@
 ---
 import TextBox from "../TextBox.astro";
-import DropDown from "../DropDown.astro";
+import DropDown from "../DropDown.tsx";
 import RadioBox from "../RadioBox.astro";
 const days: string[] = Array.from({ length: 31 }, (_, index) =>
   (index + 1).toString()
@@ -28,7 +28,7 @@ const countries: string[] = ["ญี่ปุ่น / Japan"];
   <div class="mb-12 flex w-screen flex-shrink-0 flex-col items-center p-0">
     <div class="question-box m-0 flex w-4/5 max-w-xl flex-col items-center p-0">
       <div
-        class="mb-1 h-fit w-full rounded-2xl border-2 border-solid border-white p-9 shadow-inner backdrop-blur-md"
+        class="mb-1 h-fit w-full rounded-2xl border-2 border-solid border-white p-9 shadow-inner backdrop-blur-2xl"
       >
         <label class="text-base font-medium text-white">
           ชื่อ (และชื่อกลาง) / First name (and middle name)*
@@ -115,7 +115,3 @@ const countries: string[] = ["ญี่ปุ่น / Japan"];
     </div>
   </div>
 </registrationBox1>
-<style>
-  .question-box {
-  }
-</style>

@@ -1,19 +1,24 @@
 ---
-import CheckBox from "../CheckBox.astro";
+import CheckBox from "../CheckBox.tsx";
 ---
 
 <registrationBox3>
   <div class="mb-12 flex w-screen flex-shrink-0 flex-col items-center p-0">
     <div class="m-0 flex w-4/5 max-w-xl flex-col items-center p-0">
       <div
-        class="mb-1 flex h-fit w-full flex-col space-y-1 rounded-2xl border-2 border-solid border-white p-9"
+        class="mb-1 h-fit w-full rounded-2xl border-2 border-solid border-white p-9 shadow-inner backdrop-blur-2xl"
       >
         <p class="text-medium mb-3 text-base text-white">
           ทราบข่าวการจัดงานจากช่องทางใด (ตอบได้มากกว่า 1 ข้อ) / How did you hear
           about the event? (Check all that apply)*
         </p>
         <div class="flex flex-row">
-          <CheckBox value="facebook" name="sourceOfNews" id="facebookSource" />
+          <CheckBox
+            value="facebook"
+            name="sourceOfNews"
+            id="facebookSource"
+            client:load
+          />
           <label class="text-medium text-base text-white">
             Facebook Page: CU Openhouse
           </label>
@@ -23,6 +28,7 @@ import CheckBox from "../CheckBox.astro";
             value="instragram"
             name="sourceOfNews"
             id="instragramSource"
+            client:load
           />
           <label class="text-medium text-base text-white">
             Instagram: @cuopenhouse
@@ -33,6 +39,7 @@ import CheckBox from "../CheckBox.astro";
             value="faculties"
             name="sourceOfNews"
             id="facultiesSource"
+            client:load
           />
           <label class="text-medium text-base text-white">
             ช่องทางของคณะต่าง ๆ / Faculties’ official pages
@@ -43,25 +50,41 @@ import CheckBox from "../CheckBox.astro";
             value="chulaStudent"
             name="sourceOfNews"
             id="chulaStudentsSource"
+            client:load
           />
           <label class="text-medium text-base text-white">
             นิสิตจุฬาฯ / Chula students
           </label>
         </div>
         <div class="flex flex-row">
-          <CheckBox value="friends" name="sourceOfNews" id="friendsSource" />
+          <CheckBox
+            value="friends"
+            name="sourceOfNews"
+            id="friendsSource"
+            client:load
+          />
           <label class="text-medium text-base text-white">
             เพื่อน / Friends
           </label>
         </div>
         <div class="flex flex-row">
-          <CheckBox value="parents" name="sourceOfNews" id="parentsSource" />
+          <CheckBox
+            value="parents"
+            name="sourceOfNews"
+            id="parentsSource"
+            client:load
+          />
           <label class="text-medium text-base text-white">
             ผู้ปกครอง / Parents
           </label>
         </div>
         <div class="flex flex-row">
-          <CheckBox value="school" name="sourceOfNews" id="schoolSource" />
+          <CheckBox
+            value="school"
+            name="sourceOfNews"
+            id="schoolSource"
+            client:load
+          />
           <label class="text-medium text-base text-white">
             โรงเรียน / School
           </label>
