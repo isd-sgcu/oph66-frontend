@@ -17,7 +17,7 @@ const {
 ---
 
 <BaseLayout withNav={false} withFooter={false}>
-  <div class="m-16 flex max-w-xl flex-col items-center">
+  <div class="m-16 flex max-w-xl flex-col items-center font-medium">
     <h1
       class="text-shadow-lg text-6xl font-bold leading-normal tracking-wide text-white"
     >
@@ -53,37 +53,16 @@ const {
       class="mb-28 flex h-36 w-96 flex-col justify-between rounded-2xl border-2 border-solid border-white p-4"
     >
       <div class="flex text-white">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          class="icon-[mdi--calendar-blank-outline] mr-3 mt-1 p-0"
-        >
-        </svg>
-        <p class="text-base">{eventDate}</p>
+        <div class="icon-[mdi--calendar-blank-outline] mr-3 mt-1 p-0"></div>
+        <p class="text-base font-medium">{eventDate}</p>
       </div>
       <div class="flex text-white">
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          class="icon-[mdi--alarm-clock] mr-3 mt-1 rounded-full"
-        >
-        </svg>
-        <p class="text-base text-white">{eventTime}</p>
+        <div class="icon-[mdi--alarm-clock] mr-3 mt-1 rounded-full"></div>
+        <p class="text-base font-medium">{eventTime}</p>
       </div>
       <div class="flex text-white">
-        <svg
-          width="26"
-          height="26"
-          viewBox="0 0 26 26"
-          fill="none"
-          class="icon-[mdi--location] mr-3 mt-1"
-        >
-        </svg>
-        <p class="text-base">{eventFaculty}</p>
+        <div class="icon-[mdi--location] mr-3 mt-1"></div>
+        <p class="text-base font-medium">{eventFaculty}</p>
       </div>
     </div>
 
@@ -93,7 +72,7 @@ const {
       <EventRegisterBox3 />
       <button
         type="submit"
-        class="place-self-center rounded-md border border-white bg-transparent px-4 py-2 text-white"
+        class="place-self-center rounded-md border border-white bg-transparent px-4 py-2 font-bold text-white"
       >
         ลงทะเบียน / Register</button
       >
