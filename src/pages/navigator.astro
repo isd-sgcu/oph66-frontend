@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Map from "@/components/Navigator/Map.tsx";
+import Guide from "@/components/Navigator/Guide.tsx";
+---
+
+<BaseLayout withJigsaw={false}>
+  <section
+    class="my-16 flex w-full max-w-4xl flex-col items-center px-4 text-center"
+  >
+    <h1 class="text-6xl font-bold text-white">Chula Navigator</h1>
+    <h2 class="text-3xl font-medium text-white">
+      แผนที่และวิธีการเดินทางทั่วจุฬาฯ
+    </h2>
+    <hr class="mb-14 mt-2 w-1/2 border border-white" />
+    <Map client:load />
+    <hr class="mb-16 mt-14 w-full border border-white" />
+    <h1 class="text-6xl font-bold text-white">Chula Walk-through</h1>
+    <h2 class="text-3xl font-medium text-white">พาเดินเท้าทัวร์ทั่วจุฬาฯ</h2>
+    <hr class="mb-14 mt-2 w-1/2 border border-white" />
+    <Guide client:load />
+  </section>
+</BaseLayout>
