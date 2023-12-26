@@ -5,7 +5,7 @@ const Register = () => {
   return 1 == 1 ? (
     <a
       href="/register"
-      className="flex w-64 justify-center rounded-2xl border-2 p-2 px-5 py-2 font-bold md:ml-10"
+      className="flex w-64 justify-center rounded-2xl border-2 bg-transparent bg-gradient-to-t from-pink-400/50 to-white/5 p-2 px-5 py-2 font-bold md:ml-10"
     >
       ลงทะเบียน / Register
     </a>
