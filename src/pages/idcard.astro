@@ -1,64 +1,35 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import IdCard from "@/components/IdCard.astro";
-import "@fontsource/ibm-plex-sans-thai";
+import IDCard from "@/components/IDCard/IDCard.tsx";
 
+const fullName = "Untitled Untitled";
+const userId = "6701234599";
 const faculties = {
-  first_thai: "a",
-  first_eng: "b",
-  second_thai: "c",
-  second_eng: "d",
-  third_thai: "e",
-  third_eng: "f",
+  firstThai: "คณะนิติศาสตร์",
+  firstEng: "Law",
+  secondThai: "คณะอักษรศาสตร์",
+  secondEng: "Arts",
+  thirdThai: "คณะพาณิชยศาสตร์และการบัญชี",
+  thirdEng: "Commerce and Accountancy",
 };
 ---
 
 <BaseLayout>
   <div
-    class="flex h-fit w-full flex-col items-center gap-8 bg-pink-400 py-8 md:gap-24 md:py-32"
+    class="flex w-full max-w-4xl flex-col items-center gap-14 px-4 text-white"
   >
-    <div class="flex flex-col">
-      <h1
-        class="text-center font-ibm text-3xl font-bold text-white md:text-6xl"
-      >
-        Your Profile
-      </h1>
-      <h2
-        class="text-center font-libre text-base font-bold text-white underline underline-offset-8 md:text-3xl"
-      >
-        Chula Open House 2024
-      </h2>
-    </div>
-    <IdCard fullName={"JRP"} id={6531307521} faculties={faculties} />
-    <div class="w-3/2 flex flex-col items-center gap-10 md:w-96 md:gap-12">
-      <div class="felx w-full flex-col gap-2">
-        <button
-          class="md:py4 mb-4 flex w-full items-center justify-between rounded-3xl border-2 border-white px-3 py-2 font-ibm text-xl font-bold text-white md:px-9 md:text-2xl"
-        >
-          บันทึกภาพ / Save image
-          <img
-            src="/download_icon.svg"
-            alt="icon"
-            class="h-8 w-8 md:h-9 md:w-9"
-          />
-        </button>
-        <p
-          class="text-center font-ibm text-xs font-medium text-white md:text-base"
-        >
-          *ID Card นี้จะต้องแสดงให้กับ Staff ของงาน
-        </p>
-        <p
-          class="text-center font-ibm text-xs font-medium text-white md:text-base"
-        >
-          ก่อนเข้าร่วมกิจกรรมของทุกคณะ
-        </p>
-      </div>
-      <button
-        class="flex w-full gap-3 font-ibm text-base font-medium text-white md:w-10/12 md:px-2"
-      >
-        <img src="/back_to_home_icon.svg" alt="icon" class="h-6 w-6" />
-         กลับหน้าแรก / Back to home page
-      </button>
-    </div>
+    <section
+      class="flex w-full flex-col items-center justify-center text-center font-bold"
+    >
+      <h1 class="text-3xl md:text-6xl">Your Profile</h1>
+      <h2 class="font-libre md:text-3xl">Chula Open House 2024</h2>
+      <hr class="mt-2 w-52 max-w-full border border-white md:w-96" />
+    </section>
+    <IDCard
+      fullName={fullName}
+      userId={userId}
+      faculties={faculties}
+      client:only
+    />
   </div>
 </BaseLayout>

@@ -21,7 +21,10 @@
     "@types/react-dom": "^18.2.18",
     "astro": "^4.0.6",
     "clsx": "^2.0.0",
+    "downloadjs": "1.4.7",
     "framer-motion": "^10.16.16",
+    "html-to-image": "1.11.11",
+    "qrcode": "1.5.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sharp": "^0.33.0",
@@ -31,6 +34,7 @@
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
+    "@iconify-json/line-md": "1.1.33",
     "@iconify-json/mdi": "1.1.63",
     "@iconify/tailwind": "0.1.4",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
