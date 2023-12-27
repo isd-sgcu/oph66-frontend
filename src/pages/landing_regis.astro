@@ -1,0 +1,31 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout withNav={false} withFooter={false}>
+  <div
+    class="flex flex-col items-center justify-between text-white md:justify-normal"
+  >
+    <div>
+      <div class="mb-10 mt-24 h-28 w-80 md:mb-3.5 md:h-auto md:w-auto">
+        <img src="./Logo.svg" alt="logo" width="522" height="233" />
+      </div>
+      <div class="my-3.5 flex flex-col items-center justify-center">
+        <h1 class="font-libre md:text-3xl">Chula Open House 2024</h1>
+        <p class="text-xs font-medium md:text-base">20-21 January 2024</p>
+      </div>
+    </div>
+
+    <button
+      class="absolute bottom-24 flex h-12 w-auto items-center justify-center rounded-xl border-2 from-inherit px-5 shadow-md md:static md:my-11 md:h-14 md:w-80 md:rounded-2xl"
+    >
+      <div
+        class="mr-3 flex h-8 w-8 items-center justify-center divide-solid rounded-full bg-white md:h-10 md:w-10"
+      >
+        <img src="./google.svg" height="24" width="24" />
+      </div>
+
+      <p class="text-xl font-bold md:text-2xl">Sign in with Google</p></button
+    >
+  </div>
+</BaseLayout>

@@ -18,16 +18,16 @@ const Day = () => {
             </div>
 
             <h1>DAYS</h1>
-            <h1 className="underline underline-offset-8">LEFT</h1>
+            <h1>LEFT</h1>
+            <hr className="mb-14 mt-2 w-1/2 border-2 border-white" />
           </div>
         ) : (
-          <div>
-            <p className="-translate-x-5 text-6xl md:-translate-x-10 md:text-8xl">
+          <div className="md:-translate-y-10">
+            <p className="-translate-x-5 text-6xl md:-translate-x-10  md:text-8xl">
               วันนี้
             </p>
-            <h1 className="mb-2 -translate-x-2 underline underline-offset-8 md:mb-6">
-              TODAY
-            </h1>
+            <h1 className="mb-2 -translate-x-2 ">TODAY</h1>
+            <hr className="w-3/4 -translate-x-3 border border-white md:mb-4 md:mt-2 md:border-2" />
             <h1 className="-translate-x-6 text-lg md:text-2xl">
               Come Visit Us!
             </h1>
