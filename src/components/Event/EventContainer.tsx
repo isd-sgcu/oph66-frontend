@@ -22,10 +22,8 @@ const EventContainer: React.FC<EventContainerProps> = ({ Events }) => {
     );
 
     const finalFilteredEvents =
-      selectedFaculty && selectedFaculty !== DEFAULT_CHOSEN_FACULTY_VALUE
-        ? filteredEvents.filter(
-            (event) => event.EngFaculty === Faculties[selectedFaculty]
-          )
+      selectedFaculty !== DEFAULT_CHOSEN_FACULTY_VALUE
+        ? filteredEvents.filter((event) => event.EngFaculty === selectedFaculty)
         : filteredEvents;
 
     setCurrEvents(finalFilteredEvents);
@@ -38,9 +36,7 @@ const EventContainer: React.FC<EventContainerProps> = ({ Events }) => {
     const filteredEvents =
       selectedValue === DEFAULT_CHOSEN_FACULTY_VALUE
         ? Events
-        : Events.filter(
-            (event) => event.EngFaculty === Faculties[selectedValue]
-          );
+        : Events.filter((event) => event.EngFaculty === selectedValue);
 
     const finalFilteredEvents =
       searchQuery !== ""
@@ -48,7 +44,6 @@ const EventContainer: React.FC<EventContainerProps> = ({ Events }) => {
             event.EventName.toLowerCase().includes(searchQuery.toLowerCase())
           )
         : filteredEvents;
-
     setCurrEvents(finalFilteredEvents);
   };
 
@@ -77,7 +72,7 @@ const EventContainer: React.FC<EventContainerProps> = ({ Events }) => {
         <select
           name="Faculty"
           id="Faculty"
-          className="w-72 appearance-none rounded-lg p-4 text-pink-500 lg:ml-4"
+          className="rounded-lg px-4 py-2 text-pink-500 lg:ml-4 lg:px-28"
           onChange={handleFacultyChange}
           value={selectedFaculty || ""}
         >
@@ -85,13 +80,13 @@ const EventContainer: React.FC<EventContainerProps> = ({ Events }) => {
             {DEFAULT_CHOSEN_FACULTY_VALUE}
           </option>
           {Object.entries(Faculties).map(([id, name]) => (
-            <option key={id} value={id}>
+            <option key={id} value={name}>
               {name}
             </option>
           ))}
         </select>
       </div>
-      <div className="grid grid-cols-1 gap-6 text-start lg:grid-cols-3">
+      <div className="grid grid-cols-1 items-start justify-start gap-6 text-start lg:grid-cols-3">
         {currEvents.map((d, index) => (
           <EventBox key={index} {...d} />
         ))}
