@@ -27,7 +27,7 @@ const Card = (props: CardProp) => {
             Departments and sections
           </div>
           <a
-            className="icon-[mdi--navigate-next] h-12 w-12"
+            className="icon-[carbon--next-filled] h-10 w-10"
             href={props.link}
           ></a>
         </div>
