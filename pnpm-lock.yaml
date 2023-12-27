@@ -20,6 +20,9 @@ dependencies:
   '@fontsource/ibm-plex-sans-thai':
     specifier: ^5.0.8
     version: 5.0.8
+  '@iconify-json/devicon':
+    specifier: 1.1.34
+    version: 1.1.34
   astro:
     specifier: ^4.0.6
     version: 4.0.6(@types/node@20.10.5)(typescript@5.3.3)
@@ -993,6 +996,12 @@ packages:
     resolution: {integrity: sha512-dvuCeX5fC9dXgJn9t+X5atfmgQAzUOWqS1254Gh0m6i8wKd10ebXkfNKiRK+1GWi/yTvvLDHpoxLr0xxxeslWw==}
     dev: true
 
+  /@iconify-json/devicon@1.1.34:
+    resolution: {integrity: sha512-N9BrhoRE5KHkoH3i84xFHuYsRc6w+RZnShYHcS8IfIH9Ul74/A4oDKu97VuIVUUNbzPpEkOgL0CbTx5qfTvStQ==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: false
+
   /@iconify-json/line-md@1.1.33:
     resolution: {integrity: sha512-SncZRZa/nf99TQLVrNC8ezwwOdD+bC4VLAoirBflBBc8JwWeMtDSdJ3Mzb791mWr5qK6u/AXpkvSwGE9cM51KQ==}
     dependencies:
@@ -1013,7 +1022,6 @@ packages:
 
   /@iconify/types@2.0.0:
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
-    dev: true
 
   /@img/sharp-darwin-arm64@0.33.0:
     resolution: {integrity: sha512-070tEheekI1LJWTGPC9WlQEa5UoKTXzzlORBHMX4TbfUxMiL336YHR8vBEUNsjse0RJCX8dZ4ZXwT595aEF1ug==}
