@@ -1,13 +1,14 @@
 import { useState } from "react";
 import EventBox, { type EventBoxProps } from "./EventBox";
+import { Faculties } from "./TestData";
 
-const Faculties = {
-  1: "Engineer",
-  2: "Science",
-  3: "Arts",
-};
+const DEFAULT_CHOSEN_FACULTY_VALUE = "คณะ / Faculty";
 
-const EventContainer = ({ Events }: { Events: EventBoxProps[] }) => {
+interface EventContainerProps {
+  Events: EventBoxProps[];
+}
+
+const EventContainer = ({ Events }: EventContainerProps) => {
   const [selectedFaculty, setSelectedFaculty] = useState<string | null>(null);
   const [currEvents, setCurrEvents] = useState<EventBoxProps[]>(Events);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -21,7 +22,7 @@ const EventContainer = ({ Events }: { Events: EventBoxProps[] }) => {
     );
 
     const finalFilteredEvents =
-      selectedFaculty && selectedFaculty !== "คณะ / Faculty"
+      selectedFaculty && selectedFaculty !== DEFAULT_CHOSEN_FACULTY_VALUE
         ? filteredEvents.filter(
             (event) => event.EngFaculty === Faculties[selectedFaculty]
           )
@@ -34,9 +35,8 @@ const EventContainer = ({ Events }: { Events: EventBoxProps[] }) => {
     const selectedValue = e.target.value;
     setSelectedFaculty(selectedValue);
 
-    // Filter events based on selected faculty
     const filteredEvents =
-      selectedValue === "คณะ / Faculty"
+      selectedValue === DEFAULT_CHOSEN_FACULTY_VALUE
         ? Events
         : Events.filter(
             (event) => event.EngFaculty === Faculties[selectedValue]
@@ -53,33 +53,37 @@ const EventContainer = ({ Events }: { Events: EventBoxProps[] }) => {
   };
 
   return (
-    <div className="flex flex-col gap-2 text-center text-white">
+    <div className="flex flex-col items-center justify-center gap-2 text-center text-white">
       <p className="text-4xl">Events</p>
       <p className="text-xl underline">กิจกรรมต่าง ๆ ในงาน</p>
-      <div className="mb-8 flex justify-center">
-        <label
-          className="flex h-full w-12 items-center justify-center rounded-l-2xl bg-white p-2"
-          htmlFor="eventName"
-        >
-          <i className="icon-[mdi--magnify] text-3xl text-pink-500"></i>
-        </label>
-        <input
-          type="search"
-          name="eventName"
-          id="eventName"
-          className="w-96 rounded-r-2xl border-2 border-white bg-transparent px-4 text-white"
-          placeholder="ค้นหา/search"
-          value={searchQuery}
-          onChange={handleSearchChange}
-        />
+      <div className="mb-8 flex flex-col justify-center gap-8 lg:flex-row">
+        <div className="flex">
+          <label
+            className="flex h-full w-12 items-center justify-center rounded-l-2xl bg-white p-2"
+            htmlFor="eventName"
+          >
+            <i className="icon-[mdi--magnify] text-3xl text-pink-500"></i>
+          </label>
+          <input
+            type="search"
+            name="eventName"
+            id="eventName"
+            className="w-72 rounded-r-2xl border-2 border-white bg-transparent px-4 text-white"
+            placeholder="ค้นหา/search"
+            value={searchQuery}
+            onChange={handleSearchChange}
+          />
+        </div>
         <select
           name="Faculty"
           id="Faculty"
-          className="ml-4 w-72 appearance-none rounded-lg px-4 text-pink-500"
+          className="w-72 appearance-none rounded-lg p-4 text-pink-500 lg:ml-4"
           onChange={handleFacultyChange}
           value={selectedFaculty || ""}
         >
-          <option value="คณะ / Faculty">คณะ / Faculty</option>
+          <option value={DEFAULT_CHOSEN_FACULTY_VALUE}>
+            {DEFAULT_CHOSEN_FACULTY_VALUE}
+          </option>
           {Object.entries(Faculties).map(([id, name]) => (
             <option key={id} value={id}>
               {name}
