@@ -1,7 +1,35 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import IDCard from "@/components/IDCard/IDCard.tsx";
+
+const fullName = "Untitled Untitled";
+const userId = "6701234599";
+const faculties = {
+  firstThai: "คณะนิติศาสตร์",
+  firstEng: "Law",
+  secondThai: "คณะอักษรศาสตร์",
+  secondEng: "Arts",
+  thirdThai: "คณะพาณิชยศาสตร์และการบัญชี",
+  thirdEng: "Commerce and Accountancy",
+};
 ---
 
 <BaseLayout>
-  <h1>Idcard page</h1>
+  <div
+    class="flex w-full max-w-4xl flex-col items-center gap-14 px-4 text-white"
+  >
+    <section
+      class="flex w-full flex-col items-center justify-center text-center font-bold"
+    >
+      <h1 class="text-3xl md:text-6xl">Your Profile</h1>
+      <h2 class="font-libre md:text-3xl">Chula Open House 2024</h2>
+      <hr class="mt-2 w-52 max-w-full border border-white md:w-96" />
+    </section>
+    <IDCard
+      fullName={fullName}
+      userId={userId}
+      faculties={faculties}
+      client:only
+    />
+  </div>
 </BaseLayout>
