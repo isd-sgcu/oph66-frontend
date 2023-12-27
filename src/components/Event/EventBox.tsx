@@ -1,5 +1,3 @@
-import { Icon } from "@iconify/react";
-
 export interface EventBoxProps {
   EventName: string;
   Enroll: boolean;
@@ -52,25 +50,15 @@ const EventBox: React.FC<EventBoxProps> = ({
           <p className="text-sm">{EngFaculty}</p>
           <div className="flex flex-col gap-2">
             <div className="flex gap-2">
-              <Icon
-                icon="mingcute:calendar-fill"
-                color="white"
-                width="24"
-                height="24"
-              />
+              <i className="icon-[basil--calendar-solid] relative bottom-1 text-3xl text-white"></i>
               {Date}
             </div>
             <div className="flex gap-2">
-              <Icon
-                icon="clarity:alarm-clock-solid"
-                color="white"
-                width="24"
-                height="24"
-              />
+              <i className="icon-[clarity--alarm-clock-solid] text-3xl text-white"></i>
               {Time}
             </div>
             <div className="flex gap-2">
-              <Icon icon="mdi:location" color="white" width="24" height="24" />
+              <i className="icon-[mdi--location] text-3xl text-white"></i>
               {Location}
             </div>
           </div>
