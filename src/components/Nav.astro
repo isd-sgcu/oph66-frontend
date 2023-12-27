@@ -2,7 +2,6 @@
 
 ---
 
-<!-- not responsive yet -->
 <nav
   class="sticky top-0 flex w-full flex-col items-center justify-between bg-pink-550 text-white backdrop-blur-sm"
 >
@@ -41,31 +40,32 @@
   const MOBILE_SIZE = 1024;
   window.addEventListener("resize", () => {
     var mobileMenu = document.getElementById("mobileMenu");
-    if (window.innerWidth >= MOBILE_SIZE) {
+    if (mobileMenu && window.innerWidth >= MOBILE_SIZE) {
       mobileMenu.style.display = "none";
     }
   });
   window.addEventListener("load", () => {
     var mobileMenu = document.getElementById("mobileMenu");
-    if (window.innerWidth >= MOBILE_SIZE) {
+    if (mobileMenu && window.innerWidth >= MOBILE_SIZE) {
       mobileMenu.style.display = "none";
     }
   });
   var mobileMenuButton = document.getElementById("mobileMenuButton");
-  mobileMenuButton.addEventListener("click", () => {
-    var mobileMenu = document.getElementById("mobileMenu");
-    console.log(mobileMenu);
-    if (window.innerWidth < MOBILE_SIZE) {
-      if (
-        mobileMenu.style.display === "" ||
-        mobileMenu.style.display === "none"
-      ) {
-        mobileMenu.style.display = "flex";
-        mobileMenuButton.style.backgroundColor = "rgb(57 53 112)";
-      } else {
-        mobileMenu.style.display = "none";
-        mobileMenuButton.style.backgroundColor = "rgb(202 64 114)";
+  mobileMenuButton &&
+    mobileMenuButton.addEventListener("click", () => {
+      var mobileMenu = document.getElementById("mobileMenu");
+      console.log(mobileMenu);
+      if (mobileMenu && mobileMenuButton && window.innerWidth < MOBILE_SIZE) {
+        if (
+          mobileMenu.style.display === "" ||
+          mobileMenu.style.display === "none"
+        ) {
+          mobileMenu.style.display = "flex";
+          mobileMenuButton.style.backgroundColor = "rgb(57 53 112)";
+        } else {
+          mobileMenu.style.display = "none";
+          mobileMenuButton.style.backgroundColor = "rgb(202 64 114)";
+        }
       }
-    }
-  });
+    });
 </script>
