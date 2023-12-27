@@ -1,7 +1,7 @@
 ---
-import TextBox from "../TextBox.astro";
+import TextBox from "../TextBox.astro.tsx";
 import DropDown from "../DropDown.tsx";
-import RadioBox from "../RadioBox.astro";
+import RadioBox from "../RadioBox.astro.tsx";
 const days: string[] = Array.from({ length: 31 }, (_, index) =>
   (index + 1).toString()
 );
@@ -24,7 +24,7 @@ const provinces: string[] = ["กรุงเทพมหานคร / Bangkok"
 const countries: string[] = ["ญี่ปุ่น / Japan"];
 ---
 
-<registrationBox1>
+<personalInfoBox>
   <div class="mb-12 flex w-screen flex-shrink-0 flex-col items-center p-0">
     <div class="question-box m-0 flex w-4/5 max-w-xl flex-col items-center p-0">
       <div
@@ -114,4 +114,4 @@ const countries: string[] = ["ญี่ปุ่น / Japan"];
       </p>
     </div>
   </div>
-</registrationBox1>
+</personalInfoBox>
