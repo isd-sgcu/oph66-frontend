@@ -61,6 +61,9 @@ devDependencies:
   '@commitlint/config-conventional':
     specifier: ^18.4.3
     version: 18.4.3
+  '@iconify-json/flat-color-icons':
+    specifier: 1.1.10
+    version: 1.1.10
   '@iconify-json/line-md':
     specifier: 1.1.33
     version: 1.1.33
@@ -1001,6 +1004,12 @@ packages:
     dependencies:
       '@iconify/types': 2.0.0
     dev: false
+
+  /@iconify-json/flat-color-icons@1.1.10:
+    resolution: {integrity: sha512-tkkxTEPMYqDtss8tFij/gWfwrnt/NeChZoUGr6l71sWi7jYMwD35dYjFhM2bjtww5MCkVIAJaVx/3QJGUmMD/g==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: true
 
   /@iconify-json/line-md@1.1.33:
     resolution: {integrity: sha512-SncZRZa/nf99TQLVrNC8ezwwOdD+bC4VLAoirBflBBc8JwWeMtDSdJ3Mzb791mWr5qK6u/AXpkvSwGE9cM51KQ==}

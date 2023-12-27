@@ -33,6 +33,7 @@
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
+    "@iconify-json/flat-color-icons": "1.1.10",
     "@iconify-json/line-md": "1.1.33",
     "@iconify-json/mdi": "1.1.63",
     "@iconify/tailwind": "0.1.4",

@@ -7,7 +7,7 @@ const Day = () => {
   );
   return (
     <div className="mt-10 h-28 w-44 md:mt-14 md:h-auto md:w-auto">
-      <img src="/Union.svg" />
+      <img src="./src/assets/Union.svg" />
       <div className="absolute -translate-y-40 translate-x-10 rotate-2 font-libre text-2xl font-normal md:-translate-y-64 md:translate-x-[5.3rem] md:text-4xl">
         {result != 0 ? (
           <div>

@@ -10,7 +10,12 @@ import Register from "@/components/Landing/Register";
     <div class="flex flex-col items-center justify-evenly md:flex-row">
       <div class="flex flex-col items-center md:items-start">
         <div class="my-2.5 mb-8 mt-14 h-28 w-80 md:mb-0 md:h-auto md:w-auto">
-          <img src="./Logo.svg" alt="logo" width="522" height="233" />
+          <img
+            src="./src/assets/Logo.svg"
+            alt="logo"
+            width="522"
+            height="233"
+          />
         </div>
         <h1 class="mt-2.5 font-libre text-base font-bold md:ml-10 md:text-3xl">
           Chula Open House 2024
@@ -52,20 +57,20 @@ import Register from "@/components/Landing/Register";
       class="mb-20 flex w-full flex-col items-center justify-center md:flex-row md:items-end"
     >
       <Card
-        imgUrl="./navigator.svg"
+        imgUrl="./src/assets/navigator.svg"
         title="CHULA"
         title_sub="NAVIGATOR"
         link="/navigator"
         text="แผนที่และวิธีการเดินทางทั่วจุฬาฯ"
       />
       <Card
-        imgUrl="./events.svg"
+        imgUrl="./src/assets/events.svg"
         title="EVENTS"
         text="กิจกรรมต่าง ๆ ในงาน"
         link="/events"
       />
       <Card
-        imgUrl="./faculties.svg"
+        imgUrl="./src/assets/faculties.svg"
         title="FACULTIES"
         link="/faculties"
         text="รวมข้อมูลทุกคณะในจุฬาฯ"
@@ -74,7 +79,7 @@ import Register from "@/components/Landing/Register";
     <div class="mb-48 flex flex-col justify-center md:flex-row">
       <div class="mb-2 flex justify-center">
         <picture>
-          <source media="(min-width: 768px)" srcset="./idcard.svg" />
+          <source media="(min-width: 768px)" srcset="./src/assets/idcard.svg" />
           <img src="./id_card_mobile.svg" alt="idcard background" />
         </picture>
         <div
@@ -86,13 +91,13 @@ import Register from "@/components/Landing/Register";
           <p>2024</p>
           <p>Profile</p>
           <a href="/click">
-            <img class="mt-2 md:mt-3.5" src="./click_here.svg" />
+            <img class="mt-2 md:mt-3.5" src="./src/assets/click_here.svg" />
           </a>
         </div>
       </div>
       <div class="flex justify-center">
         <picture>
-          <source media="(min-width: 768px)" srcset="./faqs.svg" />
+          <source media="(min-width: 768px)" srcset="./src/assets/faqs.svg" />
           <img src="./faqs_mobile.svg" alt="faqs background" />
         </picture>
         <div
@@ -104,8 +109,8 @@ import Register from "@/components/Landing/Register";
             ?
           </p>
           <p class="md:mt-3.5">FAQs</p>
-          <a href="/info" class="mt-3.5">
-            <img src="./information.svg" />
+          <a href="/info" class="z-10 mt-3.5">
+            <img src="./src/assets/information.svg" />
           </a>
         </div>
       </div>
