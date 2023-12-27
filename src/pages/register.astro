@@ -40,6 +40,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
           ></label
         >
       </div>
+      <p id="error-text" class="mb-3 text-transparent">error</p>
       <button
         type="submit"
         class="place-self-center rounded-md border border-white bg-transparent px-4 py-2 font-bold"
@@ -54,12 +55,15 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         e.preventDefault();
         const formData = new FormData(form as HTMLFormElement);
         const data = Object.fromEntries(formData);
-        console.log(data);
         const checkbox3Data = getCheckBoxesValue("sourceOfNews");
-        console.log(checkbox3Data);
         const checkboxAgreement = getCheckBoxesValue("agreement");
-        console.log(checkboxAgreement);
-        // const checkboxAgreement = getCheckBoxesValue
+        console.log(data, checkbox3Data, checkboxAgreement);
+        var errorText = validateData(data, checkboxAgreement);
+        const errorT = document.getElementById("error-text");
+        if (errorText != "") {
+          errorT.innerHTML = errorText;
+          errorT.classList.remove("text-transparent");
+        }
       });
       function getCheckBoxesValue(name: string) {
         return [].slice
@@ -72,6 +76,36 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
           .map(function (c) {
             return c.value;
           });
+      }
+      function validateData(data, checkboxAgreement) {
+        if (data.firstName.trim() == "" || data.lastName.trim() == " ") {
+          return "no firstname";
+        }
+        if (!data.dayOfBirth || !data.monthOfBirth || !data.yearOfBirth) {
+          return "no birthday";
+        }
+        if (!data.residence) {
+          return "no residence";
+        }
+        if (
+          (data.residence == "Thailand" && !data.province) ||
+          (data.residence == "Other countries" && !data.country)
+        ) {
+          return "no residence";
+        }
+        if (
+          !data.status ||
+          (data.status == "student" && !data.educationLevel)
+        ) {
+          return "no status";
+        }
+        if (!data.sourceOfNews) {
+          return "no source of news";
+        }
+        if (checkboxAgreement.length == 0) {
+          return "please accept terms and conditions";
+        }
+        return "";
       }
     </script>
   </div>
