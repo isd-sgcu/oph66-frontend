@@ -27,7 +27,7 @@ const EnrollBox: React.FC<{
   </div>
 );
 
-const EventBox = ({
+const EventBox: React.FC<EventBoxProps> = ({
   EventName,
   Enroll,
   CurrentEnrollment,
@@ -37,7 +37,7 @@ const EventBox = ({
   Date,
   Time,
   Location,
-}: EventBoxProps) => {
+}) => {
   return (
     <div className="box-border w-72 rounded-lg border-2 border-white bg-gradient-to-br from-gray-100 to-pink-400 shadow-md ring-offset-2 ring-offset-white">
       <a href="/">

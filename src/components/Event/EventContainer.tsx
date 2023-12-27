@@ -8,7 +8,7 @@ interface EventContainerProps {
   Events: EventBoxProps[];
 }
 
-const EventContainer = ({ Events }: EventContainerProps) => {
+const EventContainer: React.FC<EventContainerProps> = ({ Events }) => {
   const [selectedFaculty, setSelectedFaculty] = useState<string | null>(null);
   const [currEvents, setCurrEvents] = useState<EventBoxProps[]>(Events);
   const [searchQuery, setSearchQuery] = useState<string>("");
