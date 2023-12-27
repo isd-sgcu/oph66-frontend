@@ -17,6 +17,9 @@ dependencies:
   '@fontsource/ibm-plex-sans-thai':
     specifier: ^5.0.8
     version: 5.0.8
+  '@iconify-json/ic':
+    specifier: 1.1.17
+    version: 1.1.17
   '@iconify/react':
     specifier: 4.1.1
     version: 4.1.1(react@18.2.0)
@@ -972,6 +975,12 @@ packages:
   /@humanwhocodes/object-schema@2.0.1:
     resolution: {integrity: sha512-dvuCeX5fC9dXgJn9t+X5atfmgQAzUOWqS1254Gh0m6i8wKd10ebXkfNKiRK+1GWi/yTvvLDHpoxLr0xxxeslWw==}
     dev: true
+
+  /@iconify-json/ic@1.1.17:
+    resolution: {integrity: sha512-EvAjZzVESmN36zlyefylePUNaU2BQ3eRKVZ6KQSQ2bG01ppoZaiFZRri74VTyvp5Mlv2yn68ux1fgCoT+etGmA==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: false
 
   /@iconify-json/line-md@1.1.33:
     resolution: {integrity: sha512-SncZRZa/nf99TQLVrNC8ezwwOdD+bC4VLAoirBflBBc8JwWeMtDSdJ3Mzb791mWr5qK6u/AXpkvSwGE9cM51KQ==}
