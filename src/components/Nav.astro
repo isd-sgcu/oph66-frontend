@@ -38,15 +38,16 @@
   </div>
 </nav>
 <script>
+  const MOBILE_SIZE = 1024;
   window.addEventListener("resize", () => {
     var mobileMenu = document.getElementById("mobileMenu");
-    if (window.innerWidth >= 1024) {
+    if (window.innerWidth >= MOBILE_SIZE) {
       mobileMenu.style.display = "none";
     }
   });
   window.addEventListener("load", () => {
     var mobileMenu = document.getElementById("mobileMenu");
-    if (window.innerWidth >= 1024) {
+    if (window.innerWidth >= MOBILE_SIZE) {
       mobileMenu.style.display = "none";
     }
   });
@@ -54,7 +55,7 @@
   mobileMenuButton.addEventListener("click", () => {
     var mobileMenu = document.getElementById("mobileMenu");
     console.log(mobileMenu);
-    if (window.innerWidth < 1024) {
+    if (window.innerWidth < MOBILE_SIZE) {
       if (
         mobileMenu.style.display === "" ||
         mobileMenu.style.display === "none"
