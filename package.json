@@ -34,8 +34,6 @@
     "@commitlint/config-conventional": "^18.4.3",
     "@iconify-json/line-md": "1.1.33",
     "@iconify-json/mdi": "1.1.63",
-    "@iconify-json/basil": "1.1.5",
-    "@iconify-json/clarity": "1.1.12",
     "@iconify/tailwind": "0.1.4",
     "@types/downloadjs": "1.4.6",
     "@types/node": "20.10.5",
