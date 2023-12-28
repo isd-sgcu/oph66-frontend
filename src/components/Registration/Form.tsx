@@ -76,6 +76,7 @@ const Form = () => {
         setCountry={setCountry}
         setProvince={setProvince}
         isShowError={isShowError}
+        residence={residence}
       />
       <PersonalStatusBox
         setStatus={setStatus}

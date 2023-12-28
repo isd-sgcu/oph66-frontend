@@ -1,20 +1,7 @@
 import clsx from "clsx";
-import { useState } from "react";
 import DropDown from "../DropDown";
 import RadioBox from "../RadioBox";
 import TextBox from "../TextBox";
-
-interface Props {
-  setFirstName: () => void;
-  setLastName: () => void;
-  setBirthDay: () => void;
-  setBirthMonth: () => void;
-  setBirthYear: () => void;
-  setResidence: () => void;
-  setCountry: () => void;
-  setProvince: () => void;
-  isShowError: boolean;
-}
 
 const PersonalInfoBox = ({
   setFirstName,
@@ -26,12 +13,13 @@ const PersonalInfoBox = ({
   setCountry,
   setProvince,
   isShowError,
-}: Props) => {
-  const [residenceLocal, setResidenceLocal] = useState("");
-  const setResidenceForBoth = async (s: string) => {
-    await setResidence(s);
-    await setResidenceLocal(s);
-  };
+  residence,
+}) => {
+  // const [residence, setResidenceLocal] = useState("");
+  // const setResidence = (s: string) => {
+  //   setResidence(s);
+  //   setResidenceLocal(s);
+  // };
   const months: string[] = [
     "มกราคม / January",
     "กุมภาพันธ์ / February",
@@ -123,11 +111,10 @@ const PersonalInfoBox = ({
             <div className="flex w-1/2">
               <RadioBox
                 name="residence"
-                defaultVal="ในประเทศไทย / Thailand"
                 value="Thailand"
-                setValue={setResidenceForBoth}
+                setValue={setResidence}
                 isSelectable={true}
-                isBeingChecked={residenceLocal === "Thailand"}
+                isBeingChecked={residence === "Thailand"}
               />
               <label className="text-medium text-base text-white">
                 ในประเทศไทย / Thailand
@@ -139,19 +126,18 @@ const PersonalInfoBox = ({
                 name="province"
                 options={provinces}
                 setValue={setProvince}
-                isSelectable={residenceLocal === "Thailand"}
+                isSelectable={residence === "Thailand"}
               />
             </div>
           </div>
           <div className="flex flex-row justify-between">
             <div className="flex w-1/2">
               <RadioBox
-                defaultVal="ต่างประเทศ / Other countries"
                 name="residence"
                 value="Other countries"
-                setValue={setResidenceForBoth}
+                setValue={setResidence}
                 isSelectable={true}
-                isBeingChecked={residenceLocal === "Other countries"}
+                isBeingChecked={residence === "Other countries"}
               />
               <label className="text-medium text-base text-white">
                 ต่างประเทศ / Other countries
@@ -163,7 +149,7 @@ const PersonalInfoBox = ({
                 name="country"
                 options={countries}
                 setValue={setCountry}
-                isSelectable={residenceLocal === "Other countries"}
+                isSelectable={residence === "Other countries"}
               />
             </div>
           </div>

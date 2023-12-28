@@ -3,7 +3,7 @@ import download from "downloadjs";
 import { toPng } from "html-to-image";
 import { useEffect, useRef, useState } from "react";
 
-import QRCode from "./QRCode.tsx";
+import QRCode from "./QRCode";
 
 import chula3 from "@/assets/chula-3.svg";
 import bg from "@/assets/idCard_bg.svg";
@@ -23,7 +23,7 @@ interface Props {
 
 const IDCard = (props: Props) => {
   const ref = useRef<HTMLElement>(null);
-  const [image, setImage] = useState<string | null>(null);
+  const [image, setImage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const handleDownload = () => {
@@ -36,7 +36,9 @@ const IDCard = (props: Props) => {
       if (idCard) {
         setImage(idCard);
         setIsLoading(false);
-        ref.current.style.display = "none";
+        if (ref.current) {
+          ref.current.style.display = "none";
+        }
         return;
       }
       if (ref.current) {
