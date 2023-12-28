@@ -58,7 +58,7 @@ const Guide = () => {
         </div>
       </div>
       {from !== 0 && to !== 0 && (
-        <div className="relative h-44 w-full flex-col rounded-2xl border-2 border-white text-white shadow-inner shadow-white">
+        <div className="relative h-44 w-full flex-col rounded-2xl border-4 border-white text-white shadow-inner shadow-white">
           <div className="flex justify-between gap-8 px-6 py-4">
             <div className="flex flex-1 flex-col items-start gap-2 text-left">
               <p className="line-clamp-2 w-full text-2xl font-bold">

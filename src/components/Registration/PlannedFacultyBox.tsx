@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { useState } from "react";
 import FacultyDetailBox from "./FacultyDetailBox.tsx";
-const RegisterBox6 = () => {
+const PlannedFacultyBox = (setFacultiesPlannedToVisit) => {
   const [boxCount, setBoxCount] = useState(2);
   const addBox = () => {
     setBoxCount(boxCount + 1);
@@ -9,7 +9,7 @@ const RegisterBox6 = () => {
   return (
     <div className="mb-12 flex w-screen flex-shrink-0 flex-col items-center p-0">
       <div className="m-0 flex w-4/5 max-w-xl flex-col items-center p-0">
-        <div className="mb-1 flex h-fit w-full flex-col rounded-2xl border-2 border-solid border-white p-9 shadow-inner backdrop-blur-2xl">
+        <div className="mb-1 flex h-fit w-full flex-col rounded-2xl border-4 border-solid border-white p-9 shadow-inner backdrop-blur-2xl">
           <p className="text-medium mb-5 place-self-start text-base text-white">
             คณะที่อยากไปในวันงาน (ไม่เกิน 3 คณะ) / Faculties planned to visit
             (maximum: 3)
@@ -23,6 +23,7 @@ const RegisterBox6 = () => {
                 haveFaculty={true}
                 haveSection={false}
                 name={`interested${index + 1}`}
+                setValues={setFacultiesPlannedToVisit}
               />
             ))}
           </div>
@@ -41,4 +42,4 @@ const RegisterBox6 = () => {
     </div>
   );
 };
-export default RegisterBox6;
+export default PlannedFacultyBox;

@@ -119,7 +119,7 @@ const IDCard = (props: Props) => {
         <div className="flex w-full flex-col gap-5">
           <button
             className={clsx(
-              "flex w-full items-center justify-center gap-2 rounded-2xl border-2 border-white px-5 py-1 text-lg font-bold shadow-inner shadow-white md:px-7 md:py-3 md:text-2xl",
+              "flex w-full items-center justify-center gap-2 rounded-2xl border-4 border-white px-5 py-1 text-lg font-bold shadow-inner shadow-white md:px-7 md:py-3 md:text-2xl",
               !image && "hidden"
             )}
             onClick={handleDownload}

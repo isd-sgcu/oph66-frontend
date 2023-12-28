@@ -1,11 +1,5 @@
 ---
-import CheckBox from "@/components/CheckBox.tsx";
-import RegistrationBox1 from "@/components/Registration/PersonalInfoBox.astro";
-import RegistrationBox2 from "@/components/Registration/PersonalStatusBox.astro";
-import RegistrationBox3 from "@/components/Registration/SourceOfNewsBox.astro";
-import RegistrationBox4 from "@/components/Registration/RoundOfAdmissionBox.astro";
-import RegistrationBox5 from "@/components/Registration/InterestedFacultyBox";
-import RegistrationBox6 from "@/components/Registration/PlannedFacultyBox";
+import Form from "@/components/Registration/Form";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
@@ -19,37 +13,9 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     >
       Registration
     </h1>
-    <form id="form" class="flex flex-col items-center">
-      <!-- registerBox1 -->
-      <RegistrationBox1 />
-      <!-- RegisterBox2 -->
-      <RegistrationBox2 />
-      <!-- RegisterBox3 -->
-      <RegistrationBox3 />
-      <!-- RegisterBox4 -->
-      <RegistrationBox4 />
-      <!-- RegisterBox5 -->
-      <RegistrationBox5 client:load />
-      <!-- RegisterBox6 -->
-      <RegistrationBox6 client:load />
-      <div class="mb-16 flex">
-        <CheckBox name="agreement" value="agreed" id="agreement" client:load />
-        <label class="text-base"
-          >ยอมรับ<span class="font-bold underline"
-            >นโยบายความเป็นส่วนตัวและข้อตกลงการใช้งาน</span
-          ></label
-        >
-      </div>
-      <p id="error-text" class="mb-3 text-transparent">error</p>
-      <button
-        type="submit"
-        class="place-self-center rounded-md border border-white bg-transparent px-4 py-2 font-bold"
-      >
-        ลงทะเบียน / Register</button
-      >
-    </form>
+    <Form client:load />
 
-    <script>
+    <!-- <script>
       const form = document.getElementById("form");
       form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -60,9 +26,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         console.log(data, checkbox3Data, checkboxAgreement);
         var errorText = validateData(data, checkboxAgreement);
         const errorT = document.getElementById("error-text");
-        if (errorText != "") {
-          errorT.innerHTML = errorText;
-          errorT.classList.remove("text-transparent");
+        if (errorText) {
+          errorT.classList.remove("hidden");
         }
       });
       function getCheckBoxesValue(name: string) {
@@ -79,35 +44,35 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       }
       function validateData(data, checkboxAgreement) {
         if (data.firstName.trim() == "" || data.lastName.trim() == " ") {
-          return "no firstname";
+          return false;
         }
         if (!data.dayOfBirth || !data.monthOfBirth || !data.yearOfBirth) {
-          return "no birthday";
+          return false;
         }
         if (!data.residence) {
-          return "no residence";
+          return false;
         }
         if (
           (data.residence == "Thailand" && !data.province) ||
           (data.residence == "Other countries" && !data.country)
         ) {
-          return "no residence";
+          return false;
         }
         if (
           !data.status ||
           (data.status == "student" && !data.educationLevel)
         ) {
-          return "no status";
+          return false;
         }
         if (!data.sourceOfNews) {
-          return "no source of news";
+          return false;
         }
         if (checkboxAgreement.length == 0) {
-          return "please accept terms and conditions";
+          return false;
         }
-        return "";
+        return true;
       }
-    </script>
+
+    </script> -->
   </div>
 </BaseLayout>
- @/components/Registration/PlannedFacultyBox

@@ -19,7 +19,7 @@ const Map = () => {
           <i className="icon-[mdi--magnify] text-3xl text-pink-500"></i>
         </button>
         <input
-          className="h-full w-full flex-1 rounded-r-2xl border-2 border-l-0 border-white bg-transparent bg-gradient-to-t from-pink-400/50 to-white/5 px-4 font-medium text-white shadow-inner shadow-white placeholder:font-medium placeholder:text-white"
+          className="h-full w-full flex-1 rounded-r-2xl border-4 border-l-0 border-white bg-transparent bg-gradient-to-t from-pink-400/50 to-white/5 px-4 font-medium text-white shadow-inner shadow-white placeholder:font-medium placeholder:text-white"
           placeholder="ค้นหา / Search"
         />
       </div>
