@@ -1,24 +1,24 @@
 export interface EventBoxProps {
-  EventName: string;
-  Walkin: boolean;
-  MaxEnrollment: number;
-  ThaiFaculty: string;
-  EngFaculty: string;
-  Time: number;
-  Location: string;
-  Thai: boolean;
+  eventName: string;
+  walkIn: boolean;
+  maxEnrollment: number;
+  thaiFaculty: string;
+  engFaculty: string;
+  time: number;
+  location: string;
+  thai: boolean;
 }
 const EnrollBox: React.FC<{
-  Walkin: boolean;
-  MaxEnrollment: number;
-}> = ({ Walkin, MaxEnrollment }) => (
-  <div className="mb-2 flex flex-col items-start gap-3 text-white">
-    <div className="rounded-full bg-pink-500 px-2 py-1 ">
+  walkIn: boolean;
+  maxEnrollment: number;
+}> = ({ walkIn, maxEnrollment }) => (
+  <div className="flex flex-col items-start gap-3 text-white">
+    <div className="rounded-full bg-pink-500 px-2 py-1">
       <p className="text-xs">
-        จำนวนที่นั่งต่อรอบ / Capacity per session : {MaxEnrollment}
+        จำนวนที่นั่งต่อรอบ / Capacity per session : {maxEnrollment}
       </p>
     </div>
-    {Walkin && (
+    {walkIn && (
       <div className="flex rounded-full border-2 border-white px-2 py-1">
         <p className="text-xs">Walk-in registration only</p>
       </div>
@@ -27,45 +27,45 @@ const EnrollBox: React.FC<{
 );
 
 const EventBox: React.FC<EventBoxProps> = ({
-  EventName,
-  Walkin,
-  MaxEnrollment,
-  ThaiFaculty,
-  EngFaculty,
-  Time,
-  Location,
-  Thai,
+  eventName,
+  walkIn,
+  maxEnrollment,
+  thaiFaculty,
+  engFaculty,
+  time,
+  location,
+  thai,
 }) => {
-  const SessionTime = ` ${Time > 60 ? Time / 60 : Time} ${
-    Time > 60
+  const sessionTime = ` ${time > 60 ? time / 60 : time} ${
+    time > 60
       ? "ชั่วโมง ต่อรอบ / hours per session"
       : "นาที ต่อรอบ/ mins per session"
   }`;
   return (
-    <div className="box-border w-72 rounded-lg border-2 border-white bg-pink-500 shadow-md ring-2 ring-white ring-opacity-5">
+    <div className="w-72 rounded-2xl border-2 border-white bg-pink-500 shadow-inner shadow-white ring-4 ring-white ring-opacity-10">
       <a href="/">
-        <div className="border-1 rounded-md border-black bg-gradient-to-r from-[#393570]  to-[#CA4072] px-4 py-2">
-          <p className="mb-4 ml-1 font-ibm text-xl font-semibold uppercase text-white">
-            {EventName}
-          </p>
-          <EnrollBox {...{ Walkin, MaxEnrollment }} />
+        <div className="flex flex-col gap-2 rounded-t-2xl bg-gradient-to-r from-indigo-900 to-pink-550 p-4 shadow-inner shadow-white">
+          <p className="text-xl font-bold uppercase text-white">{eventName}</p>
+          <EnrollBox walkIn={walkIn} maxEnrollment={maxEnrollment} />
         </div>
-        <div className="flex flex-col px-4 py-2  text-white">
-          <p className="text-md font-bold">{ThaiFaculty}</p>
-          <p className="mb-3 text-sm">{EngFaculty}</p>
+        <div className="flex flex-col gap-3 p-4 text-white">
+          <div className="leading-none">
+            <p className="text-md font-bold">{thaiFaculty}</p>
+            <p className="text-sm">{engFaculty}</p>
+          </div>
           <div className="flex flex-col gap-2">
-            <div className="flex gap-2">
-              <i className="icon-[clarity--alarm-clock-solid] w-8 flex-shrink-0 text-3xl text-white"></i>
-              <p className="text-xs">{SessionTime}</p>
+            <div className="flex items-center gap-2">
+              <i className="icon-[mdi--alarm] text-2xl text-white"></i>
+              <p className="text-xs">{sessionTime}</p>
             </div>
-            <div className="flex gap-2">
-              <i className="icon-[mdi--location] w-8 flex-shrink-0 text-3xl text-white"></i>
-              <p className="text-xs">{Location}</p>
+            <div className="flex items-center gap-2">
+              <i className="icon-[mdi--location] text-2xl text-white"></i>
+              <p className="text-xs">{location}</p>
             </div>
-            <div className="flex  gap-2">
-              <i className="icon-[mdi--message-group] relative bottom-1 w-8 flex-shrink-0 text-3xl text-white"></i>
+            <div className="flex items-center gap-2">
+              <i className="icon-[mdi--message-group] text-2xl text-white"></i>
               <p className="text-xs">
-                {Thai
+                {thai
                   ? "ภาษาไทย / Held in Thai"
                   : "ภาษาอังกฤษ / Held in English"}
               </p>

@@ -1,9 +1,17 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import EventContainer from "@/components/Event/EventContainer";
-import { Events } from "@/components/Event/TestData";
+import { EVENTS } from "@/components/Event/TestData";
 ---
 
 <BaseLayout>
-  <EventContainer {...{ Events }} client:load />
+  <div
+    class="flex flex-col items-center justify-center gap-16 text-center text-white"
+  >
+    <div class="flex flex-col text-center text-white">
+      <p class="text-4xl">Events</p>
+      <p class="text-xl underline underline-offset-8">กิจกรรมต่าง ๆ ในงาน</p>
+    </div>
+    <EventContainer events={EVENTS} client:load />
+  </div>
 </BaseLayout>

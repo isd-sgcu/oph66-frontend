@@ -1,29 +1,31 @@
 import { useState } from "react";
 import EventBox, { type EventBoxProps } from "./EventBox";
-import { Faculties } from "./TestData";
+import { FACULTIES } from "./TestData";
 
 const DEFAULT_CHOSEN_FACULTY_VALUE = "คณะ / Faculty";
 
 interface EventContainerProps {
-  Events: EventBoxProps[];
+  events: EventBoxProps[];
 }
 
-const EventContainer: React.FC<EventContainerProps> = ({ Events }) => {
-  const [selectedFaculty, setSelectedFaculty] = useState<string | null>(null);
-  const [currEvents, setCurrEvents] = useState<EventBoxProps[]>(Events);
+const EventContainer: React.FC<EventContainerProps> = ({ events }) => {
+  const [selectedFaculty, setSelectedFaculty] = useState<string>(
+    DEFAULT_CHOSEN_FACULTY_VALUE
+  );
+  const [currEvents, setCurrEvents] = useState<EventBoxProps[]>(events);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newSearchQuery = e.target.value;
     setSearchQuery(newSearchQuery);
 
-    const filteredEvents = Events.filter((event) =>
-      event.EventName.toLowerCase().includes(newSearchQuery.toLowerCase())
+    const filteredEvents = events.filter((event) =>
+      event.eventName.toLowerCase().includes(newSearchQuery.toLowerCase())
     );
 
     const finalFilteredEvents =
       selectedFaculty !== DEFAULT_CHOSEN_FACULTY_VALUE
-        ? filteredEvents.filter((event) => event.EngFaculty === selectedFaculty)
+        ? filteredEvents.filter((event) => event.engFaculty === selectedFaculty)
         : filteredEvents;
 
     setCurrEvents(finalFilteredEvents);
@@ -35,35 +37,30 @@ const EventContainer: React.FC<EventContainerProps> = ({ Events }) => {
 
     const filteredEvents =
       selectedValue === DEFAULT_CHOSEN_FACULTY_VALUE
-        ? Events
-        : Events.filter((event) => event.EngFaculty === selectedValue);
+        ? events
+        : events.filter((event) => event.engFaculty === selectedValue);
 
     const finalFilteredEvents =
       searchQuery !== ""
         ? filteredEvents.filter((event) =>
-            event.EventName.toLowerCase().includes(searchQuery.toLowerCase())
+            event.eventName.toLowerCase().includes(searchQuery.toLowerCase())
           )
         : filteredEvents;
     setCurrEvents(finalFilteredEvents);
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-2 text-center text-white">
-      <p className="text-4xl">Events</p>
-      <p className="text-xl underline">กิจกรรมต่าง ๆ ในงาน</p>
-      <div className="mb-8 flex flex-col justify-center gap-8 lg:flex-row">
+    <>
+      <div className="flex flex-col justify-center gap-8 lg:flex-row">
         <div className="flex">
-          <label
-            className="flex h-full w-12 items-center justify-center rounded-l-2xl bg-white p-2"
-            htmlFor="eventName"
-          >
+          <button className="flex h-full w-12 items-center justify-center rounded-l-2xl bg-white p-2">
             <i className="icon-[mdi--magnify] text-3xl text-pink-500"></i>
-          </label>
+          </button>
           <input
             type="search"
             name="eventName"
             id="eventName"
-            className="w-72 rounded-r-2xl border-2 border-white bg-transparent px-4 text-white"
+            className="w-72 rounded-r-2xl border-2 border-white bg-transparent px-4 text-white shadow-inner shadow-white placeholder:text-white"
             placeholder="ค้นหา/search"
             value={searchQuery}
             onChange={handleSearchChange}
@@ -72,14 +69,14 @@ const EventContainer: React.FC<EventContainerProps> = ({ Events }) => {
         <select
           name="Faculty"
           id="Faculty"
-          className="rounded-lg px-4 py-2 text-pink-500 lg:ml-4 lg:px-28"
+          className="rounded-2xl px-4 py-2 text-pink-500 lg:ml-4 lg:px-28"
           onChange={handleFacultyChange}
-          value={selectedFaculty || ""}
+          value={selectedFaculty}
         >
           <option value={DEFAULT_CHOSEN_FACULTY_VALUE}>
             {DEFAULT_CHOSEN_FACULTY_VALUE}
           </option>
-          {Object.entries(Faculties).map(([id, name]) => (
+          {Object.entries(FACULTIES).map(([id, name]) => (
             <option key={id} value={name}>
               {name}
             </option>
@@ -91,7 +88,7 @@ const EventContainer: React.FC<EventContainerProps> = ({ Events }) => {
           <EventBox key={index} {...d} />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 
