@@ -34,6 +34,7 @@
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
     "@iconify-json/line-md": "1.1.33",
+    "@iconify-json/logos": "1.1.42",
     "@iconify-json/mdi": "1.1.63",
     "@iconify/tailwind": "0.1.4",
     "@types/downloadjs": "1.4.6",
