@@ -7,53 +7,47 @@ interface Props {
   setStatus: () => void;
   setStudentStatus: () => void;
   isShowError: boolean;
+  status: string;
+  studentStatus: string;
 }
 const PersonalInfoBox = ({
   setStatus,
   setStudentStatus,
   isShowError,
+  status,
+  studentStatus,
 }: Props) => {
-  const [statusLocal, setStatusLocal] = useState("");
-  const [studentStatusLocal, setStudentStatusLocal] = useState("");
   const [otherStudentWritable, setOtherStudentWritable] = useState(false);
   const [otherWritable, setOtherWritable] = useState(false);
-  const setStatusForBoth = (s: string) => {
-    setStatus(s);
-    setStatusLocal(s);
-  };
-  const setStudentStatusForBoth = (s: string) => {
-    setStudentStatus(s);
-    setStudentStatusLocal(s);
-  };
 
   useEffect(() => {
-    if (statusLocal !== "student") {
-      setStudentStatusLocal("");
+    if (status !== "student") {
+      setStudentStatus("");
     }
     if (
-      statusLocal !== "student" &&
-      statusLocal !== "reapplying" &&
-      statusLocal !== "homeSchool" &&
-      statusLocal !== "parent" &&
-      statusLocal !== ""
+      status !== "student" &&
+      status !== "reapplying" &&
+      status !== "homeSchool" &&
+      status !== "parent" &&
+      status !== ""
     ) {
       setOtherWritable(true);
     } else {
       setOtherWritable(false);
     }
     if (
-      studentStatusLocal != "middleSchool" &&
-      studentStatusLocal !== "highSchool" &&
-      studentStatusLocal !== "vocCert" &&
-      studentStatusLocal !== ""
+      studentStatus != "middleSchool" &&
+      studentStatus !== "highSchool" &&
+      studentStatus !== "vocCert" &&
+      studentStatus !== ""
     ) {
       setOtherStudentWritable(true);
     } else {
       setOtherStudentWritable(false);
     }
-    console.log("statusLocal = " + statusLocal);
-    console.log("studentStatusLocal = " + studentStatusLocal);
-  }, [statusLocal, studentStatusLocal]);
+    console.log("status = " + status);
+    console.log("studentStatus = " + studentStatus);
+  }, [status, studentStatus]);
 
   return (
     <div className="mb-12 flex w-screen flex-shrink-0 flex-col items-center p-0">
@@ -70,9 +64,9 @@ const PersonalInfoBox = ({
               <RadioBox
                 name="status"
                 value="student"
-                setValue={setStatusForBoth}
+                setValue={setStatus}
                 isSelectable={true}
-                isBeingChecked={statusLocal === "student"}
+                isBeingChecked={status === "student"}
               />
               <label className="text-medium text-white">
                 นักเรียน / Student
@@ -86,9 +80,9 @@ const PersonalInfoBox = ({
                 <RadioBox
                   name="educationLevel"
                   value="middleSchool"
-                  setValue={setStudentStatusForBoth}
-                  isSelectable={statusLocal === "student"}
-                  isBeingChecked={studentStatusLocal === "middleSchool"}
+                  setValue={setStudentStatus}
+                  isSelectable={status === "student"}
+                  isBeingChecked={studentStatus === "middleSchool"}
                 />
                 <label className="text-base text-white">
                   ม.ต้น / Middle school
@@ -98,9 +92,9 @@ const PersonalInfoBox = ({
                 <RadioBox
                   name="educationLevel"
                   value="highSchool"
-                  setValue={setStudentStatusForBoth}
-                  isSelectable={statusLocal === "student"}
-                  isBeingChecked={studentStatusLocal === "highSchool"}
+                  setValue={setStudentStatus}
+                  isSelectable={status === "student"}
+                  isBeingChecked={studentStatus === "highSchool"}
                 />
                 <label className="text-base text-white">
                   ม.ปลาย / High school
@@ -110,9 +104,9 @@ const PersonalInfoBox = ({
                 <RadioBox
                   name="educationLevel"
                   value="vocCert"
-                  setValue={setStudentStatusForBoth}
-                  isSelectable={statusLocal === "student"}
-                  isBeingChecked={studentStatusLocal === "vocCert"}
+                  setValue={setStudentStatus}
+                  isSelectable={status === "student"}
+                  isBeingChecked={studentStatus === "vocCert"}
                 />
                 <label className="text-base text-white">
                   ปวช. หรือ ปวศ. / Voc. Cert. or High Voc. Cert.
@@ -122,8 +116,8 @@ const PersonalInfoBox = ({
                 <RadioBox
                   name="educationLevel"
                   value="other"
-                  setValue={setStudentStatusForBoth}
-                  isSelectable={statusLocal === "student"}
+                  setValue={setStudentStatus}
+                  isSelectable={status === "student"}
                   isBeingChecked={otherStudentWritable}
                 />
                 <label className="text-base text-white">อื่น ๆ / Other</label>
@@ -131,7 +125,7 @@ const PersonalInfoBox = ({
               <div className="ml-6 h-8 w-1/2">
                 <TextBox
                   name="otherEducationLevel"
-                  setValue={setStudentStatusForBoth}
+                  setValue={setStudentStatus}
                   isSelectable={otherStudentWritable}
                 />
               </div>
@@ -140,9 +134,9 @@ const PersonalInfoBox = ({
               <RadioBox
                 name="status"
                 value="homeSchool"
-                setValue={setStatusForBoth}
+                setValue={setStatus}
                 isSelectable={true}
-                isBeingChecked={statusLocal === "homeSchool"}
+                isBeingChecked={status === "homeSchool"}
               />
               <label className="text-medium text-white">
                 เด็กบ้านเรียน / Home School
@@ -152,9 +146,9 @@ const PersonalInfoBox = ({
               <RadioBox
                 name="status"
                 value="reapplying"
-                setValue={setStatusForBoth}
+                setValue={setStatus}
                 isSelectable={true}
-                isBeingChecked={statusLocal === "reapplying"}
+                isBeingChecked={status === "reapplying"}
               />
               <label className="text-medium text-white">
                 เด็กซิ่ว / Reapplying
@@ -164,9 +158,9 @@ const PersonalInfoBox = ({
               <RadioBox
                 name="status"
                 value="parent"
-                setValue={setStatusForBoth}
+                setValue={setStatus}
                 isSelectable={true}
-                isBeingChecked={statusLocal === "parent"}
+                isBeingChecked={status === "parent"}
               />
               <label className="text-medium text-white">
                 ผู้ปกครอง / Parent
@@ -176,9 +170,9 @@ const PersonalInfoBox = ({
               <RadioBox
                 name="status"
                 value="other"
-                setValue={setStatusForBoth}
+                setValue={setStatus}
                 isSelectable={true}
-                isBeingChecked={statusLocal === "other"}
+                isBeingChecked={status === "other"}
               />
               <label className="text-medium text-white">อื่น ๆ / Other</label>
             </div>
@@ -186,6 +180,7 @@ const PersonalInfoBox = ({
               <TextBox
                 name="otherStatus"
                 setValue={setStatus}
+                placeHolder=""
                 isSelectable={otherWritable}
               />
             </div>

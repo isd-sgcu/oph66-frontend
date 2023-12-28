@@ -82,6 +82,8 @@ const Form = () => {
         setStatus={setStatus}
         setStudentStatus={setStudentStatus}
         isShowError={isShowError}
+        status={status}
+        studentStatus={studentStatus}
       />
       <SourceOfNewsBox
         setSourceOfNews={setSourceOfNews}
@@ -91,6 +93,7 @@ const Form = () => {
       <RoundOfAdmissionBox
         setRoundOfAdmission={setRoundOfAdmission}
         setReasonForApplying={setReasonForApplying}
+        roundOfAdmission={roundOfAdmission}
       />
       <InterestedFacultyBox setFacultiesInterested={setFacultiesInterested} />
       <PlannedFacultyBox

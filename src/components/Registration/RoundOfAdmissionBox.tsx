@@ -1,13 +1,12 @@
-import { useState } from "react";
 import RadioBox from "../RadioBox";
 import TextBox from "../TextBox";
 
-const RoundOfAdmissionBox = ({ setRoundOfAdmission, setReasonForApplying }) => {
-  const [roundOfAdmissionLocal, setRoundOfAdmissionLocal] = useState("");
-  const setRoundOfAdmissionForBoth = async (s: string) => {
-    await setRoundOfAdmission(s);
-    await setRoundOfAdmissionLocal(s);
-  };
+const RoundOfAdmissionBox = ({
+  setRoundOfAdmission,
+  setReasonForApplying,
+  roundOfAdmission,
+}) => {
+  // const [roundOfAdmission, setRoundOfAdmissionLocal] = useState("");
   return (
     <div className="mb-12 flex w-screen flex-shrink-0 flex-col items-center p-0">
       <div className="m-0 flex w-4/5 max-w-xl flex-col items-center p-0">
@@ -20,9 +19,9 @@ const RoundOfAdmissionBox = ({ setRoundOfAdmission, setReasonForApplying }) => {
               <RadioBox
                 name="roundOfAdmission"
                 value="1"
-                setValue={setRoundOfAdmissionForBoth}
+                setValue={setRoundOfAdmission}
                 isSelectable={true}
-                isBeingChecked={roundOfAdmissionLocal === "1"}
+                isBeingChecked={roundOfAdmission === "1"}
               />
               <label className="text-medium text-base text-white">
                 รอบ 1 / Round 1
@@ -32,9 +31,9 @@ const RoundOfAdmissionBox = ({ setRoundOfAdmission, setReasonForApplying }) => {
               <RadioBox
                 name="roundOfAdmission"
                 value="2"
-                setValue={setRoundOfAdmissionForBoth}
+                setValue={setRoundOfAdmission}
                 isSelectable={true}
-                isBeingChecked={roundOfAdmissionLocal === "2"}
+                isBeingChecked={roundOfAdmission === "2"}
               />
               <label className="text-medium text-base text-white">
                 รอบ 2 / Round 2
@@ -44,9 +43,9 @@ const RoundOfAdmissionBox = ({ setRoundOfAdmission, setReasonForApplying }) => {
               <RadioBox
                 name="roundOfAdmission"
                 value="3"
-                setValue={setRoundOfAdmissionForBoth}
+                setValue={setRoundOfAdmission}
                 isSelectable={true}
-                isBeingChecked={roundOfAdmissionLocal === "3"}
+                isBeingChecked={roundOfAdmission === "3"}
               />
               <label className="text-medium text-base text-white">
                 รอบ 3 / Round 3
@@ -56,13 +55,13 @@ const RoundOfAdmissionBox = ({ setRoundOfAdmission, setReasonForApplying }) => {
               <RadioBox
                 name="roundOfAdmission"
                 value="other"
-                setValue={setRoundOfAdmissionForBoth}
+                setValue={setRoundOfAdmission}
                 isSelectable={true}
                 isBeingChecked={
-                  roundOfAdmissionLocal !== "" &&
-                  roundOfAdmissionLocal !== "1" &&
-                  roundOfAdmissionLocal !== "2" &&
-                  roundOfAdmissionLocal !== "3"
+                  roundOfAdmission !== "" &&
+                  roundOfAdmission !== "1" &&
+                  roundOfAdmission !== "2" &&
+                  roundOfAdmission !== "3"
                 }
               />
               <label className="text-medium text-base text-white">
@@ -74,10 +73,10 @@ const RoundOfAdmissionBox = ({ setRoundOfAdmission, setReasonForApplying }) => {
                 name="otherRoundOfAdmission"
                 setValue={setRoundOfAdmission}
                 isSelectable={
-                  roundOfAdmissionLocal !== "" &&
-                  roundOfAdmissionLocal !== "1" &&
-                  roundOfAdmissionLocal !== "2" &&
-                  roundOfAdmissionLocal !== "3"
+                  roundOfAdmission !== "" &&
+                  roundOfAdmission !== "1" &&
+                  roundOfAdmission !== "2" &&
+                  roundOfAdmission !== "3"
                 }
               />
             </div>
