@@ -1,6 +1,5 @@
+import clsx from "clsx";
 import { useEffect, useState } from "react";
-
-// custom hook for handle size change
 
 const NavBar = () => {
   const MOBILESIZE = 1024;
@@ -21,9 +20,6 @@ const NavBar = () => {
       window.removeEventListener("resize", handleResize);
     };
   });
-  const buttonClassName = `flex h-full flex-col items-center justify-center gap-1 self-stretch rounded-tl-md ${
-    isMenuVisible ? "bg-indigo-900" : "bg-pink-550"
-  } px-4 lg:hidden`;
   return (
     <nav className="sticky top-0 z-20 flex w-full flex-col items-center justify-between bg-pink-550 text-white backdrop-blur-sm">
       <div className="flew-row flex h-12 w-full items-center justify-between">
@@ -37,7 +33,10 @@ const NavBar = () => {
           <a href="/idcard">Profile</a>
         </span>
         <button
-          className={buttonClassName}
+          className={clsx(
+            "flex h-full flex-col items-center justify-center gap-1 self-stretch rounded-tl-md px-4 lg:hidden ",
+            isMenuVisible ? "bg-indigo-900" : "bg-pink-550"
+          )}
           onClick={handleMobileMenuButtonClick}
         >
           <div className="h-0.5 w-5 bg-white"></div>
