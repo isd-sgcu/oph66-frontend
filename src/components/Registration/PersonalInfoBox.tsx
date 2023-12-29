@@ -15,11 +15,6 @@ const PersonalInfoBox = ({
   isShowError,
   residence,
 }) => {
-  // const [residence, setResidenceLocal] = useState("");
-  // const setResidence = (s: string) => {
-  //   setResidence(s);
-  //   setResidenceLocal(s);
-  // };
   const months: string[] = [
     "มกราคม / January",
     "กุมภาพันธ์ / February",

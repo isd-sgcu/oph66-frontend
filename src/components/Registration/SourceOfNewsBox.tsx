@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import CheckBox from "../CheckBox";
-const SourceOfNewsBox = ({ setSourceOfNews, arrayOfChecks, isShowError }) => {
+const SourceOfNewsBox = ({ setSourceOfNews, isShowError }) => {
   return (
     <div className="mb-12 flex w-screen flex-shrink-0 flex-col items-center p-0">
       <div className="m-0 flex w-4/5 max-w-xl flex-col items-center p-0">
@@ -20,9 +20,9 @@ const SourceOfNewsBox = ({ setSourceOfNews, arrayOfChecks, isShowError }) => {
               name="sourceOfNews"
               id="facebookSource"
               setValue={setSourceOfNews}
-              oldValue={arrayOfChecks}
+              isShowError={false}
             />
-            <label className="text-medium text-base text-white">
+            <label className="text-medium mt-1 text-base text-white">
               Facebook Page: CU Openhouse
             </label>
           </div>
@@ -32,9 +32,9 @@ const SourceOfNewsBox = ({ setSourceOfNews, arrayOfChecks, isShowError }) => {
               name="sourceOfNews"
               id="instragramSource"
               setValue={setSourceOfNews}
-              oldValue={arrayOfChecks}
+              isShowError={false}
             />
-            <label className="text-medium text-base text-white">
+            <label className="text-medium mt-1 text-base text-white">
               Instagram: @cuopenhouse
             </label>
           </div>
@@ -44,9 +44,9 @@ const SourceOfNewsBox = ({ setSourceOfNews, arrayOfChecks, isShowError }) => {
               name="sourceOfNews"
               id="facultiesSource"
               setValue={setSourceOfNews}
-              oldValue={arrayOfChecks}
+              isShowError={false}
             />
-            <label className="text-medium text-base text-white">
+            <label className="text-medium mt-1 text-base text-white">
               ช่องทางของคณะต่าง ๆ / Faculties’ official pages
             </label>
           </div>
@@ -56,9 +56,9 @@ const SourceOfNewsBox = ({ setSourceOfNews, arrayOfChecks, isShowError }) => {
               name="sourceOfNews"
               id="chulaStudentsSource"
               setValue={setSourceOfNews}
-              oldValue={arrayOfChecks}
+              isShowError={false}
             />
-            <label className="text-medium text-base text-white">
+            <label className="text-medium mt-1 text-base text-white">
               นิสิตจุฬาฯ / Chula students
             </label>
           </div>
@@ -68,9 +68,9 @@ const SourceOfNewsBox = ({ setSourceOfNews, arrayOfChecks, isShowError }) => {
               name="sourceOfNews"
               id="friendsSource"
               setValue={setSourceOfNews}
-              oldValue={arrayOfChecks}
+              isShowError={false}
             />
-            <label className="text-medium text-base text-white">
+            <label className="text-medium mt-1 text-base text-white">
               เพื่อน / Friends
             </label>
           </div>
@@ -80,9 +80,9 @@ const SourceOfNewsBox = ({ setSourceOfNews, arrayOfChecks, isShowError }) => {
               name="sourceOfNews"
               id="parentsSource"
               setValue={setSourceOfNews}
-              oldValue={arrayOfChecks}
+              isShowError={false}
             />
-            <label className="text-medium text-base text-white">
+            <label className="text-medium mt-1 text-base text-white">
               ผู้ปกครอง / Parents
             </label>
           </div>
@@ -92,9 +92,9 @@ const SourceOfNewsBox = ({ setSourceOfNews, arrayOfChecks, isShowError }) => {
               name="sourceOfNews"
               id="schoolSource"
               setValue={setSourceOfNews}
-              oldValue={arrayOfChecks}
+              isShowError={false}
             />
-            <label className="text-medium text-base text-white">
+            <label className="text-medium mt-1 text-base text-white">
               โรงเรียน / School
             </label>
           </div>

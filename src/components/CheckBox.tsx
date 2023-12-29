@@ -23,10 +23,10 @@ const CheckBox = ({ name, value, id, setValue, isShowError }: Props) => {
     setIsChecked(!isChecked);
   };
   return (
-    <div className="relative mr-2 flex h-10 w-10">
+    <div className="relative flex h-10 w-10">
       <div
         className={clsx(
-          "z-0 mr-2 flex h-7 w-7 items-center justify-center rounded-full bg-[#F55572]",
+          "z-0 flex h-7 w-7 items-center justify-center rounded-full bg-[#F55572]",
           isShowError ? "" : "bg-transparent"
         )}
       >
