@@ -4,30 +4,49 @@ interface Props {
   name: string;
   value: string;
   id: string;
+  setValue: () => void;
+  isShowError: boolean;
 }
 
-const CheckBox = ({ name, value, id }: Props) => {
+const CheckBox = ({ name, value, id, setValue, isShowError }: Props) => {
   const [isChecked, setIsChecked] = useState(false);
-  const handleClickButton = () => {
+  const handleClickButton = (events) => {
+    if (!isChecked) {
+      setValue((prevArray) => [...prevArray, events.target.value]);
+      console.log(events.target.value);
+    } else {
+      setValue((prevArray) =>
+        prevArray.filter((item) => item !== events.target.value)
+      );
+      // console.log(events.target.value)
+    }
     setIsChecked(!isChecked);
   };
   return (
-    <div className="relative mr-2 flex h-5 w-5">
-      <div className="absolute z-10 mr-2 h-5 w-5 rounded-full bg-white"></div>
-      <input
-        value={value}
-        name={name}
-        id={id}
-        onClick={handleClickButton}
-        type="checkbox"
-        className="absolute z-30 inline-block h-5 w-5 appearance-none rounded-full"
-      />
+    <div className="relative mr-2 flex h-10 w-10">
       <div
         className={clsx(
-          "inner-circle absolute left-1/2 top-1/2 z-20 m-0 h-2 w-2 -translate-x-1/2 -translate-y-1/2 transform rounded-full bg-pink-500",
-          !isChecked && "hidden"
+          "z-0 mr-2 flex h-7 w-7 items-center justify-center rounded-full bg-[#F55572] bg-transparent",
+          isShowError ? "" : "bg-transparent"
         )}
-      ></div>
+      >
+        <div className=" z-10 flex h-5 w-5 items-center justify-center rounded-full bg-white">
+          <input
+            value={value}
+            name={name}
+            id={id}
+            onClick={handleClickButton}
+            type="checkbox"
+            className="absolute z-30 inline-block h-5 w-5 appearance-none rounded-full"
+          />
+          <div
+            className={clsx(
+              "z-20 h-2 w-2  rounded-full bg-pink-500",
+              !isChecked && "hidden"
+            )}
+          ></div>
+        </div>
+      </div>
     </div>
   );
 };
