@@ -26,7 +26,7 @@ const CheckBox = ({ name, value, id, setValue, isShowError }: Props) => {
     <div className="relative mr-2 flex h-10 w-10">
       <div
         className={clsx(
-          "z-0 mr-2 flex h-7 w-7 items-center justify-center rounded-full bg-[#F55572] bg-transparent",
+          "z-0 mr-2 flex h-7 w-7 items-center justify-center rounded-full bg-[#F55572]",
           isShowError ? "" : "bg-transparent"
         )}
       >
