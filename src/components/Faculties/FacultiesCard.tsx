@@ -5,32 +5,38 @@ const cards: CardProp[] = [
     nameEnglish: "Circus",
     instagram: "GG",
     link: "www.google.com",
+    isActive: true,
   },
   {
     nameThai: "คณะหมูกรอบ",
     nameEnglish: "Pork",
     instagram: "Piggy",
     link: "www.google.com",
+    isActive: false,
   },
   {
     nameThai: "คณะะะะ",
     nameEnglish: "Kana",
     link: "www.google.com",
+    isActive: false,
   },
   {
     nameThai: "คณะะะะ",
     nameEnglish: "Kana",
     link: "www.google.com",
+    isActive: true,
   },
   {
     nameThai: "คณะะะะ",
     nameEnglish: "Kana",
     link: "www.google.com",
+    isActive: true,
   },
   {
     nameThai: "คณะะะะ",
     nameEnglish: "Kana",
     link: "www.google.com",
+    isActive: false,
   },
 ];
 const FacultiesCard = () => {
@@ -44,6 +50,7 @@ const FacultiesCard = () => {
             instagram={e.instagram}
             facebook={e.facebook}
             link={e.link}
+            isActive={e.isActive}
           />
         );
       })}
