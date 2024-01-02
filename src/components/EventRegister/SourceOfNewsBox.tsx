@@ -17,12 +17,12 @@ const SourceOfNewsBox = ({ setSourceOfNews, isShowError }) => {
           <div className="flex flex-row">
             <CheckBox
               value="facebook"
-              isShowError={false}
               name="sourceOfNews"
               id="facebookSource"
               setValue={setSourceOfNews}
+              isShowError={false}
             />
-            <label className="text-medium text-base text-white">
+            <label className="text-medium mt-1 text-base text-white">
               Facebook Page: CU Openhouse
             </label>
           </div>
@@ -32,8 +32,9 @@ const SourceOfNewsBox = ({ setSourceOfNews, isShowError }) => {
               name="sourceOfNews"
               id="instragramSource"
               setValue={setSourceOfNews}
+              isShowError={false}
             />
-            <label className="text-medium text-base text-white">
+            <label className="text-medium mt-1 text-base text-white">
               Instagram: @cuopenhouse
             </label>
           </div>
@@ -43,8 +44,9 @@ const SourceOfNewsBox = ({ setSourceOfNews, isShowError }) => {
               name="sourceOfNews"
               id="facultiesSource"
               setValue={setSourceOfNews}
+              isShowError={false}
             />
-            <label className="text-medium text-base text-white">
+            <label className="text-medium mt-1 text-base text-white">
               ช่องทางของคณะต่าง ๆ / Faculties’ official pages
             </label>
           </div>
@@ -54,8 +56,9 @@ const SourceOfNewsBox = ({ setSourceOfNews, isShowError }) => {
               name="sourceOfNews"
               id="chulaStudentsSource"
               setValue={setSourceOfNews}
+              isShowError={false}
             />
-            <label className="text-medium text-base text-white">
+            <label className="text-medium mt-1 text-base text-white">
               นิสิตจุฬาฯ / Chula students
             </label>
           </div>
@@ -65,8 +68,9 @@ const SourceOfNewsBox = ({ setSourceOfNews, isShowError }) => {
               name="sourceOfNews"
               id="friendsSource"
               setValue={setSourceOfNews}
+              isShowError={false}
             />
-            <label className="text-medium text-base text-white">
+            <label className="text-medium mt-1 text-base text-white">
               เพื่อน / Friends
             </label>
           </div>
@@ -76,8 +80,9 @@ const SourceOfNewsBox = ({ setSourceOfNews, isShowError }) => {
               name="sourceOfNews"
               id="parentsSource"
               setValue={setSourceOfNews}
+              isShowError={false}
             />
-            <label className="text-medium text-base text-white">
+            <label className="text-medium mt-1 text-base text-white">
               ผู้ปกครอง / Parents
             </label>
           </div>
@@ -87,8 +92,9 @@ const SourceOfNewsBox = ({ setSourceOfNews, isShowError }) => {
               name="sourceOfNews"
               id="schoolSource"
               setValue={setSourceOfNews}
+              isShowError={false}
             />
-            <label className="text-medium text-base text-white">
+            <label className="text-medium mt-1 text-base text-white">
               โรงเรียน / School
             </label>
           </div>
