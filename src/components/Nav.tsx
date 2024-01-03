@@ -1,61 +1,155 @@
 import clsx from "clsx";
-import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 
-const NavBar = () => {
-  const MOBILESIZE = 1024;
-  const [isMenuVisible, setMenuVisible] = useState<boolean>(false);
-  const handleMobileMenuButtonClick = () => {
-    setMenuVisible(!isMenuVisible);
+const links = ["Home", "Navigator", "Events", "Faculties", "FAQs", "Profile"];
+const overlayVariants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+  },
+};
+
+const menuVariants = {
+  initial: {
+    opacity: 0,
+    x: "50",
+  },
+  animate: {
+    opacity: 1,
+    x: 0,
+  },
+};
+
+const buttonLineVariants = [
+  {
+    initial: {
+      rotate: 0,
+      y: 0,
+      width: "1.5rem",
+    },
+    animate: {
+      rotate: 45,
+      y: 7,
+      width: "1.3rem",
+    },
+  },
+  {
+    initial: {
+      opacity: 1,
+    },
+    animate: {
+      opacity: 0,
+    },
+  },
+  {
+    initial: {
+      rotate: 0,
+      y: 0,
+      width: "1.5rem",
+    },
+    animate: {
+      rotate: -45,
+      y: -5,
+      width: "1.3rem",
+    },
+  },
+];
+
+const Nav = () => {
+  const [isOpen, setOpen] = useState<boolean>(false);
+  const handleClick = () => {
+    setOpen((prev) => !prev);
   };
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= MOBILESIZE) {
-        setMenuVisible(false);
-      }
-    };
 
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  });
   return (
-    <nav className="sticky top-0 z-20 flex w-full flex-col items-center justify-between bg-pink-550 text-white backdrop-blur-sm">
-      <div className="flew-row flex h-12 w-full items-center justify-between">
-        <span className="px-8 font-libre text-2xl">Chula Open House 2024</span>
-        <span className="hidden gap-8 px-8 text-sm lg:flex">
-          <a href="/">Home</a>
-          <a href="/">Navigator</a>
-          <a href="/event">Event</a>
-          <a href="/">Faculties</a>
-          <a href="">FAQS</a>
-          <a href="/idcard">Profile</a>
+    <nav className="sticky top-0 z-20 flex w-full items-center justify-center bg-pink-550 px-5 py-4 text-white">
+      <div className="flex w-full max-w-5xl items-center justify-between">
+        <span className="font-libre text-xl md:text-2xl">
+          Chula Open House 2024
         </span>
+        <div className="hidden gap-6 font-semibold md:flex">
+          {links.map((link) => {
+            const path = link === "Home" ? "/" : "/" + link.toLowerCase();
+            const isCurrentPath = path === window.location.pathname;
+            return (
+              <a
+                key={link}
+                href={path}
+                className={clsx(
+                  "capitalize text-white underline-offset-2 hover:underline",
+                  isCurrentPath && "pointer-events-none underline"
+                )}
+              >
+                {link}
+              </a>
+            );
+          })}
+        </div>
         <button
           className={clsx(
-            "flex h-full flex-col items-center justify-center gap-1 self-stretch rounded-tl-md px-4 lg:hidden ",
-            isMenuVisible ? "bg-indigo-900" : "bg-pink-550"
+            "z-10 flex h-full flex-col gap-1",
+            !isOpen && "md:hidden"
           )}
-          onClick={handleMobileMenuButtonClick}
+          onClick={handleClick}
         >
-          <div className="h-0.5 w-5 bg-white"></div>
-          <div className="h-0.5 w-5 bg-white"></div>
-          <div className="h-0.5 w-5 bg-white"></div>
+          {buttonLineVariants.map((variant, index) => (
+            <motion.div
+              key={index}
+              variants={variant}
+              className="h-0.5 w-6 rounded-full bg-white"
+              animate={isOpen ? "animate" : "initial"}
+            />
+          ))}
         </button>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              className="absolute left-0 top-0 flex h-screen w-screen items-center justify-center bg-pink-550"
+              variants={overlayVariants}
+              initial="initial"
+              animate="animate"
+              exit="initial"
+              transition={{
+                delayChildren: 0.2,
+                staggerChildren: 0.1,
+                type: "spring",
+                stiffness: 100,
+                damping: 20,
+              }}
+            >
+              <div className="flex flex-col gap-8 text-center text-xl font-semibold">
+                {links.map((link) => {
+                  const path = link === "Home" ? "/" : "/" + link.toLowerCase();
+                  const isCurrentPath = path === window.location.pathname;
+                  return (
+                    <motion.a
+                      key={link}
+                      href={path}
+                      variants={menuVariants}
+                      transition={{
+                        type: "spring",
+                        stiffness: 100,
+                        damping: 20,
+                      }}
+                      className={clsx(
+                        "capitalize text-white underline-offset-4 hover:underline",
+                        isCurrentPath && "pointer-events-none underline"
+                      )}
+                    >
+                      {link}
+                    </motion.a>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
-      {isMenuVisible && (
-        <div className="flew-row flex h-full w-full items-center justify-between bg-indigo-900 px-3 py-3 lg:hidden">
-          <a href="/">Home</a>
-          <a href="/">Navigator</a>
-          <a href="/event">Event</a>
-          <a href="/">Faculties</a>
-          <a href="">FAQS</a>
-          <a href="/idcard">Profile</a>
-        </div>
-      )}
     </nav>
   );
 };
 
-export default NavBar;
+export default Nav;
