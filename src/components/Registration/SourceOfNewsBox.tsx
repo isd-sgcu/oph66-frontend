@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import CheckBox from "../CheckBox";
 interface Props {
-  setSourceOfNews: (s: string[]) => void;
+  setSourceOfNews: React.Dispatch<React.SetStateAction<never[]>>;
   isShowError: boolean;
 }
 const SourceOfNewsBox = ({ setSourceOfNews, isShowError }: Props) => {

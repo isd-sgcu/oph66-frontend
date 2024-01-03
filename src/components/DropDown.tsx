@@ -2,7 +2,7 @@ interface Props {
   options: string[];
   defaultVal: string;
   name: string;
-  setValue: (s: string) => void;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
   isSelectable: boolean;
 }
 

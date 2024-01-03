@@ -4,14 +4,14 @@ import RadioBox from "../RadioBox";
 import TextBox from "../TextBox";
 
 interface Props {
-  setFirstName: (s: string) => void;
-  setLastName: (s: string) => void;
-  setBirthDay: (s: string) => void;
-  setBirthMonth: (s: string) => void;
-  setBirthYear: (s: string) => void;
-  setResidence: (s: string) => void;
-  setCountry: (s: string) => void;
-  setProvince: (s: string) => void;
+  setFirstName: React.Dispatch<React.SetStateAction<string>>;
+  setLastName: React.Dispatch<React.SetStateAction<string>>;
+  setBirthDay: React.Dispatch<React.SetStateAction<string>>;
+  setBirthMonth: React.Dispatch<React.SetStateAction<string>>;
+  setBirthYear: React.Dispatch<React.SetStateAction<string>>;
+  setResidence: React.Dispatch<React.SetStateAction<string>>;
+  setCountry: React.Dispatch<React.SetStateAction<string>>;
+  setProvince: React.Dispatch<React.SetStateAction<string>>;
   isShowError: boolean;
   residence: string;
 }

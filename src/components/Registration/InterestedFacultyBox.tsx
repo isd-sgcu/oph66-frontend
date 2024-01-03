@@ -8,7 +8,7 @@ interface FacultyInfo {
   number: string;
 }
 interface Props {
-  setFacultiesInterested: (f: FacultyInfo[]) => void;
+  setFacultiesInterested: React.Dispatch<React.SetStateAction<FacultyInfo[]>>;
 }
 const InterestedFacultyBox = ({ setFacultiesInterested }: Props) => {
   const [boxCount, setBoxCount] = useState(2);

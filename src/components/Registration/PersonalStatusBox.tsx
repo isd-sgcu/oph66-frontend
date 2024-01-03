@@ -4,8 +4,8 @@ import RadioBox from "../RadioBox";
 import TextBox from "../TextBox";
 
 interface Props {
-  setStatus: (s: string) => void;
-  setStudentStatus: (s: string) => void;
+  setStatus: React.Dispatch<React.SetStateAction<string>>;
+  setStudentStatus: React.Dispatch<React.SetStateAction<string>>;
   isShowError: boolean;
   status: string;
   studentStatus: string;
@@ -124,6 +124,7 @@ const PersonalInfoBox = ({
               </div>
               <div className="ml-6 h-8 w-1/2">
                 <TextBox
+                  placeHolder=""
                   name="otherEducationLevel"
                   setValue={setStudentStatus}
                   isSelectable={otherStudentWritable}

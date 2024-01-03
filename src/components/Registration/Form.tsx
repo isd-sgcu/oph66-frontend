@@ -87,7 +87,6 @@ const Form = () => {
       />
       <SourceOfNewsBox
         setSourceOfNews={setSourceOfNews}
-        arrayOfChecks={sourceOfNews}
         isShowError={isShowError}
       />
       <RoundOfAdmissionBox
@@ -105,7 +104,6 @@ const Form = () => {
           value="agreed"
           id="agreement"
           setValue={setAgreedToTerms}
-          oldValue={agreedToTerms}
           isShowError={isShowError}
         />
         <label className="text-base">

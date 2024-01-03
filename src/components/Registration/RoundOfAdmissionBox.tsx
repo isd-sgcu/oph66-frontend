@@ -2,8 +2,8 @@ import RadioBox from "../RadioBox";
 import TextBox from "../TextBox";
 
 interface Props {
-  setRoundOfAdmission: (s: string) => void;
-  setReasonForApplying: (s: string) => void;
+  setRoundOfAdmission: React.Dispatch<React.SetStateAction<string>>;
+  setReasonForApplying: React.Dispatch<React.SetStateAction<string>>;
   roundOfAdmission: string;
 }
 
@@ -75,6 +75,7 @@ const RoundOfAdmissionBox = ({
             </div>
             <div className="ml-6 h-8 w-1/2">
               <TextBox
+                placeHolder=""
                 name="otherRoundOfAdmission"
                 setValue={setRoundOfAdmission}
                 isSelectable={
@@ -91,6 +92,7 @@ const RoundOfAdmissionBox = ({
           </p>
           <div className="h-20 w-full">
             <TextBox
+              placeHolder=""
               name="reasonForApplying"
               setValue={setReasonForApplying}
               isSelectable={true}

@@ -11,7 +11,7 @@ interface Props {
   haveSection: boolean;
   number: string;
   name: string;
-  setValues: (f: FacultyInfo[]) => void;
+  setValues: React.Dispatch<React.SetStateAction<FacultyInfo[]>>;
 }
 const FacultyDetailBox = ({
   haveDepartment,
@@ -21,21 +21,19 @@ const FacultyDetailBox = ({
   number,
   setValues,
 }: Props) => {
-  const setFacultyDetail = (value: string) => {
+  const setFacultyDetail = (s: string) => {
     setValues((prevArray) =>
-      prevArray.map((e) => (e.number === number ? { ...e, faculty: value } : e))
+      prevArray.map((e) => (e.number === number ? { ...e, faculty: s } : e))
     );
   };
-  const setDepartmentDetail = (value: string) => {
+  const setDepartmentDetail = (s: string) => {
     setValues((prevArray) =>
-      prevArray.map((e) =>
-        e.number === number ? { ...e, department: value } : e
-      )
+      prevArray.map((e) => (e.number === number ? { ...e, department: s } : e))
     );
   };
-  const setSectionDetail = (value: string) => {
+  const setSectionDetail = (s: string) => {
     setValues((prevArray) =>
-      prevArray.map((e) => (e.number === number ? { ...e, section: value } : e))
+      prevArray.map((e) => (e.number === number ? { ...e, section: s } : e))
     );
   };
   return (

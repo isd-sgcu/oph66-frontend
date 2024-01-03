@@ -8,7 +8,9 @@ interface FacultyInfo {
   number: string;
 }
 interface Props {
-  setFacultiesPlannedToVisit: (f: FacultyInfo[]) => void;
+  setFacultiesPlannedToVisit: React.Dispatch<
+    React.SetStateAction<FacultyInfo[]>
+  >;
 }
 
 const PlannedFacultyBox = ({ setFacultiesPlannedToVisit }: Props) => {

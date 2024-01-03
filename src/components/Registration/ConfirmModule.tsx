@@ -1,6 +1,6 @@
 const ConfirmModule = () => {
   return (
-    <div className="sticky bottom-1/2 flex h-60 w-80 flex-col items-center justify-center rounded-2xl bg-white p-3 text-center text-[#CA4072]">
+    <div className="fixed bottom-32 flex h-fit w-80 flex-col items-center justify-center rounded-2xl bg-white p-3 text-center text-[#CA4072]">
       <div className="w-fit pb-6">
         <p className="text-2xl">ยืนยันข้อมูลถูกต้อง</p>
         <p className="text-base ">
