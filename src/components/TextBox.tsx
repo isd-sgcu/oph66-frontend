@@ -1,7 +1,7 @@
 interface Props {
   placeHolder: string;
   name: string;
-  setValue: () => void;
+  setValue: (s: string) => void;
   isSelectable: boolean;
 }
 const TextBox = ({ name, placeHolder, setValue, isSelectable }: Props) => {

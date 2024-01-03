@@ -3,7 +3,7 @@ interface Props {
   dropDownLabel: string;
   name: string;
   options: string[];
-  setValue: () => void;
+  setValue: (s: string) => void;
 }
 
 const DropDownWithLabel = ({

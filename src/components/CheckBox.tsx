@@ -4,7 +4,7 @@ interface Props {
   name: string;
   value: string;
   id: string;
-  setValue: () => void;
+  setValue: (s: string) => void;
   isShowError: boolean;
 }
 

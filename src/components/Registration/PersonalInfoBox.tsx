@@ -3,6 +3,18 @@ import DropDown from "../DropDown";
 import RadioBox from "../RadioBox";
 import TextBox from "../TextBox";
 
+interface Props {
+  setFirstName: (s: string) => void;
+  setLastName: (s: string) => void;
+  setBirthDay: (s: string) => void;
+  setBirthMonth: (s: string) => void;
+  setBirthYear: (s: string) => void;
+  setResidence: (s: string) => void;
+  setCountry: (s: string) => void;
+  setProvince: (s: string) => void;
+  isShowError: boolean;
+  residence: string;
+}
 const PersonalInfoBox = ({
   setFirstName,
   setLastName,
@@ -14,7 +26,7 @@ const PersonalInfoBox = ({
   setProvince,
   isShowError,
   residence,
-}) => {
+}: Props) => {
   const months: string[] = [
     "มกราคม / January",
     "กุมภาพันธ์ / February",

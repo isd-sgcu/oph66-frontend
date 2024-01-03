@@ -1,11 +1,17 @@
 import DropDownWithLabel from "./DropDownWithLabel.tsx";
+interface FacultyInfo {
+  faculty: string;
+  department: string;
+  section: string;
+  number: string;
+}
 interface Props {
   haveFaculty: boolean;
   haveDepartment: boolean;
   haveSection: boolean;
   number: string;
   name: string;
-  setValues: () => void;
+  setValues: (f: FacultyInfo[]) => void;
 }
 const FacultyDetailBox = ({
   haveDepartment,

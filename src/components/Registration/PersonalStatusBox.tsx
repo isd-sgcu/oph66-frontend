@@ -4,8 +4,8 @@ import RadioBox from "../RadioBox";
 import TextBox from "../TextBox";
 
 interface Props {
-  setStatus: () => void;
-  setStudentStatus: () => void;
+  setStatus: (s: string) => void;
+  setStudentStatus: (s: string) => void;
   isShowError: boolean;
   status: string;
   studentStatus: string;

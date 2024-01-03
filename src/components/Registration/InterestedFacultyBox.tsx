@@ -1,7 +1,16 @@
 import clsx from "clsx";
 import { useState } from "react";
 import FacultyDetailBox from "./FacultyDetailBox.tsx";
-const InterestedFacultyBox = ({ setFacultiesInterested }) => {
+interface FacultyInfo {
+  faculty: string;
+  department: string;
+  section: string;
+  number: string;
+}
+interface Props {
+  setFacultiesInterested: (f: FacultyInfo[]) => void;
+}
+const InterestedFacultyBox = ({ setFacultiesInterested }: Props) => {
   const [boxCount, setBoxCount] = useState(2);
   const addBox = () => {
     setBoxCount(boxCount + 1);

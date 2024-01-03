@@ -29,9 +29,9 @@ const Form = () => {
     { faculty: "", department: "", section: "", number: "3" },
   ]);
   const [facultiesPlannedToVisit, setFacultiesPlannedToVisit] = useState([
-    { faculty: "", number: "1" },
-    { faculty: "", number: "2" },
-    { faculty: "", number: "3" },
+    { faculty: "", department: "", section: "", number: "1" },
+    { faculty: "", department: "", section: "", number: "2" },
+    { faculty: "", department: "", section: "", number: "3" },
   ]);
   const [agreedToTerms, setAgreedToTerms] = useState([]);
   const [isShowError, setIsShowError] = useState(false);

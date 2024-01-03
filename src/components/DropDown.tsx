@@ -2,7 +2,7 @@ interface Props {
   options: string[];
   defaultVal: string;
   name: string;
-  setValue: () => void;
+  setValue: (s: string) => void;
   isSelectable: boolean;
 }
 

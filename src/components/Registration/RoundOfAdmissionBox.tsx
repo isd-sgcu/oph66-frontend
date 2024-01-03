@@ -1,12 +1,17 @@
 import RadioBox from "../RadioBox";
 import TextBox from "../TextBox";
 
+interface Props {
+  setRoundOfAdmission: (s: string) => void;
+  setReasonForApplying: (s: string) => void;
+  roundOfAdmission: string;
+}
+
 const RoundOfAdmissionBox = ({
   setRoundOfAdmission,
   setReasonForApplying,
   roundOfAdmission,
-}) => {
-  // const [roundOfAdmission, setRoundOfAdmissionLocal] = useState("");
+}: Props) => {
   return (
     <div className="mb-12 flex w-screen flex-shrink-0 flex-col items-center p-0">
       <div className="m-0 flex w-4/5 max-w-xl flex-col items-center p-0">
