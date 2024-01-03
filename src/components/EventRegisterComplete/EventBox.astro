@@ -1,36 +1,55 @@
 ---
-const { eventName, eventFacultyTh, eventFacultyEng, eventDate, eventTime } =
-  Astro.props;
+interface Props {
+  eventName: string;
+  eventFacultyTh: string;
+  eventFacultyEng: string;
+  eventDate?: string;
+  eventTime?: string;
+  eventPlace?: string;
+}
+
+const {
+  eventName,
+  eventFacultyTh,
+  eventFacultyEng,
+  eventDate,
+  eventTime,
+  eventPlace,
+} = Astro.props;
 ---
 
-<eventBox>
-  <div
-    class="mb-10 flex h-fit w-72 flex-col justify-between rounded-2xl border-2 border-solid border-white p-4 text-white shadow-md backdrop-blur-md"
-  >
-    <h2 class="mb-1 text-2xl font-bold">{eventName}</h2>
-    <p class="text-base">{eventFacultyTh}</p>
-    <p class="mb-1 text-sm">{eventFacultyEng}</p>
-    <div class="flex">
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        class="icon-[mdi--calendar-blank-outline] mr-3 mt-1 p-0"
-      >
-      </svg>
-      <p class="text-base">{eventDate}</p>
-    </div>
-    <div class="flex">
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        class="icon-[mdi--alarm-clock] mr-3 mt-1 rounded-full"
-      >
-      </svg>
-      <p class="text-base">{eventTime}</p>
-    </div>
+<div
+  class="flex h-fit w-72 max-w-full flex-col justify-between gap-2 rounded-2xl border-2 border-white p-4 text-white shadow-inner shadow-white"
+>
+  <h2 class="text-2xl font-bold">{eventName}</h2>
+  <div class="flex flex-col">
+    <p>{eventFacultyTh}</p>
+    <p class="text-sm">{eventFacultyEng}</p>
   </div>
-</eventBox>
+  <div class="grid grid-cols-[30px_minmax(0,1fr)] gap-y-2">
+    {
+      eventDate && (
+        <>
+          <i class="icon-[mdi--calendar-blank-outline] text-2xl" />
+          <p>{eventDate}</p>
+        </>
+      )
+    }
+    {
+      eventTime && (
+        <>
+          <i class="icon-[mdi--alarm-clock] text-2xl" />
+          <p>{eventTime}</p>
+        </>
+      )
+    }
+    {
+      eventPlace && (
+        <>
+          <i class="icon-[mdi--map-marker] text-2xl" />
+          <p>{eventPlace}</p>
+        </>
+      )
+    }
+  </div>
+</div>
