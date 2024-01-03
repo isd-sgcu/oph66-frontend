@@ -4,8 +4,12 @@ import Sponsor from "./Sponsor.astro";
 ---
 
 <footer
-  class="mt-8 flex w-full flex-col items-center justify-between gap-4 bg-pink-400 px-20 py-6 text-white lg:flex-row lg:px-48"
+  class="flex w-full items-center justify-center bg-pink-400 px-5 py-6 text-white"
 >
-  <Credit />
-  <Sponsor />
+  <div
+    class="flex w-full max-w-5xl flex-col items-center justify-between gap-4 md:flex-row md:items-start"
+  >
+    <Credit />
+    <Sponsor />
+  </div>
 </footer>
