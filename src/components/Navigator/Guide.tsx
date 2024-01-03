@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-const options = {
+interface Options {
+  [key: number]: string;
+}
+
+const options: Options = {
   1: "สถาบันนวัตกรรมบูรณาการ แห่งจุฬาลงกรณ์มหาวิทยาลัย (BAScii)",
   2: "สำนักวิชาทรัพยากรการเกษตร (SAR)",
 };
