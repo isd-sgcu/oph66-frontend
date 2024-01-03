@@ -1,4 +1,10 @@
-const EventInfoBox = ({ eventDate, eventTime, eventLocation }) => {
+interface Props {
+  eventDate: string;
+  eventTime: string;
+  eventLocation: string;
+}
+
+const EventInfoBox = ({ eventDate, eventTime, eventLocation }: Props) => {
   return (
     <div className="mb-16 flex h-36 w-96 flex-col justify-between rounded-2xl border-4 border-solid border-white p-4">
       <div className="flex text-white">

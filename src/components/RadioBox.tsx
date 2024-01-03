@@ -1,6 +1,19 @@
 import clsx from "clsx";
 
-const RadioBox = ({ name, value, setValue, isSelectable, isBeingChecked }) => {
+interface Props {
+  name: string;
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+  isSelectable: boolean;
+  isBeingChecked: boolean;
+}
+const RadioBox = ({
+  name,
+  value,
+  setValue,
+  isSelectable,
+  isBeingChecked,
+}: Props) => {
   const handleRadioClick = (events) => {
     if (events.target.checked) {
       setValue(events.target.value);

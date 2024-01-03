@@ -1,13 +1,21 @@
 import clsx from "clsx";
 import RadioBox from "../RadioBox";
 import TextBox from "../TextBox";
+interface Props {
+  setAllergies: React.Dispatch<React.SetStateAction<string>>;
+  setChronicHealthConditions: React.Dispatch<React.SetStateAction<string>>;
+  allergies: string;
+  chronicHealthConditions: string;
+  isShowError: boolean;
+}
+
 const HealthConditionBox = ({
   setAllergies,
   setChronicHealthConditions,
   allergies,
   chronicHealthConditions,
   isShowError,
-}) => {
+}: Props) => {
   return (
     <div className="mb-12 flex w-screen flex-shrink-0 flex-col items-center p-0">
       <div className="m-0 flex w-4/5 max-w-xl flex-col items-center p-0">

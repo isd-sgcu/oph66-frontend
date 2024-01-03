@@ -4,7 +4,14 @@ import EventConfirmModule from "./EventConfirmModule";
 import HealthConditionBox from "./HealthConditionBox";
 import SourceOfNewsBox from "./SourceOfNewsBox";
 
-const Form = ({ eventDate, eventName, eventFaculty, eventTime }) => {
+interface Props {
+  eventDate: string;
+  eventTime: string;
+  eventName: string;
+  eventFaculty: string;
+}
+
+const Form = ({ eventDate, eventName, eventFaculty, eventTime }: Props) => {
   const [allergies, setAllergies] = useState("");
   const [chronicHealthConditions, setChronicHealthConditions] = useState("");
   const [sourceOfNews, setSourceOfNews] = useState([]);
@@ -15,6 +22,7 @@ const Form = ({ eventDate, eventName, eventFaculty, eventTime }) => {
     if (!allergies || !chronicHealthConditions || sourceOfNews.length === 0) {
       setIsShowError(true);
     } else {
+      console.log(allergies, chronicHealthConditions, sourceOfNews);
       console.log("info is ready");
       setIsShowConfirm(true);
     }

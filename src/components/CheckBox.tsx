@@ -4,7 +4,7 @@ interface Props {
   name: string;
   value: string;
   id: string;
-  setValue: () => void;
+  setValue: React.Dispatch<React.SetStateAction<never[]>>;
   isShowError: boolean;
 }
 

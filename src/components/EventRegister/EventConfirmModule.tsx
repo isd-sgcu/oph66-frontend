@@ -1,6 +1,18 @@
-const ConfirmModule = ({ eventDate, eventTime, eventName, eventFaculty }) => {
+interface Props {
+  eventDate: string;
+  eventTime: string;
+  eventName: string;
+  eventFaculty: string;
+}
+
+const ConfirmModule = ({
+  eventDate,
+  eventTime,
+  eventName,
+  eventFaculty,
+}: Props) => {
   return (
-    <div className="sticky bottom-1/2 flex h-96 w-80 flex-col items-center justify-center rounded-2xl bg-white p-3 text-center text-[#CA4072]">
+    <div className="fixed bottom-32 flex h-fit w-80 flex-col items-center justify-center rounded-2xl bg-white p-4 text-center text-[#CA4072]">
       <div className="w-fit pb-6">
         <p className="text-2xl">ยืนยันการเข้าร่วมกิจกรรม</p>
         <p className="text-base ">You will be attending</p>
@@ -17,7 +29,7 @@ const ConfirmModule = ({ eventDate, eventTime, eventName, eventFaculty }) => {
           <p className="text-base font-medium">{eventTime}</p>
         </div>
       </div>
-      <div className="flex">
+      <div className="my-4 flex">
         <div className="icon-[mdi--arrow-back-circle] mr-2 mt-1 text-[#CA4072]"></div>
         <p className="text-base">กลับ / Back</p>
       </div>
