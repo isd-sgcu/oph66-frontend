@@ -23,6 +23,9 @@ export default {
         violet: {
           950: "#211664",
         },
+        red: {
+          400: "#F55572",
+        },
       },
       fontFamily: {
         libre: ["Libre Baskerville", ...defaultTheme.fontFamily.serif],
@@ -40,10 +43,10 @@ export default {
         },
       })
     ),
-    addDynamicIconSelectors(),
     addDynamicIconSelectors({
-      prefix: "icon-hover",
-      overrideOnly: true,
+      iconSets: {
+        custom: "./src/assets/icons/custom.json",
+      },
     }),
   ],
 };
