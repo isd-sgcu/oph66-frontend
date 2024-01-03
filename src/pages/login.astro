@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 
 import logo from "@/assets/logo.svg";
+import SignInButton from "@/components/Landing/SignInButton";
 ---
 
 <BaseLayout withNav={false} withFooter={false}>
@@ -22,16 +23,6 @@ import logo from "@/assets/logo.svg";
       </div>
     </section>
 
-    <button
-      class="flex w-auto items-center justify-center gap-2 rounded-2xl border-2 px-5 py-3 text-center shadow-inner shadow-white sm:w-80 sm:py-2"
-    >
-      <div
-        class="flex items-center justify-center rounded-full bg-white p-1 text-center"
-      >
-        <i class="icon-[logos--google-icon] text-xl"></i>
-      </div>
-
-      <p class="text-xl font-bold sm:text-2xl">Sign in with Google</p>
-    </button>
+    <SignInButton client:load />
   </div>
 </BaseLayout>
