@@ -102,7 +102,7 @@ const AllEvents: React.FC = () => {
 
 
     if (previousDate !== currentDate) {
-      table.push(<div className="lg:w-[464px]">{day}</div>);
+      table.push(<div>{day}</div>);
       day = [];
       day.push(<TableHeader dateString={sortedBytime[count].starts_at}/>)
       day.push(<DaySchedule schedules={sortedBytime} ind={count} maxCap={data[0].max_capacity} />);
@@ -116,6 +116,6 @@ const AllEvents: React.FC = () => {
 console.log(count)
   table.push(<div key={previousDate}>{day}</div>);
 
-  return <div className="grid grid-cols-2 grid-rows-2 gap-4 ">{table}</div>;
+  return <div>{table}</div>;
 };
 export default AllEvents;

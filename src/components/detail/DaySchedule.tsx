@@ -3,13 +3,13 @@ import { type EventProp } from "./Event";
 const registerButton = ({ maxCap, current }: { maxCap: number; current: number }) => {
   if (current >= maxCap) {
     return (
-      <div className="flex h-max gap-[5px]">
-        <div className="w-18 h-max rounded-2xl border border-pink-600 items-center justify-center flex">
-          <div className="text-center text-pink-600 text-sm font-medium font-['IBM Plex Sans Thai']">
+      <div className="flex h-full">
+        <div className="w-[71px] lg:w-8 h-full mr-[5px] lg:mr-[47px] rounded-2xl border border-pink-600 items-center justify-center flex">
+          <div className="text-center text-pink-600 text-sm lg:text-base mt-2 font-medium font-['IBM Plex Sans Thai']">
             {maxCap + "/" + maxCap}
           </div>
         </div>
-        <div className="w-36 h-max px-2.5 rounded-2xl border border-pink-600 items-center justify-center inline-flex">
+        <div className="w-36 h-full rounded-2xl border border-pink-600 items-center justify-center inline-flex">
           <div className="text-center text-pink-600 text-sm font-medium font-['IBM Plex Sans Thai']">
             ลงทะเบียน / Register
           </div>
@@ -18,14 +18,14 @@ const registerButton = ({ maxCap, current }: { maxCap: number; current: number }
     );
   } else {
     return (
-      <div className="flex h-max gap-[5px]">
-        <div className="w-18 h-max rounded-2xl border border-pink-600 items-center justify-center gap-2.5 inline-flex">
-          <div className="text-center text-pink-600 text-sm font-medium font-['IBM Plex Sans Thai']">
+      <div className="flex h-full">
+        <div className="w-[71px] lg:w-8 h-full mr-[5px] lg:mr-[47px] rounded-2xl border border-pink-600 items-center justify-center flex">
+          <div className="text-center text-pink-600 text-sm lg:text-base font-medium font-['IBM Plex Sans Thai']">
             {current + "/" + maxCap}
           </div>
         </div>
-        <div className="w-36 h-max px-2.5 bg-pink-500 rounded-2xl border border-pink-500 justify-center items-center gap-2.5 inline-flex">
-          <div className="w-fit h-max text-white text-sm font-medium font-['IBM Plex Sans Thai']">
+        <div className="w-36 h-full bg-pink-500 rounded-2xl border border-pink-500 justify-center items-center inline-flex">
+          <div className="text-white text-sm font-medium font-['IBM Plex Sans Thai']">
             ลงทะเบียน / Register
           </div>
         </div>
@@ -46,13 +46,14 @@ const daySchedule = ({ schedules, ind, maxCap }: { schedules: EventProp["schedul
   const endsAt = formatTime(schedule.ends_at);
 
   return (
-    <div className="justify-start items-center mt-2 inline-flex gap-3 rounded-2xl py-2.5 pr-2.5 pl-2 h-[47px] border border-pink-600">
-      <div className="flex w-fit text-pink-600 text-sm font-medium font-['IBM Plex Sans Thai'] ">
-      {endsAt} - {startsAt} 
+    <div className="flex justify-start items-center mt-2 rounded-2xl py-2.5 lg:py-4 pr-2.5 lg:pr-3 pl-2 lg:pl-4 h-[47px] lg:h-14 border border-pink-600">
+      <div className="flex w-full whitespace-nowrap mr-[5px] lg:mr-7 text-pink-600 text-sm lg:text-base font-medium font-['IBM Plex Sans Thai'] ">
+        {endsAt} - {startsAt} 
       </div>
       {registerButton({ maxCap, current: schedule.current_attendee })}
     </div>
   );
+  
 };
 
 export default daySchedule;

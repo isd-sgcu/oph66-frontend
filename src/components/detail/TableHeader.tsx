@@ -12,7 +12,7 @@ interface TableHeaderProps {
 
 const TableHeader: React.FC<TableHeaderProps> = ({ dateString }) => {
   return (
-    <div className="flex w-max h-10 pt-2 px-3 bg-pink-400 rounded-2xl ">
+    <div className="flex w-full h-10 mt-4 pt-2 px-3 lg:px-4 text-white text-base font-semibold bg-gradient-to-r from-[#393570] via-[#CA4072] via-70% to-[#DE87A8] rounded-2xl ">
       {formatDate(dateString)}
     </div>
   );
