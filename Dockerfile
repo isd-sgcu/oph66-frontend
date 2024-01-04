@@ -1,4 +1,4 @@
-FROM ghcr.io/isd-sgcu/astro-dyn-config:latest
+FROM ghcr.io/isd-sgcu/astro-dyn-config:v0.0.2
 
 WORKDIR /app
 
