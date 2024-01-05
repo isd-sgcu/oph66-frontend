@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+import logo from "@/assets/logo.svg";
+import SignInButton from "@/components/Landing/SignInButton";
+---
+
+<BaseLayout withNav={false} withFooter={false}>
+  <div
+    class="flex min-h-screen w-full flex-col items-center justify-between gap-14 py-24 text-white sm:justify-normal"
+  >
+    <section
+      class="flex w-full flex-col items-center justify-center text-center sm:gap-7"
+    >
+      <div class="relative h-28 w-80 max-w-full sm:h-auto sm:w-auto">
+        <Image src={logo} alt="logo" class="h-full w-full" />
+      </div>
+      <div class="flex flex-col items-center justify-center">
+        <h1 class="font-libre sm:text-3xl">Chula Open House 2024</h1>
+        <p class="text-xs font-medium sm:text-base">20-21 January 2024</p>
+      </div>
+    </section>
+
+    <SignInButton client:load />
+  </div>
+</BaseLayout>
