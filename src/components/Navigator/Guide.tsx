@@ -16,7 +16,7 @@ const Guide = () => {
   return (
     <section className="flex w-full flex-col items-center gap-9">
       <div className="grid w-full grid-cols-1 gap-8 sm:grid-cols-2">
-        <div className="relative flex h-12 items-center gap-4">
+        <div className="relative grid h-12 grid-cols-[48px_minmax(0,1fr)] items-center gap-4">
           <label className="text-xl font-bold leading-none text-white">
             จาก
             <br />
@@ -38,7 +38,7 @@ const Guide = () => {
           </select>
           <i className="icon-[mdi--chevron-down] pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-3xl text-pink-500"></i>
         </div>
-        <div className="relative flex h-12 items-center gap-4">
+        <div className="relative grid h-12 grid-cols-[48px_minmax(0,1fr)] items-center gap-4">
           <label className="text-xl font-bold leading-none text-white">
             ไปที่
             <br />
