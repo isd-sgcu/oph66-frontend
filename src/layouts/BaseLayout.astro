@@ -1,18 +1,11 @@
 ---
-import Nav from "@/components/Nav.astro";
-import Footer from "@/components/Footer.astro";
+import Background from "@/components/Background";
 
 interface Props {
   pageTitle?: string;
-  withNav?: boolean;
-  withFooter?: boolean;
 }
 
-const {
-  pageTitle = "Openhouse Chula",
-  withNav = true,
-  withFooter = true,
-} = Astro.props;
+const { pageTitle = "Openhouse Chula" } = Astro.props;
 ---
 
 <html lang="en">
@@ -24,10 +17,13 @@ const {
     <title>{pageTitle}</title>
   </head>
   <body>
-    {withNav && <Nav />}
-    <main class="flex w-full flex-col items-center">
-      <slot />
-    </main>
-    {withFooter && <Footer />}
+    <section
+      class="relative flex h-full min-h-screen w-full flex-col items-center"
+    >
+      <main class="flex w-full flex-col items-center">
+        <slot />
+      </main>
+      <Background />
+    </section>
   </body>
 </html>

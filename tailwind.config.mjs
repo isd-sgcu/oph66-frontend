@@ -1,4 +1,5 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
+const plugin = require("tailwindcss/plugin");
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -21,6 +22,9 @@ export default {
         violet: {
           950: "#211664",
         },
+        red: {
+          400: "#F55572",
+        },
       },
       fontFamily: {
         libre: ["Libre Baskerville", ...defaultTheme.fontFamily.serif],
@@ -29,5 +33,14 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addUtilities }) =>
+      addUtilities({
+        ".radial-gradient-hero": {
+          background:
+            "radial-gradient(98.25% 94.81% at 50% 5.3%, #100C42 0%, #393570 20.46%, #CA4072 48.07%, #DE5C8E 70.46%, #DE87A8 100%)",
+        },
+      })
+    ),
+  ],
 };

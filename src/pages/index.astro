@@ -1,7 +1,25 @@
 ---
+import { Image } from "astro:assets";
+
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Day from "@/components/Day";
+import ComingSoon from "@/components/ComingSoon";
+
+import logo from "@/assets/logo.svg";
 ---
 
 <BaseLayout>
-  <h1>Index page</h1>
+  <div
+    class="flex min-h-screen w-full flex-col items-center justify-center gap-4 px-4 py-8 text-white md:gap-7"
+  >
+    <Image src={logo} alt="logo" class="w-80 max-w-full md:w-96" />
+    <div class="flex flex-col items-center justify-center">
+      <h1 class="font-libre text-lg font-bold md:text-3xl">
+        Chula Open House 2024
+      </h1>
+      <p class="font-libre font-medium md:text-lg">20-21 January 2024</p>
+    </div>
+    <ComingSoon client:load />
+    <Day client:load />
+  </div>
 </BaseLayout>
