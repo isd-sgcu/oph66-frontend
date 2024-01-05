@@ -42,7 +42,7 @@ const EventBox: React.FC<EventBoxProps> = ({
       : "นาที ต่อรอบ/ mins per session"
   }`;
   return (
-    <div className="w-72 rounded-2xl border-2 border-white bg-pink-500 shadow-inner shadow-white ring-4 ring-white ring-opacity-10">
+    <div className="w-72 rounded-2xl border-2 border-white bg-pink-500 shadow-inner shadow-white ring-4 ring-white/10">
       <a href="/">
         <div className="flex flex-col gap-2 rounded-t-2xl bg-gradient-to-r from-indigo-900 to-pink-550 p-4 shadow-inner shadow-white">
           <p className="text-xl font-bold uppercase text-white">{eventName}</p>
@@ -50,7 +50,7 @@ const EventBox: React.FC<EventBoxProps> = ({
         </div>
         <div className="flex flex-col gap-3 p-4 text-white">
           <div className="leading-none">
-            <p className="text-md font-bold">{thaiFaculty}</p>
+            <p className="font-bold">{thaiFaculty}</p>
             <p className="text-sm">{engFaculty}</p>
           </div>
           <div className="flex flex-col gap-2">
