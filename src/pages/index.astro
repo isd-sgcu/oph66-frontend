@@ -1,20 +1,21 @@
 ---
 import { Image } from "astro:assets";
+
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Day from "@/components/Landing/Day";
 import Card from "@/components/Landing/Card.astro";
 import Register from "@/components/Landing/Register";
-import logo from "@/assets/chula-3.svg";
-import information from "@/assets/information.svg";
-import id_card_mobile from "@/assets/id_card_mobile.svg";
-import faqs_bg from "@/assets/faqs_mobile.svg";
+
+import logo from "@/assets/oph-logo.svg";
+import idcard_mobile from "@/assets/idcard-mobile.svg";
+import faqs_bg from "@/assets/faqs-mobile.svg";
 ---
 
 <BaseLayout>
-  <div class="flex min-h-screen w-full flex-col justify-center text-white">
+  <div class="flex min-h-screen w-full flex-col justify-center px-4 text-white">
     <div class="flex flex-col items-center justify-evenly md:flex-row">
       <div class="flex flex-col items-center md:items-start">
-        <div class="my-2.5 mb-8 mt-14 h-28 w-80 md:mb-0 md:h-auto md:w-auto">
+        <div class="my-2.5 mb-8 h-28 w-80 md:mb-0 md:h-auto md:w-auto">
           <Image src={logo} alt="logo" width="522" height="233" />
         </div>
         <h1 class="mt-2.5 font-libre text-base font-bold md:ml-10 md:text-3xl">
@@ -23,7 +24,7 @@ import faqs_bg from "@/assets/faqs_mobile.svg";
         <p class="mb-10 text-base font-medium md:ml-10">20-21 January 2024</p>
         <Register />
       </div>
-      <Day />
+      <Day client:load />
     </div>
     <div class="mt-24 flex flex-col items-center justify-center md:mt-0">
       <div
@@ -37,24 +38,27 @@ import faqs_bg from "@/assets/faqs_mobile.svg";
           อย่าลืมมาร่วมต่อชิ้นส่วนแห่งความฝันและตัวตนไปด้วยกันนะ!
         </p>
       </div>
-
-      <div
-        class="flex h-12 w-4/5 items-center justify-center rounded-2xl border-2 p-2 px-5 py-2 font-bold md:w-3/5"
+      <section
+        class="relative flex w-full max-w-5xl flex-col items-center justify-center"
       >
         <div
-          class="mr-2 flex h-8 w-16 justify-center rounded-full border-2 border-white bg-pink-600 font-bold"
+          class="flex h-12 w-full items-center justify-center rounded-2xl border-2 px-5 py-2 font-bold"
         >
-          <p class="text-lg">Live</p>
+          <div
+            class="mr-2 flex h-8 w-16 justify-center rounded-full border-2 border-white bg-pink-600"
+          >
+            <p class="text-lg">Live</p>
+          </div>
+          <p>ชื่อรายการ</p>
         </div>
-        <p>ชื่อรายการ</p>
-      </div>
-      <div
-        class="my-2 mb-10 h-44 w-4/5 rounded-2xl border-2 border-white bg-indigo-950 md:mb-28 md:h-[34rem] md:w-3/5"
-      >
-      </div>
+        <div
+          class="my-2 mb-10 aspect-video w-full rounded-2xl border-2 border-white bg-indigo-950"
+        >
+        </div>
+      </section>
     </div>
     <div
-      class="mb-20 flex w-full flex-col items-center justify-center md:flex-row md:items-end"
+      class="mb-20 flex w-full flex-col items-center justify-center md:h-96 md:flex-row md:items-end"
     >
       <Card
         imageNo={0}
@@ -76,48 +80,78 @@ import faqs_bg from "@/assets/faqs_mobile.svg";
         text="รวมข้อมูลทุกคณะในจุฬาฯ"
       />
     </div>
-    <div class="mb-48 flex flex-col justify-center md:flex-row">
-      <div class="mb-2 flex justify-center">
-        <picture>
-          <source media="(min-width: 768px)" srcset="./src/assets/idcard.svg" />
-          <Image
-            src={id_card_mobile}
-            alt="idcard background"
-            class="h-auto w-auto"
-          />
-        </picture>
-        <div
-          class="absolute translate-y-40 font-libre text-4xl font-bold md:translate-y-16"
-        >
-          <p class="text-xl font-medium md:text-2xl">Your</p>
-          <p>Chula</p>
-          <p>Open House</p>
-          <p>2024</p>
-          <p>Profile</p>
-          <a href="/click">
-            <img class="mt-2 md:mt-3.5" src="./src/assets/click_here.svg" />
-          </a>
+    <div class="mb-6 flex flex-col justify-center md:flex-row">
+      <a href="/profile" class="group">
+        <div class="mb-2 flex justify-center">
+          <picture>
+            <source
+              media="(min-width: 768px)"
+              srcset="./src/assets/idcard.svg"
+            />
+            <Image
+              src={idcard_mobile}
+              alt="idcard background"
+              class="h-auto w-auto"
+            />
+          </picture>
+          <div
+            class="absolute translate-y-40 font-libre text-4xl font-bold md:translate-y-16"
+          >
+            <p class="text-xl font-medium md:text-2xl">Your</p>
+            <p>Chula</p>
+            <p>Open House</p>
+            <p>2024</p>
+            <p>Profile</p>
+            <div
+              class="group mt-2 flex w-fit items-center gap-1 rounded-2xl bg-white px-3 py-1 font-ibm"
+            >
+              <p class="text-sm text-pink-550 duration-200 group-hover:pr-4">
+                คลิกที่นี่/ Click here
+              </p>
+              <i
+                class="icon-[mdi--arrow-right-bold-circle] text-xl text-pink-550"
+              ></i>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="flex justify-center">
+      </a>
+      <a href="/faqs" class="group flex justify-center">
         <picture>
           <source media="(min-width: 768px)" srcset="./src/assets/faqs.svg" />
           <Image src={faqs_bg} alt="faqs background" class="h-auto w-auto" />
         </picture>
         <div
-          class="absolute flex translate-y-1/2 flex-col items-center justify-center font-libre text-4xl font-bold"
+          class="absolute flex translate-y-1/2 flex-col items-center justify-center text-4xl font-bold"
         >
           <p
-            class="mb-20 translate-y-6 font-ibm text-[13rem] font-medium md:mb-20 md:text-[15rem]"
+            class="mb-20 translate-y-6 text-[13rem] font-medium duration-200 group-hover:font-bold md:mb-20 md:text-[15rem]"
           >
             ?
           </p>
-          <p class="md:mt-3.5">FAQs</p>
-          <a href="/info" class="z-10 mt-3.5">
-            <Image src={information} alt="info" />
-          </a>
+          <p class="font-libre md:mt-3.5">FAQs</p>
+          <div class="mt-2 rounded-2xl bg-white">
+            <p class="px-3 py-1 text-sm text-pink-550">รวมข้อมูลเกี่ยวกับงาน</p>
+          </div>
         </div>
-      </div>
+      </a>
+    </div>
+    <div
+      class="mx-auto grid w-fit grid-cols-1 justify-center gap-4 md:grid-cols-2"
+    >
+      <a
+        href="#"
+        class="flex w-full flex-col items-center justify-center rounded-2xl border-2 border-white px-20 py-1 text-center shadow-inner shadow-white duration-200 hover:bg-white/25"
+      >
+        <span class="text-xl font-bold">สูจิบัตร</span>
+        <span class="font-libre font-bold">Program</span>
+      </a>
+      <a
+        href="#"
+        class="flex w-full flex-col items-center justify-center rounded-2xl border-2 border-white px-20 py-1 text-center shadow-inner shadow-white duration-200 hover:bg-white/25"
+      >
+        <span class="text-xl font-bold">แบบประเมิน</span>
+        <span class="font-libre font-bold">Feedback Form</span>
+      </a>
     </div>
   </div>
 </BaseLayout>

@@ -80,7 +80,7 @@ const Nav = () => {
                 href={path}
                 className={clsx(
                   "capitalize text-white underline-offset-2 hover:underline",
-                  isCurrentPath && "pointer-events-none underline"
+                  isCurrentPath && "underline"
                 )}
               >
                 {link}

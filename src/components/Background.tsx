@@ -6,6 +6,7 @@ interface Props {
 
 const Background = ({ withJigsaw = true }: Props) => {
   return (
+    // eslint-disable-next-line tailwindcss/migration-from-tailwind-2
     <div className="absolute left-1/2 top-0 -z-50 h-full w-full -translate-x-1/2 overflow-clip bg-pink-400">
       <div className="absolute left-1/2 top-0 aspect-[1.8] w-full min-w-[720px] -translate-x-1/2 radial-gradient-hero"></div>
       {withJigsaw && (
