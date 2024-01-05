@@ -1,4 +1,4 @@
-import { type EventBoxProps } from "./EventBox";
+import type { EventBoxProps } from "@/components/Event/EventBox";
 
 // USE FOR TEST ONLY //
 

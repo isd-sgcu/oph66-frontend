@@ -1,6 +1,6 @@
-import type { Props as TextBoxProps } from "./TextBox.astro";
+import type { Props as TextBoxProps } from "@/components/FAQs/TextBox.astro";
 
-export const FAQsThai: TextBoxProps[] = [
+export const FAQS_THAI: TextBoxProps[] = [
   {
     question: "จุฬาฯ จะจัด Open House วันไหน?",
     answer:
@@ -60,7 +60,7 @@ export const FAQsThai: TextBoxProps[] = [
       "เมื่อลงทะเบียนแล้วจะได้รับ QR Code แล้วสามารถนำ QR Code ตัวนี้ไปยื่นได้ทุกคณะ รวมถึงการเข้าร่วมงานของส่วนกลางที่บริเวณศาลาพระเกี้ยวด้วย",
   },
 ];
-export const FAQsEng: TextBoxProps[] = [
+export const FAQS_ENG: TextBoxProps[] = [
   {
     question: "When is Chulalongkorn University's Open House scheduled?",
     answer:

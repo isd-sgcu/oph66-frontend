@@ -1,6 +1,6 @@
+import { FACULTIES } from "@/data/events";
 import { useState } from "react";
 import EventBox, { type EventBoxProps } from "./EventBox";
-import { FACULTIES } from "./TestData";
 
 const DEFAULT_CHOSEN_FACULTY_VALUE = "คณะ / Faculty";
 

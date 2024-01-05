@@ -2,7 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import TextBox from "@/components/FAQs/TextBox.astro";
 import type { Props as TextBoxProps } from "@/components/FAQs/TextBox.astro";
-import { FAQsThai } from "@/components/FAQs/FAQsData";
+import { FAQS_THAI } from "@/data/FAQs";
 ---
 
 <BaseLayout withJigsaw={false}>
@@ -34,7 +34,7 @@ import { FAQsThai } from "@/components/FAQs/FAQsData";
     </section>
     <div class="w-full max-w-5xl">
       {
-        FAQsThai.map(({ question, answer }: TextBoxProps) => {
+        FAQS_THAI.map(({ question, answer }: TextBoxProps) => {
           return <TextBox question={question} answer={answer} />;
         })
       }
