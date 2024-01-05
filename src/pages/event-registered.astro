@@ -1,0 +1,56 @@
+---
+import { Image } from "astro:assets";
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import EventBox from "@/components/EventRegisterComplete/EventBox.astro";
+
+import ophLogo from "@/assets/oph-logo.svg";
+const {
+  eventName = "SESSION TALK WITH AJARN",
+  eventFacultyTh = "คณะสถาปัตยกรรมศาสตร์",
+  eventFacultyEng = "Faculty of Architecture",
+  eventDate = "20 January 2024",
+  eventTime = "9:00-12:00",
+  eventPlace = "อาคารมหาจักรีสิรินธร ห้องอเนกประสงค์ ชั้น 9 / Maha Chakri Sirindhorn Building, 9th floor, Multipurpose room",
+} = Astro.props;
+---
+
+<BaseLayout withNav={false} withFooter={false}>
+  <div
+    class="flex h-full min-h-screen w-full flex-col items-center justify-center gap-12 text-white"
+  >
+    <div
+      class="flex w-full flex-col items-center justify-center gap-4 text-center"
+    >
+      <div class="h-28 w-80 max-w-full md:h-auto md:w-auto">
+        <Image src={ophLogo} alt="logo" />
+      </div>
+      <div class="flex flex-col items-center justify-center">
+        <h1 class="font-libre md:text-3xl">Chula Open House 2024</h1>
+        <p class="text-xs font-medium md:text-base">20-21 January 2024</p>
+      </div>
+    </div>
+
+    <div class="flex w-full flex-col items-center justify-center gap-4">
+      <div class="flex flex-col items-center justify-center text-center">
+        <p class="text-md font-bold md:text-3xl">ลงทะเบียนกิจกรรมเสร็จสิ้น !</p>
+        <p class="font-bold md:text-xl">Registration completed !</p>
+      </div>
+      <EventBox
+        eventName={eventName}
+        eventFacultyEng={eventFacultyEng}
+        eventFacultyTh={eventFacultyTh}
+        eventDate={eventDate}
+        eventTime={eventTime}
+        eventPlace={eventPlace}
+      />
+    </div>
+    <a
+      class="flex items-center justify-center gap-2 px-4 py-2 underline underline-offset-2 hover:no-underline"
+      href="/profile"
+    >
+      <i class="icon-[mdi--arrow-back-circle] text-2xl"></i>
+      ไปที่หน้าโปรไฟล์ / Back to Profile
+    </a>
+  </div>
+</BaseLayout>
