@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Selector from "@/components/Faculties/Selector";
-import FacultiesCard from "@/components/Faculties/FacultiesCard";
+import FacultiesList from "@/components/Faculties/FacultiesList";
 ---
 
 <BaseLayout withJigsaw={false}>
@@ -12,6 +11,5 @@ import FacultiesCard from "@/components/Faculties/FacultiesCard";
       <hr class="mt-2 w-full border border-white" />
     </div>
   </section>
-  <Selector />
-  <FacultiesCard />
+  <FacultiesList client:load />
 </BaseLayout>
