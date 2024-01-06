@@ -1,0 +1,17 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Selector from "@/components/Faculties/Selector";
+import FacultiesCard from "@/components/Faculties/FacultiesCard";
+---
+
+<BaseLayout withJigsaw={false}>
+  <section class="mb-12 flex w-full max-w-4xl flex-col items-center px-4">
+    <div class="relative flex w-fit flex-col items-center text-center">
+      <h1 class="text-6xl font-bold text-white">Faculties</h1>
+      <h2 class="text-3xl font-medium text-white">รวมข้อมูลทุกคณะในจุฬาฯ</h2>
+      <hr class="mt-2 w-full border border-white" />
+    </div>
+  </section>
+  <Selector />
+  <FacultiesCard />
+</BaseLayout>

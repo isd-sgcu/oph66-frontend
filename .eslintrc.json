@@ -6,7 +6,8 @@
   "extends": [
     "eslint:recommended",
     "plugin:astro/recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "plugin:tailwindcss/recommended"
   ],
   "overrides": [
     {
