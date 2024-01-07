@@ -1,19 +1,26 @@
+import { DAYS, MONTHS, YEARS } from "@/data/form/datetime";
+import { COUNTRIES, PROVINCES } from "@/data/form/location";
 import clsx from "clsx";
 import DropDown from "../DropDown";
 import RadioBox from "../RadioBox";
 import TextBox from "../TextBox";
 
 interface Props {
-  setFirstName: React.Dispatch<React.SetStateAction<string>>;
-  setLastName: React.Dispatch<React.SetStateAction<string>>;
-  setBirthDay: React.Dispatch<React.SetStateAction<string>>;
-  setBirthMonth: React.Dispatch<React.SetStateAction<string>>;
-  setBirthYear: React.Dispatch<React.SetStateAction<string>>;
-  setResidence: React.Dispatch<React.SetStateAction<string>>;
-  setCountry: React.Dispatch<React.SetStateAction<string>>;
-  setProvince: React.Dispatch<React.SetStateAction<string>>;
+  setFirstName: (value: string) => void;
+  setLastName: (value: string) => void;
+  setBirthDay: (value: string) => void;
+  setBirthMonth: (value: string) => void;
+  setBirthYear: (value: string) => void;
+  setResidence: (value: string) => void;
+  setCountry: (value: string) => void;
+  setProvince: (value: string) => void;
   isShowError: boolean;
   residence: string;
+  birthDay: string;
+  birthMonth: string;
+  birthYear: string;
+  province: string;
+  country: string;
 }
 const PersonalInfoBox = ({
   setFirstName,
@@ -26,119 +33,86 @@ const PersonalInfoBox = ({
   setProvince,
   isShowError,
   residence,
+  birthDay,
+  birthMonth,
+  birthYear,
+  province,
+  country,
 }: Props) => {
-  const months: string[] = [
-    "มกราคม / January",
-    "กุมภาพันธ์ / February",
-    "มีนาคม / March",
-    "เมษายน / April",
-    "พฤษภาคม / May",
-    "มิถุนายน / June",
-    "กรกฎาคม / July",
-    "สิงหาคม / August",
-    "กันยายน / September",
-    "ตุลาคม / October",
-    "พฤศจิกายน / November",
-    "ธันวาคม / December",
-  ];
-  const years: string[] = ["2547 / 2004"];
-  const provinces: string[] = ["กรุงเทพมหานคร / Bangkok"];
-  const countries: string[] = ["ญี่ปุ่น / Japan"];
-  const days: string[] = Array.from({ length: 31 }, (_, index) =>
-    (index + 1).toString()
-  );
-
   return (
-    <div className="mb-12 flex w-screen flex-shrink-0 flex-col items-center p-0">
-      <div className="m-0 flex w-4/5 max-w-xl flex-col items-center p-0">
-        <div
-          className={clsx(
-            "mb-1 h-fit w-full rounded-2xl border-4 border-solid p-9 shadow-inner backdrop-blur-2xl",
-            isShowError ? "border-[#F55572]" : "border-white"
-          )}
-        >
-          <label className="text-base font-medium text-white">
-            ชื่อ (และชื่อกลาง) / First name (and middle name)*
-          </label>
-          <div className="mb-4">
-            <TextBox
-              placeHolder="ไม่ต้องใส่คำนำหน้า / without titles"
-              name="firstName"
-              setValue={setFirstName}
-              isSelectable={true}
-            />
-          </div>
-          <label className="text-base font-medium text-white">
-            นามสกุล / Last name*
-          </label>
-          <div className="mb-12">
-            <TextBox
-              name="lastName"
-              placeHolder=""
-              setValue={setLastName}
-              isSelectable={true}
-            />
-          </div>
-          <label className="text-base font-medium text-white">
-            วัน เดือน ปีเกิด / Birth date
-          </label>
-          <div className="mb-16 flex w-full justify-between space-x-3">
-            <div className="h-12 w-1/3">
-              <DropDown
-                defaultVal="วันที่ / Date"
-                options={days}
-                name="dayOfBirth"
-                setValue={setBirthDay}
-                isSelectable={true}
-              />
-            </div>
-            <div className="h-12 w-1/3">
-              <DropDown
-                defaultVal="เดือน / Month"
-                options={months}
-                name="monthOfBirth"
-                setValue={setBirthMonth}
-                isSelectable={true}
-              />
-            </div>
-            <div className="h-12 w-1/3">
-              <DropDown
-                defaultVal="ปี / Year"
-                options={years}
-                name="yearOfBirth"
-                setValue={setBirthYear}
-                isSelectable={true}
-              />
-            </div>
-          </div>
-          <label className="text-base font-medium text-white">
-            ที่อยู่ / Residence*
-          </label>
-          <div className="mb-6 mt-2 flex flex-row justify-between">
-            <div className="flex w-1/2">
+    <div
+      className={clsx(
+        "flex h-fit w-full max-w-xl flex-col gap-3 rounded-2xl border-2 p-5 shadow-inner shadow-white backdrop-blur-2xl",
+        isShowError ? "border-[#F55572]" : "border-white"
+      )}
+    >
+      <div className="flex w-full flex-col">
+        <label className="text-sm font-medium text-white">
+          ชื่อ (และชื่อกลาง) / First name (and middle name)*
+        </label>
+        <TextBox
+          placeHolder="ไม่ต้องใส่คำนำหน้า / without titles"
+          setValue={setFirstName}
+        />
+      </div>
+      <div className="flex w-full flex-col">
+        <label className="text-sm font-medium text-white">
+          นามสกุล / Last name*
+        </label>
+        <TextBox setValue={setLastName} />
+      </div>
+      <div className="flex w-full flex-col">
+        <label className="text-sm font-medium text-white">
+          วัน เดือน ปีเกิด / Birth date
+        </label>
+        <div className="flex w-full items-center justify-between gap-3">
+          <DropDown
+            defaultVal="วันที่ / Date"
+            options={DAYS}
+            setValue={setBirthDay}
+            value={birthDay}
+          />
+          <DropDown
+            defaultVal="เดือน / Month"
+            options={MONTHS}
+            setValue={setBirthMonth}
+            value={birthMonth}
+          />
+          <DropDown
+            defaultVal="ปี / Year"
+            options={YEARS}
+            setValue={setBirthYear}
+            value={birthYear}
+          />
+        </div>
+      </div>
+      <div className="flex flex-col">
+        <label className="text-sm font-medium text-white">
+          ที่อยู่ / Residence*
+        </label>
+        <div className="grid grid-rows-2 gap-2">
+          <div className="grid grid-cols-2">
+            <div className="flex items-center gap-1">
               <RadioBox
                 name="residence"
                 value="Thailand"
                 setValue={setResidence}
-                isSelectable={true}
                 isBeingChecked={residence === "Thailand"}
               />
-              <label className="text-medium text-base text-white">
+              <label className="text-sm text-white">
                 ในประเทศไทย / Thailand
               </label>
             </div>
-            <div className="h-12 w-1/2">
-              <DropDown
-                defaultVal="จังหวัด / Province"
-                name="province"
-                options={provinces}
-                setValue={setProvince}
-                isSelectable={residence === "Thailand"}
-              />
-            </div>
+            <DropDown
+              defaultVal="จังหวัด / Province"
+              options={PROVINCES}
+              setValue={setProvince}
+              value={province}
+              isSelectable={residence === "Thailand"}
+            />
           </div>
-          <div className="flex flex-row justify-between">
-            <div className="flex w-1/2">
+          <div className="grid grid-cols-2">
+            <div className="flex items-center gap-1">
               <RadioBox
                 name="residence"
                 value="Other countries"
@@ -146,25 +120,23 @@ const PersonalInfoBox = ({
                 isSelectable={true}
                 isBeingChecked={residence === "Other countries"}
               />
-              <label className="text-medium text-base text-white">
+              <label className="text-sm text-white">
                 ต่างประเทศ / Other countries
               </label>
             </div>
-            <div className="h-12 w-1/2">
-              <DropDown
-                defaultVal="ประเทศ / Country"
-                name="country"
-                options={countries}
-                setValue={setCountry}
-                isSelectable={residence === "Other countries"}
-              />
-            </div>
+            <DropDown
+              defaultVal="ประเทศ / Country"
+              options={COUNTRIES}
+              value={country}
+              setValue={setCountry}
+              isSelectable={residence === "Other countries"}
+            />
           </div>
         </div>
-        <p className="place-self-end text-xs text-white">
-          จำเป็นต้องกรอก / Must be filled*
-        </p>
       </div>
+      <p className="absolute -bottom-1 right-0 translate-y-full text-xs text-white">
+        จำเป็นต้องกรอก / Must be filled*
+      </p>
     </div>
   );
 };

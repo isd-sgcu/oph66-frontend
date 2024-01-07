@@ -64,8 +64,17 @@ const Form = () => {
       setIsShowConfirm(true);
     }
   };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    validateData();
+  };
+
   return (
-    <form id="form" className="flex flex-col items-center">
+    <form
+      className="flex w-full flex-col items-center gap-12 px-4"
+      onSubmit={handleSubmit}
+    >
       <PersonalInfoBox
         setFirstName={setFirstName}
         setLastName={setLastName}
@@ -77,6 +86,11 @@ const Form = () => {
         setProvince={setProvince}
         isShowError={isShowError}
         residence={residence}
+        birthDay={birthDay}
+        birthMonth={birthMonth}
+        birthYear={birthYear}
+        province={province}
+        country={country}
       />
       <PersonalStatusBox
         setStatus={setStatus}
@@ -117,11 +131,7 @@ const Form = () => {
       {isShowConfirm && <ConfirmModule />}
       <button
         type="submit"
-        className="place-self-center rounded-md border border-white bg-transparent px-4 py-2 font-bold"
-        onClick={(e) => {
-          e.preventDefault();
-          validateData();
-        }}
+        className="rounded-2xl border-2 border-white px-5 py-2 text-xl font-bold shadow-inner shadow-white"
       >
         ลงทะเบียน / Register
       </button>
