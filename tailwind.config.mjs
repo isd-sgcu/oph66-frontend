@@ -43,10 +43,10 @@ export default {
         },
       })
     ),
-    addDynamicIconSelectors(),
     addDynamicIconSelectors({
-      prefix: "icon-hover",
-      overrideOnly: true,
+      iconSets: {
+        custom: "./src/assets/icons/custom.json",
+      },
     }),
   ],
 };

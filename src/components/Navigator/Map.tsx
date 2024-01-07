@@ -13,7 +13,7 @@ const Map = () => {
     <section className="flex w-full flex-col items-center gap-8">
       <div className="relative flex h-12 w-96 max-w-full">
         <button
-          className="text-cen flex h-full w-12 items-center justify-center rounded-l-2xl bg-white p-2"
+          className="flex h-full w-12 items-center justify-center rounded-l-2xl bg-white p-2"
           onClick={handleSearchClick}
         >
           <i className="icon-[mdi--magnify] text-3xl text-pink-500"></i>

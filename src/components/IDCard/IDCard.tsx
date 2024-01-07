@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import QRCode from "./QRCode";
 
 import chula3 from "@/assets/chula-3.svg";
-import bg from "@/assets/idCard_bg.svg";
+import bg from "@/assets/idcard-bg.svg";
 
 interface Props {
   fullName: string;
