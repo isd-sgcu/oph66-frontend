@@ -37,38 +37,36 @@ const Selector: FC<Props> = ({
             value={facultySelected}
           >
             <option value="0">คณะ / Faculty</option>
-            {options.map((option) => {
-              return (
-                <option key={option.id} value={option.id}>
-                  {option.name}
-                </option>
-              );
-            })}
+            {options.map((option) => (
+              <option key={option.id} value={option.id}>
+                {option.name}
+              </option>
+            ))}
           </select>
           <i className="icon-[mdi--chevron-down] pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-3xl text-pink-500"></i>
+          <AnimatePresence>
+            {facultySelected !== 0 && (
+              <motion.button
+                className="group absolute right-0 flex items-center justify-center p-2 text-center"
+                onClick={handleClear}
+                initial={{ x: 0 }}
+                animate={{ x: "100%" }}
+                exit={{ x: 0 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 100,
+                  damping: 20,
+                  duration: 0.3,
+                  ease: "easeInOut",
+                }}
+              >
+                <i className="icon-[mdi--trash] text-3xl text-white group-hover:icon-[mdi--delete-empty]"></i>
+              </motion.button>
+            )}
+          </AnimatePresence>
         </div>
-        <AnimatePresence>
-          {facultySelected !== 0 && (
-            <motion.button
-              className="group right-0 flex items-center justify-center p-2 text-center"
-              onClick={handleClear}
-              initial={{ x: -50 }}
-              animate={{ x: 0 }}
-              exit={{ x: -50 }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              transition={{
-                type: "spring",
-                stiffness: 100,
-                damping: 20,
-                duration: 0.3,
-                ease: "easeInOut",
-              }}
-            >
-              <i className="icon-[mdi--trash] text-3xl text-white group-hover:icon-[mdi--delete-empty]"></i>
-            </motion.button>
-          )}
-        </AnimatePresence>
       </div>
     </section>
   );

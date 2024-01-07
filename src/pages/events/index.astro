@@ -1,7 +1,15 @@
 ---
+import Container from "@/components/Event/Container";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import EventContainer from "@/components/Event/EventContainer";
-import { EVENTS } from "@/data/events";
+import type { Event } from "@/types/event";
+
+const getData = async () => {
+  const res = await fetch(import.meta.env.PUBLIC_API_BASE_URL + "/events");
+  const data = await res.json();
+  return data.events;
+};
+
+const events: Event[] = await getData();
 ---
 
 <BaseLayout>
@@ -13,6 +21,6 @@ import { EVENTS } from "@/data/events";
       <p class="text-3xl font-medium">กิจกรรมต่าง ๆ ในงาน</p>
       <hr class="mt-2 w-full border border-white" />
     </div>
-    <EventContainer events={EVENTS} client:load />
+    <Container events={events} client:load />
   </div>
 </BaseLayout>
