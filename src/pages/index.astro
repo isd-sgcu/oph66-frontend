@@ -11,6 +11,7 @@ import idcard from "@/assets/idcard.svg";
 import logo from "@/assets/oph-logo.svg";
 import idcard_mobile from "@/assets/idcard-mobile.svg";
 import faqs_bg from "@/assets/faqs-mobile.svg";
+import Live from "@/components/Landing/Live";
 ---
 
 <BaseLayout>
@@ -40,24 +41,7 @@ import faqs_bg from "@/assets/faqs-mobile.svg";
           อย่าลืมมาร่วมต่อชิ้นส่วนแห่งความฝันและตัวตนไปด้วยกันนะ!
         </p>
       </div>
-      <section
-        class="relative hidden w-full max-w-5xl flex-col items-center justify-center"
-      >
-        <div
-          class="flex h-12 w-full items-center justify-center rounded-2xl border-2 px-5 py-2 font-bold"
-        >
-          <div
-            class="mr-2 flex h-8 w-16 justify-center rounded-full border-2 border-white bg-pink-600"
-          >
-            <p class="text-lg">Live</p>
-          </div>
-          <p>ชื่อรายการ</p>
-        </div>
-        <div
-          class="my-2 mb-10 aspect-video w-full rounded-2xl border-2 border-white bg-indigo-950"
-        >
-        </div>
-      </section>
+      <Live client:load />
     </div>
     <div
       class="mb-20 flex w-full flex-col items-center justify-center md:h-96 md:flex-row md:items-end"
