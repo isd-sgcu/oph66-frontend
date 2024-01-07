@@ -6,6 +6,8 @@ import Day from "@/components/Landing/Day";
 import Card from "@/components/Landing/Card.astro";
 import Register from "@/components/Landing/Register";
 
+import faqs from "@/assets/faqs.svg";
+import idcard from "@/assets/idcard.svg";
 import logo from "@/assets/oph-logo.svg";
 import idcard_mobile from "@/assets/idcard-mobile.svg";
 import faqs_bg from "@/assets/faqs-mobile.svg";
@@ -84,10 +86,7 @@ import faqs_bg from "@/assets/faqs-mobile.svg";
       <a href="/profile" class="group">
         <div class="mb-2 flex justify-center">
           <picture>
-            <source
-              media="(min-width: 768px)"
-              srcset="./src/assets/idcard.svg"
-            />
+            <source media="(min-width: 768px)" srcset={idcard.src} />
             <Image
               src={idcard_mobile}
               alt="idcard background"
@@ -117,7 +116,7 @@ import faqs_bg from "@/assets/faqs-mobile.svg";
       </a>
       <a href="/faqs" class="group flex justify-center">
         <picture>
-          <source media="(min-width: 768px)" srcset="./src/assets/faqs.svg" />
+          <source media="(min-width: 768px)" srcset={faqs.src} />
           <Image src={faqs_bg} alt="faqs background" class="h-auto w-auto" />
         </picture>
         <div
