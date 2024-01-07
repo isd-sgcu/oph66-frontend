@@ -1,9 +1,12 @@
-FROM ghcr.io/isd-sgcu/astro-dyn-config:v0.0.2
-
+FROM node:lts AS runtime
 WORKDIR /app
 
-COPY public package*.json astro.config.mjs tailwind.config.mjs tsconfig.json ./
+COPY . .
 
-RUN npm i
+RUN npm install
+RUN npm run build
 
-COPY src ./src
+ENV HOST=0.0.0.0
+ENV PORT=8080
+EXPOSE 8080
+CMD node ./dist/server/entry.mjs

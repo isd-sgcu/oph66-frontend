@@ -1,6 +1,6 @@
 const SignInButton = () => {
   const handleClick = () => {
-    console.log("Sign in with Google");
+    window.location.href = `${import.meta.env.PUBLIC_API_BASE_URL}/auth/login`;
   };
 
   return (
