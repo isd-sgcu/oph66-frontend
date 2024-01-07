@@ -1,11 +1,11 @@
 import clsx from "clsx";
-import React, { useState } from "react";
+import { useState } from "react";
 
 type Props = {
   tag: string;
   icon: string;
   iconDiv?: string;
-  handleTagClick?: React.Dispatch<React.SetStateAction<string>>;
+  handleTagClick?: (tag: string) => void;
 };
 
 const Tag = ({
@@ -14,7 +14,7 @@ const Tag = ({
   iconDiv = "bg-black",
   handleTagClick = () => {},
 }: Props) => {
-  const [isSelected, setIsSelected] = useState<boolean>(false);
+  const [isSelected, setIsSelected] = useState(false);
 
   const handleClick = () => {
     setIsSelected((prev) => !prev);

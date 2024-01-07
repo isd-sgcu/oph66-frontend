@@ -1,17 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState, type FC } from "react";
 
-interface Options {
-  [key: number]: string;
+import { PLACES } from "@/data/map";
+
+interface Props {
+  images: {
+    default: ImageMetadata;
+  }[];
 }
 
-const options: Options = {
-  1: "สถาบันนวัตกรรมบูรณาการ แห่งจุฬาลงกรณ์มหาวิทยาลัย (BAScii)",
-  2: "สำนักวิชาทรัพยากรการเกษตร (SAR)",
-};
+const Guide: FC<Props> = ({ images }) => {
+  const [from, setFrom] = useState<number>(-1);
+  const [to, setTo] = useState<number>(-1);
+  const [image, setImage] = useState<string>("");
 
-const Guide = () => {
-  const [from, setFrom] = useState<number>(0);
-  const [to, setTo] = useState<number>(0);
+  useEffect(() => {
+    if (from === -1 || to === -1 || from === to) return;
+    const f = from === 20 ? 15 : from + 1;
+    const t = to === 20 ? 15 : to + 1;
+    const pathSuffix = `/src/assets/map/${f}/${f} ไป ${t}`;
+    const data = images.find((image) => image.default.src.includes(pathSuffix));
+    setImage(data ? data.default.src : "");
+  }, [from, to]);
 
   return (
     <section className="flex w-full flex-col items-center gap-9">
@@ -24,15 +33,13 @@ const Guide = () => {
           </label>
           <select
             className="relative h-full w-full flex-1 appearance-none rounded-2xl bg-white px-4 font-medium text-pink-400"
-            onChange={(e) => setFrom(Number(e.currentTarget.value))}
+            onChange={(e) => setFrom(parseInt(e.currentTarget.value))}
             value={from}
           >
-            <option value="0" disabled hidden>
-              เลือก / Select
-            </option>
-            {Object.entries(options).map(([key, value]) => (
-              <option key={key} value={key}>
-                {value}
+            <option value={-1}>เลือก / Select</option>
+            {PLACES.map((place, index) => (
+              <option key={place} value={index}>
+                {place}
               </option>
             ))}
           </select>
@@ -47,47 +54,34 @@ const Guide = () => {
           <select
             className="relative h-full w-full flex-1 appearance-none rounded-2xl bg-white px-4 font-medium text-pink-400"
             value={to}
-            onChange={(e) => setTo(Number(e.currentTarget.value))}
+            onChange={(e) => setTo(parseInt(e.currentTarget.value))}
           >
-            <option value="0" disabled hidden>
-              เลือก / Select
-            </option>
-            {Object.entries(options).map(([key, value]) => (
-              <option key={key} value={key}>
-                {value}
+            <option value={-1}>เลือก / Select</option>
+            {PLACES.map((place, index) => (
+              <option key={place} value={index}>
+                {place}
               </option>
             ))}
           </select>
           <i className="icon-[mdi--chevron-down] pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-3xl text-pink-500 "></i>
         </div>
       </div>
-      {from !== 0 && to !== 0 && (
-        <div className="relative h-44 w-full flex-col rounded-2xl border-2 border-white text-white shadow-inner shadow-white">
-          <div className="flex justify-between gap-8 px-6 py-4">
-            <div className="flex flex-1 flex-col items-start gap-2 text-left">
-              <p className="line-clamp-2 w-full text-2xl font-bold">
-                {options[from]}
-              </p>
-              <div className="flex h-6 w-14 min-w-max items-center justify-center rounded-2xl border border-white bg-transparent px-2 py-1 text-center text-xs font-medium text-white">
-                OPH
-              </div>
-            </div>
-            <i className="icon-[mdi--arrow-right-circle] bg-white text-4xl"></i>
-            <div className="flex flex-1 flex-col items-end gap-2 text-right">
-              <p className="line-clamp-2 w-full text-2xl font-bold">
-                {options[to]}
-              </p>
-              <div className="flex h-6 w-14 min-w-max items-center justify-center rounded-2xl border border-white bg-transparent px-2 py-1 text-center text-xs font-medium text-white">
-                OPH
-              </div>
-            </div>
+      <div className="relative h-full w-full flex-col rounded-2xl border-2 border-white bg-gradient-to-t from-pink-550/50 pb-8 pt-4 text-white shadow-inner shadow-white">
+        <div className="flex justify-between gap-8 px-6 py-4">
+          <div className="flex flex-1 flex-col items-start gap-2 text-left">
+            <p className="line-clamp-2 w-full text-2xl font-bold">
+              {from === -1 ? "เลือก / Select" : PLACES[from]}
+            </p>
           </div>
-          <button className="absolute bottom-0 flex h-8 w-full items-center justify-center rounded-b-2xl bg-gradient-to-r from-[#393570]/80 to-pink-550/50 text-center font-medium">
-            วิธีการเดินทาง
-            <i className="icon-[mdi--menu-right] text-4xl"></i>
-          </button>
+          <i className="icon-[mdi--arrow-right-circle] bg-white text-4xl"></i>
+          <div className="flex flex-1 flex-col items-end gap-2 text-right">
+            <p className="line-clamp-2 w-full text-2xl font-bold">
+              {to === -1 ? "เลือก / Select" : PLACES[to]}
+            </p>
+          </div>
         </div>
-      )}
+      </div>
+      {from !== -1 && to !== -1 && from !== to && <img src={image} alt="" />}
     </section>
   );
 };
