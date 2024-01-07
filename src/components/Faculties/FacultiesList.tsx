@@ -13,7 +13,7 @@ const options = FACULTIES.map((faculty) => {
 });
 
 const FacultiesList = () => {
-  const [facultySelected, setFacultySelected] = useState(0);
+  const [facultySelected, setFacultySelected] = useState<number>(0);
 
   return (
     <>

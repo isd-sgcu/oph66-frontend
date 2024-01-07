@@ -1,12 +1,14 @@
 import clsx from "clsx";
+import type React from "react";
 
 interface Props {
   name: string;
   value: string;
-  setValue: (value: string) => void;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
   isSelectable?: boolean;
   isBeingChecked: boolean;
 }
+
 const RadioBox = ({
   name,
   value,

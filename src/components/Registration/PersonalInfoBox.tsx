@@ -6,14 +6,14 @@ import RadioBox from "../RadioBox";
 import TextBox from "../TextBox";
 
 interface Props {
-  setFirstName: (value: string) => void;
-  setLastName: (value: string) => void;
-  setBirthDay: (value: string) => void;
-  setBirthMonth: (value: string) => void;
-  setBirthYear: (value: string) => void;
-  setResidence: (value: string) => void;
-  setCountry: (value: string) => void;
-  setProvince: (value: string) => void;
+  setFirstName: React.Dispatch<React.SetStateAction<string>>;
+  setLastName: React.Dispatch<React.SetStateAction<string>>;
+  setBirthDay: React.Dispatch<React.SetStateAction<string>>;
+  setBirthMonth: React.Dispatch<React.SetStateAction<string>>;
+  setBirthYear: React.Dispatch<React.SetStateAction<string>>;
+  setResidence: React.Dispatch<React.SetStateAction<string>>;
+  setCountry: React.Dispatch<React.SetStateAction<string>>;
+  setProvince: React.Dispatch<React.SetStateAction<string>>;
   isShowError: boolean;
   residence: string;
   birthDay: string;
@@ -21,6 +21,8 @@ interface Props {
   birthYear: string;
   province: string;
   country: string;
+  firstName: string;
+  lastName: string;
 }
 const PersonalInfoBox = ({
   setFirstName,
@@ -38,33 +40,30 @@ const PersonalInfoBox = ({
   birthYear,
   province,
   country,
+  firstName,
+  lastName,
 }: Props) => {
   return (
     <div
       className={clsx(
-        "flex h-fit w-full max-w-xl flex-col gap-3 rounded-2xl border-2 p-5 shadow-inner shadow-white backdrop-blur-2xl",
-        isShowError ? "border-[#F55572]" : "border-white"
+        "flex h-fit w-full max-w-xl flex-col gap-2 rounded-2xl border-2 p-5 text-sm font-medium text-white shadow-inner shadow-white backdrop-blur-2xl",
+        isShowError ? "border-[#F55572] ring-4 ring-[#F55572]" : "border-white"
       )}
     >
       <div className="flex w-full flex-col">
-        <label className="text-sm font-medium text-white">
-          ชื่อ (และชื่อกลาง) / First name (and middle name)*
-        </label>
+        <label>ชื่อ (และชื่อกลาง) / First name (and middle name)*</label>
         <TextBox
           placeHolder="ไม่ต้องใส่คำนำหน้า / without titles"
           setValue={setFirstName}
+          value={firstName}
         />
       </div>
       <div className="flex w-full flex-col">
-        <label className="text-sm font-medium text-white">
-          นามสกุล / Last name*
-        </label>
-        <TextBox setValue={setLastName} />
+        <label>นามสกุล / Last name*</label>
+        <TextBox setValue={setLastName} value={lastName} />
       </div>
       <div className="flex w-full flex-col">
-        <label className="text-sm font-medium text-white">
-          วัน เดือน ปีเกิด / Birth date
-        </label>
+        <label>วัน เดือน ปีเกิด / Birth date</label>
         <div className="flex w-full items-center justify-between gap-3">
           <DropDown
             defaultVal="วันที่ / Date"
@@ -87,21 +86,17 @@ const PersonalInfoBox = ({
         </div>
       </div>
       <div className="flex flex-col">
-        <label className="text-sm font-medium text-white">
-          ที่อยู่ / Residence*
-        </label>
+        <label>ที่อยู่ / Residence*</label>
         <div className="grid grid-rows-2 gap-2">
           <div className="grid grid-cols-2">
-            <div className="flex items-center gap-1">
+            <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center gap-1">
               <RadioBox
                 name="residence"
                 value="Thailand"
                 setValue={setResidence}
                 isBeingChecked={residence === "Thailand"}
               />
-              <label className="text-sm text-white">
-                ในประเทศไทย / Thailand
-              </label>
+              <label>ในประเทศไทย / Thailand</label>
             </div>
             <DropDown
               defaultVal="จังหวัด / Province"
@@ -112,17 +107,14 @@ const PersonalInfoBox = ({
             />
           </div>
           <div className="grid grid-cols-2">
-            <div className="flex items-center gap-1">
+            <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center gap-1">
               <RadioBox
                 name="residence"
                 value="Other countries"
                 setValue={setResidence}
-                isSelectable={true}
                 isBeingChecked={residence === "Other countries"}
               />
-              <label className="text-sm text-white">
-                ต่างประเทศ / Other countries
-              </label>
+              <label>ต่างประเทศ / Other countries</label>
             </div>
             <DropDown
               defaultVal="ประเทศ / Country"
@@ -134,7 +126,7 @@ const PersonalInfoBox = ({
           </div>
         </div>
       </div>
-      <p className="absolute -bottom-1 right-0 translate-y-full text-xs text-white">
+      <p className="absolute -bottom-2 right-0 translate-y-full text-xs text-white">
         จำเป็นต้องกรอก / Must be filled*
       </p>
     </div>

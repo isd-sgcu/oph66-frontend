@@ -1,25 +1,19 @@
-import DropDownWithLabel from "./DropDownWithLabel.tsx";
-interface FacultyInfo {
-  faculty: string;
-  department: string;
-  section: string;
-  number: string;
-}
+import { FACULTIES } from "@/data/faculties.ts";
+import { useEffect, useState } from "react";
+import DropDown from "../DropDown.tsx";
+import type { FacultyInterested } from "./Form.tsx";
+
 interface Props {
-  haveFaculty: boolean;
-  haveDepartment: boolean;
-  haveSection: boolean;
+  onlyFaculty?: boolean;
   number: string;
-  name: string;
-  setValues: React.Dispatch<React.SetStateAction<FacultyInfo[]>>;
+  setValues: React.Dispatch<React.SetStateAction<FacultyInterested[]>>;
+  faculties: FacultyInterested[];
 }
 const FacultyDetailBox = ({
-  haveDepartment,
-  haveFaculty,
-  haveSection,
-  name,
+  onlyFaculty = true,
   number,
   setValues,
+  faculties,
 }: Props) => {
   const setFacultyDetail = (s: string) => {
     setValues((prevArray) =>
@@ -36,34 +30,119 @@ const FacultyDetailBox = ({
       prevArray.map((e) => (e.number === number ? { ...e, section: s } : e))
     );
   };
+
+  const [departmentOptions, setDepartmentOptions] = useState<string[]>(
+    [] as string[]
+  );
+  const [sectionOptions, setSectionOptions] = useState<string[]>(
+    [] as string[]
+  );
+
+  useEffect(() => {
+    if (!faculties || !faculties[parseInt(number) - 1].faculty) return;
+
+    setDepartmentOptions(
+      FACULTIES.find(
+        (e) =>
+          e.nameTH + " / " + e.nameEN ===
+          faculties[parseInt(number) - 1].faculty
+      )?.departments.map((e) => e.nameTH + " / " + e.nameEN) ?? []
+    );
+
+    if (!faculties || !faculties[parseInt(number) - 1].department) return;
+
+    setSectionOptions(
+      FACULTIES.find(
+        (e) =>
+          e.nameTH + " / " + e.nameEN ===
+          faculties[parseInt(number) - 1].faculty
+      )
+        ?.departments.find(
+          (e) =>
+            e.nameTH + " / " + e.nameEN ===
+            faculties[parseInt(number) - 1].department
+        )
+        ?.sections.map((e) => e.nameTH + " / " + e.nameEN) ?? []
+    );
+  }, [faculties]);
+
   return (
-    <div className="mb-8 flex h-fit w-full flex-col items-center rounded-2xl border-4 border-solid border-white p-6 lg:flex-row lg:items-start">
-      <p className="mr-0 p-1 text-3xl text-white lg:mr-12">{number}</p>
-      <div className="flex w-4/5 flex-shrink-0 flex-col space-y-3">
-        {haveFaculty && (
-          <DropDownWithLabel
-            dropDownLabel="คณะ / Faculty"
-            name={name + "Faculty"}
-            options={[]}
-            setValue={setFacultyDetail}
-          />
-        )}
-        {haveDepartment && (
-          <DropDownWithLabel
-            dropDownLabel="ภาควิชา / Department"
-            name={name + "Department"}
-            options={[]}
-            setValue={setDepartmentDetail}
-          />
-        )}
-        {haveSection && (
-          <DropDownWithLabel
-            dropDownLabel="สาขาวิชา / Section"
-            name={name + "Section"}
-            options={[]}
-            setValue={setSectionDetail}
-          />
-        )}
+    <div className="flex h-fit w-full flex-col items-center gap-2 rounded-2xl border-2 border-white p-6 px-5 text-sm font-medium text-white">
+      <p className="text-3xl font-bold">{number}</p>
+      <div className="flex flex-col gap-4">
+        <div className="flex h-fit flex-col">
+          <label className="text-base text-white">คณะ / Faculty</label>
+          <div className="w-full">
+            <DropDown
+              defaultVal="คณะ / Faculty"
+              options={FACULTIES.map((e) => e.nameTH + " / " + e.nameEN)}
+              setValue={setFacultyDetail}
+              value={faculties ? faculties[parseInt(number) - 1].faculty : ""}
+            />
+          </div>
+        </div>
+
+        {!onlyFaculty &&
+          faculties &&
+          faculties[parseInt(number) - 1].faculty &&
+          departmentOptions.length > 0 && (
+            <div className="flex h-fit flex-col">
+              <label className="text-base text-white">สาขา / Department</label>
+              <div className="w-full">
+                <DropDown
+                  defaultVal="สาขา / Department"
+                  options={
+                    faculties
+                      ? FACULTIES.find(
+                          (e) =>
+                            e.nameTH + " / " + e.nameEN ===
+                            faculties[parseInt(number) - 1].faculty
+                        )?.departments.map(
+                          (e) => e.nameTH + " / " + e.nameEN
+                        ) ?? []
+                      : []
+                  }
+                  setValue={setDepartmentDetail}
+                  value={
+                    faculties ? faculties[parseInt(number) - 1].department : ""
+                  }
+                />
+              </div>
+            </div>
+          )}
+        {!onlyFaculty &&
+          faculties &&
+          faculties[parseInt(number) - 1].department &&
+          sectionOptions.length > 0 && (
+            <div className="flex h-fit flex-col">
+              <label className="text-base text-white">สาขา / Department</label>
+              <div className="w-full">
+                <DropDown
+                  defaultVal="สาขา / Department"
+                  options={
+                    faculties
+                      ? FACULTIES.find(
+                          (e) =>
+                            e.nameTH + " / " + e.nameEN ===
+                            faculties[parseInt(number) - 1].faculty
+                        )
+                          ?.departments.find(
+                            (e) =>
+                              e.nameTH + " / " + e.nameEN ===
+                              faculties[parseInt(number) - 1].department
+                          )
+                          ?.sections.map((e) => e.nameTH + " / " + e.nameEN) ??
+                        []
+                      : []
+                  }
+                  setValue={setSectionDetail}
+                  value={
+                    faculties ? faculties[parseInt(number) - 1].section : ""
+                  }
+                />
+              </div>
+            </div>
+          )}
       </div>
     </div>
   );

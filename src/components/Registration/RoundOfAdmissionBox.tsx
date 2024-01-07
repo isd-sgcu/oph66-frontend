@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import RadioBox from "../RadioBox";
 import TextBox from "../TextBox";
 
@@ -12,94 +13,72 @@ const RoundOfAdmissionBox = ({
   setReasonForApplying,
   roundOfAdmission,
 }: Props) => {
+  const [otherWritable, setOtherWritable] = useState<boolean>(false);
+  useEffect(() => {
+    setOtherWritable(
+      roundOfAdmission !== "1" &&
+        roundOfAdmission !== "2" &&
+        roundOfAdmission !== "3"
+    );
+  }, [roundOfAdmission]);
+
   return (
-    <div className="mb-12 flex w-screen flex-shrink-0 flex-col items-center p-0">
-      <div className="m-0 flex w-4/5 max-w-xl flex-col items-center p-0">
-        <div className="mb-1 h-fit w-full rounded-2xl border-4 border-solid border-white p-9 shadow-inner backdrop-blur-2xl">
-          <p className="text-medium mb-2 text-base text-white">
-            อยากเข้าจุฬาฯ รอบไหน / Desired round of admission
-          </p>
-          <div className="mb-10 flex flex-col space-y-1">
-            <div className="flex flex-row">
-              <RadioBox
-                name="roundOfAdmission"
-                value="1"
-                setValue={setRoundOfAdmission}
-                isSelectable={true}
-                isBeingChecked={roundOfAdmission === "1"}
-              />
-              <label className="text-medium text-base text-white">
-                รอบ 1 / Round 1
-              </label>
-            </div>
-            <div className="flex flex-row">
-              <RadioBox
-                name="roundOfAdmission"
-                value="2"
-                setValue={setRoundOfAdmission}
-                isSelectable={true}
-                isBeingChecked={roundOfAdmission === "2"}
-              />
-              <label className="text-medium text-base text-white">
-                รอบ 2 / Round 2
-              </label>
-            </div>
-            <div className="flex flex-row">
-              <RadioBox
-                name="roundOfAdmission"
-                value="3"
-                setValue={setRoundOfAdmission}
-                isSelectable={true}
-                isBeingChecked={roundOfAdmission === "3"}
-              />
-              <label className="text-medium text-base text-white">
-                รอบ 3 / Round 3
-              </label>
-            </div>
-            <div className="flex flex-row">
-              <RadioBox
-                name="roundOfAdmission"
-                value="other"
-                setValue={setRoundOfAdmission}
-                isSelectable={true}
-                isBeingChecked={
-                  roundOfAdmission !== "" &&
-                  roundOfAdmission !== "1" &&
-                  roundOfAdmission !== "2" &&
-                  roundOfAdmission !== "3"
-                }
-              />
-              <label className="text-medium text-base text-white">
-                อื่น ๆ / Other
-              </label>
-            </div>
-            <div className="ml-6 h-8 w-1/2">
-              <TextBox
-                placeHolder=""
-                name="otherRoundOfAdmission"
-                setValue={setRoundOfAdmission}
-                isSelectable={
-                  roundOfAdmission !== "" &&
-                  roundOfAdmission !== "1" &&
-                  roundOfAdmission !== "2" &&
-                  roundOfAdmission !== "3"
-                }
-              />
-            </div>
-          </div>
-          <p className="text-medium mb-3 text-base text-white">
-            ทำไมอยากเข้าจุฬาฯ / Reason for applying to Chula
-          </p>
-          <div className="h-20 w-full">
+    <div className="flex h-fit w-full max-w-xl flex-col gap-2 rounded-2xl border-2 p-5 text-sm font-medium  shadow-inner shadow-white backdrop-blur-2xl">
+      <p>อยากเข้าจุฬาฯ รอบไหน / Desired round of admission</p>
+      <div className="flex flex-col gap-2">
+        <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center">
+          <RadioBox
+            name="roundOfAdmission"
+            value="1"
+            setValue={setRoundOfAdmission}
+            isBeingChecked={roundOfAdmission === "1"}
+          />
+          <label>รอบ 1 / Round 1</label>
+        </div>
+        <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center">
+          <RadioBox
+            name="roundOfAdmission"
+            value="2"
+            setValue={setRoundOfAdmission}
+            isBeingChecked={roundOfAdmission === "2"}
+          />
+          <label>รอบ 2 / Round 2</label>
+        </div>
+        <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center">
+          <RadioBox
+            name="roundOfAdmission"
+            value="3"
+            setValue={setRoundOfAdmission}
+            isBeingChecked={roundOfAdmission === "3"}
+          />
+          <label>รอบ 3 / Round 3</label>
+        </div>
+        <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center">
+          <RadioBox
+            name="roundOfAdmission"
+            value="other"
+            setValue={setRoundOfAdmission}
+            isBeingChecked={otherWritable}
+          />
+          <label>อื่น ๆ / Other</label>
+        </div>
+        {otherWritable && (
+          <div className="ml-6 h-8 w-1/2">
             <TextBox
-              placeHolder=""
-              name="reasonForApplying"
-              setValue={setReasonForApplying}
-              isSelectable={true}
+              value={roundOfAdmission}
+              placeHolder="โปรดระบุ / Please specify"
+              setValue={setRoundOfAdmission}
+              isSelectable={otherWritable}
             />
           </div>
-        </div>
+        )}
       </div>
+      <p>ทำไมอยากเข้าจุฬาฯ / Reason for applying to Chula</p>
+      <textarea
+        className="flex h-20 w-full rounded-2xl p-2 text-xs text-pink-550 placeholder:text-pink-400"
+        onChange={(e) => setReasonForApplying(e.target.value)}
+        placeholder="โปรดระบุ / Please specify"
+      />
     </div>
   );
 };

@@ -10,8 +10,8 @@ const options: Options = {
 };
 
 const Guide = () => {
-  const [from, setFrom] = useState(0);
-  const [to, setTo] = useState(0);
+  const [from, setFrom] = useState<number>(0);
+  const [to, setTo] = useState<number>(0);
 
   return (
     <section className="flex w-full flex-col items-center gap-9">

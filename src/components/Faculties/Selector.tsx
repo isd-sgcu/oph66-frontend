@@ -3,7 +3,7 @@ import type { FC } from "react";
 
 interface Props {
   facultySelected: number;
-  setFacultySelected: (faculty: number) => void;
+  setFacultySelected: React.Dispatch<React.SetStateAction<number>>;
   options: { id: number; name: string }[];
 }
 
