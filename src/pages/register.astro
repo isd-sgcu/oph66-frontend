@@ -4,15 +4,13 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout withNav={false} withFooter={false}>
-  <div class="m-16 flex w-full flex-col items-center font-medium text-white">
-    <h1 class="text-shadow-lg text-6xl font-bold leading-normal tracking-wide">
-      ลงทะเบียน
-    </h1>
-    <h1
-      class="mb-12 font-libre text-3xl font-bold underline underline-offset-[10px] md:mb-12"
+  <div class="flex w-full flex-col items-center font-medium text-white">
+    <h1 class="text-center text-3xl font-bold md:text-6xl">ลงทะเบียน</h1>
+    <h2
+      class="mb-12 font-libre font-bold underline underline-offset-8 md:mb-12 md:text-3xl"
     >
       Registration
-    </h1>
+    </h2>
     <Form client:load />
   </div>
 </BaseLayout>
