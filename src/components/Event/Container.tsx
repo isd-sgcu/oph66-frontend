@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { FACULTIES } from "@/data/faculties";
 import type { Event } from "@/types/event";
@@ -8,12 +8,28 @@ import Card from "./Card";
 
 interface Props {
   events: Event[];
+  faculty: string | null;
 }
 
-const Container: React.FC<Props> = ({ events }) => {
+const Container: React.FC<Props> = ({ events, faculty }) => {
   const [selectedFaculty, setSelectedFaculty] = useState<number>(0);
   const [currEvents, setCurrEvents] = useState<Event[]>(events);
   const [searchQuery, setSearchQuery] = useState<string>("");
+
+  useEffect(() => {
+    if (faculty) {
+      const facultyCode = FACULTIES.find(
+        (facultyObj) => facultyObj.nameEN === faculty
+      )?.id;
+      if (facultyCode) {
+        setSelectedFaculty(parseInt(facultyCode));
+        const filteredEvents = events.filter(
+          (event) => parseInt(event.faculty.code) === parseInt(facultyCode)
+        );
+        setCurrEvents(filteredEvents);
+      }
+    }
+  }, [faculty]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newSearchQuery = e.target.value;

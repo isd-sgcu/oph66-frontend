@@ -1,5 +1,6 @@
 import { useState } from "react";
-import ErrorBox from "../ErrorBox";
+
+import ErrorBox from "@/components/Registration/ErrorBox";
 import EventConfirmModule from "./EventConfirmModule";
 import HealthConditionBox from "./HealthConditionBox";
 import SourceOfNewsBox from "./SourceOfNewsBox";

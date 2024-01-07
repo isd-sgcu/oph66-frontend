@@ -19,7 +19,7 @@ const DropDown = ({
     <div className="relative inline-block h-full w-full">
       <i className="icon-[mdi--chevron-down] pointer-events-none absolute right-0 top-1/2 flex -translate-y-1/2 items-center text-xl text-pink-400"></i>
       <select
-        className="h-full w-full appearance-none rounded-2xl py-3 pl-2 pr-6 text-xs text-pink-400"
+        className="h-full w-full appearance-none rounded-2xl py-3 pl-2 pr-6 text-xs text-pink-400 md:text-sm"
         onChange={(e) => setValue(e.target.value)}
         disabled={!isSelectable}
         value={value}

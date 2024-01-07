@@ -126,7 +126,7 @@ const Form = () => {
         setFacultiesPlannedToVisit={setFacultiesPlannedToVisit}
         facultiesPlannedToVisit={facultiesPlannedToVisit}
       />
-      <div className="flex flex-col gap-2">
+      <div className="flex max-w-xl flex-col gap-2">
         <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center gap-1">
           <CheckBox
             name="agreement"
@@ -135,7 +135,7 @@ const Form = () => {
             setValue={setAgreedToTerms}
             isShowError={isShowError[3]}
           />
-          <label className="text-base">
+          <label className="text-sm md:text-base">
             ยอมรับ
             <a
               href="https://docs.google.com/document/d/1Juw2skFkg1lD8lV7NguLJylBKWMCxnicwbJJ0PKyDRI/edit?usp=sharing"
@@ -155,7 +155,7 @@ const Form = () => {
             setValue={setAgreedToTerms}
             isShowError={isShowError[4]}
           />
-          <label className="text-base">
+          <label className="text-sm md:text-base">
             ยอมรับให้คณะผู้จัดงานขออนุญาตบันทึกภาพ วิดีโอ
             และถ่ายทอดสดกิจกรรมผ่านช่องทางออนไลน์
           </label>

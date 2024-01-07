@@ -68,19 +68,17 @@ const FacultyDetailBox = ({
   }, [faculties]);
 
   return (
-    <div className="flex h-fit w-full flex-col items-center gap-2 rounded-2xl border-2 border-white p-6 px-5 text-sm font-medium text-white">
-      <p className="text-3xl font-bold">{number}</p>
+    <div className="flex h-fit w-full flex-col items-center gap-2 rounded-2xl border-2 border-white p-6 px-5 text-sm font-medium md:flex-row md:items-start md:gap-8 md:text-base">
+      <p className="mx-auto text-3xl font-bold">{number}</p>
       <div className="flex flex-col gap-4">
         <div className="flex h-fit flex-col">
-          <label className="text-base text-white">คณะ / Faculty</label>
-          <div className="w-full">
-            <DropDown
-              defaultVal="คณะ / Faculty"
-              options={FACULTIES.map((e) => e.nameTH + " / " + e.nameEN)}
-              setValue={setFacultyDetail}
-              value={faculties ? faculties[parseInt(number) - 1].faculty : ""}
-            />
-          </div>
+          <label>คณะ / Faculty</label>
+          <DropDown
+            defaultVal="คณะ / Faculty"
+            options={FACULTIES.map((e) => e.nameTH + " / " + e.nameEN)}
+            setValue={setFacultyDetail}
+            value={faculties ? faculties[parseInt(number) - 1].faculty : ""}
+          />
         </div>
 
         {!onlyFaculty &&
@@ -88,27 +86,24 @@ const FacultyDetailBox = ({
           faculties[parseInt(number) - 1].faculty &&
           departmentOptions.length > 0 && (
             <div className="flex h-fit flex-col">
-              <label className="text-base text-white">สาขา / Department</label>
-              <div className="w-full">
-                <DropDown
-                  defaultVal="สาขา / Department"
-                  options={
-                    faculties
-                      ? FACULTIES.find(
-                          (e) =>
-                            e.nameTH + " / " + e.nameEN ===
-                            faculties[parseInt(number) - 1].faculty
-                        )?.departments.map(
-                          (e) => e.nameTH + " / " + e.nameEN
-                        ) ?? []
-                      : []
-                  }
-                  setValue={setDepartmentDetail}
-                  value={
-                    faculties ? faculties[parseInt(number) - 1].department : ""
-                  }
-                />
-              </div>
+              <label>สาขา / Department</label>
+              <DropDown
+                defaultVal="สาขา / Department"
+                options={
+                  faculties
+                    ? FACULTIES.find(
+                        (e) =>
+                          e.nameTH + " / " + e.nameEN ===
+                          faculties[parseInt(number) - 1].faculty
+                      )?.departments.map((e) => e.nameTH + " / " + e.nameEN) ??
+                      []
+                    : []
+                }
+                setValue={setDepartmentDetail}
+                value={
+                  faculties ? faculties[parseInt(number) - 1].department : ""
+                }
+              />
             </div>
           )}
         {!onlyFaculty &&
@@ -116,7 +111,7 @@ const FacultyDetailBox = ({
           faculties[parseInt(number) - 1].department &&
           sectionOptions.length > 0 && (
             <div className="flex h-fit flex-col">
-              <label className="text-base text-white">สาขา / Department</label>
+              <label>สาขา / Department</label>
               <div className="w-full">
                 <DropDown
                   defaultVal="สาขา / Department"

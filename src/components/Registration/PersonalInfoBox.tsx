@@ -46,7 +46,7 @@ const PersonalInfoBox = ({
   return (
     <div
       className={clsx(
-        "flex h-fit w-full max-w-xl flex-col gap-2 rounded-2xl border-2 p-5 text-sm font-medium text-white shadow-inner shadow-white backdrop-blur-2xl",
+        "flex h-fit w-full max-w-xl flex-col gap-2 rounded-2xl border-2 p-5 text-sm font-medium text-white shadow-inner shadow-white backdrop-blur-2xl md:gap-8 md:text-base",
         isShowError ? "border-[#F55572] ring-4 ring-[#F55572]" : "border-white"
       )}
     >
@@ -60,7 +60,11 @@ const PersonalInfoBox = ({
       </div>
       <div className="flex w-full flex-col">
         <label>นามสกุล / Last name*</label>
-        <TextBox setValue={setLastName} value={lastName} />
+        <TextBox
+          setValue={setLastName}
+          value={lastName}
+          placeHolder="นามสกุล / Last Name"
+        />
       </div>
       <div className="flex w-full flex-col">
         <label>วัน เดือน ปีเกิด / Birth date</label>
@@ -87,7 +91,7 @@ const PersonalInfoBox = ({
       </div>
       <div className="flex flex-col">
         <label>ที่อยู่ / Residence*</label>
-        <div className="grid grid-rows-2 gap-2">
+        <div className="grid grid-rows-2 gap-2 md:gap-4">
           <div className="grid grid-cols-2">
             <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center gap-1">
               <RadioBox

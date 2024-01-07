@@ -1,0 +1,91 @@
+---
+export const prerender = false;
+
+import { Image } from "astro:assets";
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import EventBox from "@/components/Event/EventRegisterComplete/EventBox.astro";
+import type { Event } from "@/types/event";
+
+import ophLogo from "@/assets/oph-logo.svg";
+
+const getData = async (id: string) => {
+  const res = await fetch(
+    import.meta.env.PUBLIC_API_BASE_URL + `/events/${id}`
+  );
+  const data = await res.json();
+  return data.event;
+};
+
+const { id, scheduleId } = Astro.params;
+
+if (!id || !scheduleId) {
+  return new Response("Event not found", { status: 404 });
+}
+
+const event: Event = await getData(id);
+
+if (!event) {
+  return new Response("Event not found", { status: 404 });
+}
+
+const schedule = event.schedules.find((s) => s.id === parseInt(scheduleId));
+
+if (!schedule) {
+  return new Response("Event not found", { status: 404 });
+}
+
+const date = new Date(schedule.starts_at).toLocaleDateString("th-TH", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const time = new Date(schedule.starts_at).toLocaleTimeString("th-TH", {
+  hour: "2-digit",
+  minute: "2-digit",
+});
+
+const name = event.name.en ? event.name.en : event.name.th;
+const location = event.location.th + " / " + event.location.en;
+---
+
+<BaseLayout withNav={false} withFooter={false}>
+  <div
+    class="flex h-full min-h-screen w-full flex-col items-center justify-center gap-12 text-white"
+  >
+    <div
+      class="flex w-full flex-col items-center justify-center gap-4 text-center"
+    >
+      <div class="h-28 w-80 max-w-full md:h-auto md:w-auto">
+        <Image src={ophLogo} alt="logo" />
+      </div>
+      <div class="flex flex-col items-center justify-center">
+        <h1 class="font-libre md:text-3xl">Chula Open House 2024</h1>
+        <p class="text-xs font-medium md:text-base">20-21 January 2024</p>
+      </div>
+    </div>
+
+    <div class="flex w-full flex-col items-center justify-center gap-4">
+      <div class="flex flex-col items-center justify-center text-center">
+        <p class="font-bold md:text-3xl">ลงทะเบียนกิจกรรมเสร็จสิ้น !</p>
+        <p class="font-bold md:text-xl">Registration completed !</p>
+      </div>
+      <EventBox
+        eventName={name}
+        eventFacultyEng={event.faculty.name.en}
+        eventFacultyTh={event.faculty.name.th}
+        eventPlace={location}
+        eventDate={date}
+        eventTime={time}
+      />
+    </div>
+    <a
+      class="flex items-center justify-center gap-2 px-4 py-2 underline underline-offset-2 hover:no-underline"
+      href="/profile"
+    >
+      <i class="icon-[mdi--arrow-back-circle] text-2xl"></i>
+      ไปที่หน้าโปรไฟล์ / Back to Profile
+    </a>
+  </div>
+</BaseLayout>

@@ -24,10 +24,10 @@ const RoundOfAdmissionBox = ({
   }, [roundOfAdmission]);
 
   return (
-    <div className="flex h-fit w-full max-w-xl flex-col gap-2 rounded-2xl border-2 p-5 text-sm font-medium  shadow-inner shadow-white backdrop-blur-2xl">
+    <div className="flex h-fit w-full max-w-xl flex-col gap-2 rounded-2xl border-2 p-5 text-sm font-medium shadow-inner shadow-white backdrop-blur-2xl md:text-base">
       <p>อยากเข้าจุฬาฯ รอบไหน / Desired round of admission</p>
       <div className="flex flex-col gap-2">
-        <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center">
+        <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center gap-1">
           <RadioBox
             name="roundOfAdmission"
             value="1"
@@ -36,7 +36,7 @@ const RoundOfAdmissionBox = ({
           />
           <label>รอบ 1 / Round 1</label>
         </div>
-        <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center">
+        <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center gap-1">
           <RadioBox
             name="roundOfAdmission"
             value="2"
@@ -45,7 +45,7 @@ const RoundOfAdmissionBox = ({
           />
           <label>รอบ 2 / Round 2</label>
         </div>
-        <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center">
+        <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center gap-1">
           <RadioBox
             name="roundOfAdmission"
             value="3"
@@ -54,7 +54,7 @@ const RoundOfAdmissionBox = ({
           />
           <label>รอบ 3 / Round 3</label>
         </div>
-        <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center">
+        <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center gap-1">
           <RadioBox
             name="roundOfAdmission"
             value="other"
@@ -76,7 +76,7 @@ const RoundOfAdmissionBox = ({
       </div>
       <p>ทำไมอยากเข้าจุฬาฯ / Reason for applying to Chula</p>
       <textarea
-        className="flex h-20 w-full rounded-2xl p-2 text-xs text-pink-550 placeholder:text-pink-400"
+        className="flex h-20 w-full rounded-2xl p-2 text-xs text-pink-550 placeholder:text-pink-400 md:text-sm"
         onChange={(e) => setReasonForApplying(e.target.value)}
         placeholder="โปรดระบุ / Please specify"
       />

@@ -1,20 +1,10 @@
 ---
+export const prerender = false;
+
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { EnrollBox } from "@/components/Event/Card";
 import type { Event } from "@/types/event";
-import RegisterButton from "@/components/Event/RegisterButton";
 import CurrentAttendee from "@/components/Event/CurrentAttendee";
-
-export const getStaticPaths = async () => {
-  const res = await fetch(import.meta.env.PUBLIC_API_BASE_URL + "/events");
-  const data = await res.json();
-
-  return data.events.map((event: Event) => {
-    return {
-      params: { id: event.id },
-    };
-  });
-};
 
 const getData = async (id: string) => {
   const res = await fetch(
@@ -26,7 +16,16 @@ const getData = async (id: string) => {
 
 const { id } = Astro.params;
 
+if (!id) {
+  return new Response("Event not found", { status: 404 });
+}
+
 const event: Event = await getData(id);
+
+if (!event) {
+  return new Response("Event not found", { status: 404 });
+}
+
 const schedules20 = event.schedules.filter((schedule) =>
   schedule.period.startsWith("20-")
 );
@@ -103,7 +102,12 @@ const formatTime = (date: string) => {
                               ? "∞"
                               : event.max_capacity}
                           </div>
-                          <RegisterButton client:load />
+                          <a
+                            class="flex items-center justify-center rounded-2xl bg-pink-550 px-4 py-1 text-center text-white"
+                            href={`/events/${event.id}/register/${schedule.id}`}
+                          >
+                            ลงทะเบียน / Register
+                          </a>
                         </>
                       )}
                     </div>
@@ -134,7 +138,12 @@ const formatTime = (date: string) => {
                             scheduleId={schedule.id}
                             client:load
                           />
-                          <RegisterButton client:load />
+                          <a
+                            class="flex items-center justify-center rounded-2xl bg-pink-550 px-4 py-1 text-center text-white"
+                            href={`/events/${event.id}/register/${schedule.id}`}
+                          >
+                            ลงทะเบียน / Register
+                          </a>
                         </>
                       )}
                     </div>
