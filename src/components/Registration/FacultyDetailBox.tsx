@@ -1,7 +1,8 @@
-import { FACULTIES } from "@/data/faculties.ts";
 import { useEffect, useState } from "react";
+
+import { FACULTIES } from "@/data/faculties.ts";
+import type { FacultyInterested } from "@/types/form.ts";
 import DropDown from "../DropDown.tsx";
-import type { FacultyInterested } from "./Form.tsx";
 
 interface Props {
   onlyFaculty?: boolean;

@@ -4,11 +4,11 @@ import React, { useEffect, useState } from "react";
 import RadioBox from "../RadioBox";
 import TextBox from "../TextBox";
 interface Props {
-  setStatus: React.Dispatch<React.SetStateAction<string>>;
-  setStudentStatus: React.Dispatch<React.SetStateAction<string>>;
+  setStatus: React.Dispatch<React.SetStateAction<string | undefined>>;
+  setStudentStatus: React.Dispatch<React.SetStateAction<string | undefined>>;
   isShowError: boolean;
-  status: string;
-  studentStatus: string;
+  status: string | undefined;
+  studentStatus: string | undefined;
 }
 const PersonalInfoBox = ({
   setStatus,
@@ -22,13 +22,15 @@ const PersonalInfoBox = ({
   const [otherWritable, setOtherWritable] = useState<boolean>(false);
 
   useEffect(() => {
-    if (status !== "student") setStudentStatus("");
+    if (status !== "student") setStudentStatus(undefined);
     setOtherWritable(
-      !["student", "reapplying", "homeSchool", "parent"].includes(status)
+      typeof status !== "undefined" &&
+        !["student", "reapplying", "homeSchool", "parent"].includes(status)
     );
 
     setOtherStudentWritable(
-      !["middleSchool", "highSchool", "vocCert"].includes(studentStatus)
+      typeof studentStatus !== "undefined" &&
+        !["middleSchool", "highSchool", "vocCert"].includes(studentStatus)
     );
   }, [status, studentStatus]);
 

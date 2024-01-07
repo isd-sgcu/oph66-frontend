@@ -2,8 +2,10 @@ import type React from "react";
 
 interface Props {
   placeHolder?: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
-  value: string;
+  setValue:
+    | React.Dispatch<React.SetStateAction<string>>
+    | React.Dispatch<React.SetStateAction<string | undefined>>;
+  value: string | undefined;
   isSelectable?: boolean;
 }
 const TextBox = ({ placeHolder, setValue, isSelectable = true }: Props) => {

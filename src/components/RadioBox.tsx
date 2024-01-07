@@ -4,7 +4,9 @@ import type React from "react";
 interface Props {
   name: string;
   value: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
+  setValue:
+    | React.Dispatch<React.SetStateAction<string>>
+    | React.Dispatch<React.SetStateAction<string | undefined>>;
   isSelectable?: boolean;
   isBeingChecked: boolean;
 }

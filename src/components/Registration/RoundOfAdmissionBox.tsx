@@ -3,9 +3,9 @@ import RadioBox from "../RadioBox";
 import TextBox from "../TextBox";
 
 interface Props {
-  setRoundOfAdmission: React.Dispatch<React.SetStateAction<string>>;
+  setRoundOfAdmission: React.Dispatch<React.SetStateAction<string | undefined>>;
   setReasonForApplying: React.Dispatch<React.SetStateAction<string>>;
-  roundOfAdmission: string;
+  roundOfAdmission: string | undefined;
 }
 
 const RoundOfAdmissionBox = ({
@@ -16,7 +16,8 @@ const RoundOfAdmissionBox = ({
   const [otherWritable, setOtherWritable] = useState<boolean>(false);
   useEffect(() => {
     setOtherWritable(
-      roundOfAdmission !== "1" &&
+      typeof roundOfAdmission !== "undefined" &&
+        roundOfAdmission !== "1" &&
         roundOfAdmission !== "2" &&
         roundOfAdmission !== "3"
     );

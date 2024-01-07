@@ -1,4 +1,6 @@
 import { useState } from "react";
+
+import type { FacultyInterested } from "@/types/form";
 import CheckBox from "../CheckBox";
 import ConfirmModule from "./ConfirmModule";
 import ErrorBox from "./ErrorBox";
@@ -9,13 +11,6 @@ import PlannedFacultyBox from "./PlannedFacultyBox";
 import RoundOfAdmissionBox from "./RoundOfAdmissionBox";
 import SourceOfNewsBox from "./SourceOfNewsBox";
 
-export interface FacultyInterested {
-  faculty: string;
-  department: string;
-  section: string;
-  number: string;
-}
-
 const Form = () => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
@@ -25,10 +20,11 @@ const Form = () => {
   const [residence, setResidence] = useState<string>("");
   const [province, setProvince] = useState<string>("");
   const [country, setCountry] = useState<string>("");
-  const [status, setStatus] = useState<string>("");
-  const [studentStatus, setStudentStatus] = useState<string>("");
+  const [status, setStatus] = useState<string>();
+  const [studentStatus, setStudentStatus] = useState<string>();
   const [sourceOfNews, setSourceOfNews] = useState<string[]>([] as string[]);
-  const [roundOfAdmission, setRoundOfAdmission] = useState<string>("");
+  const [roundOfAdmission, setRoundOfAdmission] = useState<string>();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [reasonForApplying, setReasonForApplying] = useState<string>("");
   const [facultiesInterested, setFacultiesInterested] = useState<
     FacultyInterested[]
@@ -74,31 +70,12 @@ const Form = () => {
     if (error.includes(true)) {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      console.log(
-        firstName,
-        lastName,
-        birthDay,
-        birthMonth,
-        birthYear,
-        residence,
-        province,
-        country,
-        status,
-        studentStatus,
-        sourceOfNews,
-        roundOfAdmission,
-        reasonForApplying,
-        facultiesInterested,
-        facultiesPlannedToVisit,
-        agreedToTerms
-      );
       setIsShowConfirm(true);
     }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    validateData();
   };
 
   return (
@@ -185,10 +162,11 @@ const Form = () => {
         </div>
       </div>
       {isShowError.includes(true) && <ErrorBox />}
-      {isShowConfirm && <ConfirmModule />}
+      {isShowConfirm && <ConfirmModule setIsShowConfirm={setIsShowConfirm} />}
       <button
-        type="submit"
         className="rounded-2xl border-2 border-white px-5 py-2 text-xl font-bold shadow-inner shadow-white"
+        onClick={validateData}
+        type="button"
       >
         ลงทะเบียน / Register
       </button>
