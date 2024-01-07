@@ -1,21 +1,21 @@
+import type React from "react";
+
 interface Props {
-  placeHolder: string;
-  name: string;
-  setValue: React.Dispatch<React.SetStateAction<string>>;
-  isSelectable: boolean;
+  placeHolder?: string;
+  setValue:
+    | React.Dispatch<React.SetStateAction<string>>
+    | React.Dispatch<React.SetStateAction<string | undefined>>;
+  value: string | undefined;
+  isSelectable?: boolean;
 }
-const TextBox = ({ name, placeHolder, setValue, isSelectable }: Props) => {
-  const handleOnChange = (events) => {
-    setValue(events.target.value);
-  };
+const TextBox = ({ placeHolder, setValue, isSelectable = true }: Props) => {
   return (
     <input
-      name={name}
       type="text"
       disabled={!isSelectable}
       placeholder={placeHolder}
-      onChange={handleOnChange}
-      className="h-full w-full rounded-2xl border-none bg-white p-3 text-xs text-black placeholder-pink-400"
+      onChange={(e) => setValue(e.target.value)}
+      className="h-full w-full rounded-2xl border-none bg-white p-3 text-xs font-medium text-pink-550 placeholder:text-pink-400"
     />
   );
 };

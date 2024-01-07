@@ -1,23 +1,33 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Map from "@/components/Navigator/Map";
 import Guide from "@/components/Navigator/Guide";
+
+import Map from "@/assets/map.png";
+
+const images = await Astro.glob<{ default: ImageMetadata }>(
+  "/src/assets/map/**/*.{JPG,jpeg,jpg}"
+);
 ---
 
 <BaseLayout withJigsaw={false}>
-  <section
-    class="my-16 flex w-full max-w-4xl flex-col items-center px-4 text-center"
-  >
-    <h1 class="text-6xl font-bold text-white">Chula Navigator</h1>
-    <h2 class="text-3xl font-medium text-white">
-      แผนที่และวิธีการเดินทางทั่วจุฬาฯ
-    </h2>
-    <hr class="mb-14 mt-2 w-1/2 border border-white" />
-    <Map client:load />
+  <section class="flex w-full max-w-4xl flex-col items-center px-4 text-center">
+    <div class="flex w-fit flex-col items-center text-center">
+      <h1 class="text-6xl font-bold text-white">Chula Navigator</h1>
+      <h2 class="text-3xl font-medium text-white">
+        แผนที่และวิธีการเดินทางทั่วจุฬาฯ
+      </h2>
+      <hr class="mb-14 mt-2 w-full border border-white" />
+    </div>
+    <Image src={Map} class="rounded-2xl" alt="" />
     <hr class="mb-16 mt-14 w-full border border-white" />
-    <h1 class="text-6xl font-bold text-white">Chula Walk-through</h1>
-    <h2 class="text-3xl font-medium text-white">พาเดินเท้าทัวร์ทั่วจุฬาฯ</h2>
-    <hr class="mb-14 mt-2 w-1/2 border border-white" />
-    <Guide client:load />
+    <div class="flex w-fit flex-col items-center text-center text-white">
+      <h1 class="text-6xl font-bold">Chula Walk-through</h1>
+      <h2 class="text-3xl font-medium">พาเดินเท้าทัวร์ทั่วจุฬาฯ</h2>
+      <hr class="mb-14 mt-2 w-full border border-white" />
+    </div>
+    <Guide client:load images={images} />
   </section>
 </BaseLayout>
