@@ -17,8 +17,9 @@ const Guide: FC<Props> = ({ images }) => {
     if (from === -1 || to === -1 || from === to) return;
     const f = from === 20 ? 15 : from + 1;
     const t = to === 20 ? 15 : to + 1;
-    const pathSuffix = `/src/assets/map/${f}/${f} ไป ${t}`;
-    const data = images.find((image) => image.default.src.includes(pathSuffix));
+    const data = images.find((image) =>
+      image.default.src.includes(`/${f} ไป ${t}`)
+    );
     setImage(data ? data.default.src : "");
   }, [from, to]);
 
