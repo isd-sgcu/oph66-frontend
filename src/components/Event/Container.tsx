@@ -116,6 +116,7 @@ const Container: React.FC<Props> = ({ events, faculty }) => {
             {(selectedFaculty !== 0 || searchQuery !== "") && (
               <motion.button
                 className="group absolute right-0 flex items-center justify-center p-2 text-center"
+                key="clear"
                 onClick={handleClear}
                 initial={{ opacity: 0, x: 0 }}
                 animate={{ opacity: 1, x: "30%" }}
