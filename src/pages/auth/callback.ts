@@ -17,11 +17,9 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
       method: "GET",
     }
   );
-  const { data, error } = await res.json();
 
-  if (error) {
-    return new Response(error.message, { status: 500 });
-  }
+  const data = await res.json();
+  if (!data.token) return new Response("No token provided", { status: 400 });
 
   cookies.set("token", data.token, {
     path: "/",

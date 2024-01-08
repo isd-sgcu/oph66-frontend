@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import ErrorBox from "@/components/Registration/ErrorBox";
 import EventConfirmModule from "./ConfirmModule";
@@ -9,9 +9,15 @@ interface Props {
   time: string;
   name: string;
   faculty: { th: string; en: string };
+  scheduleId: string;
 }
 
-const Form: React.FC<Props> = ({ date, time, name, faculty }) => {
+interface DTO {
+  news_sources: string[];
+}
+
+const Form: React.FC<Props> = ({ date, time, name, faculty, scheduleId }) => {
+  const [token, setToken] = useState<string>("");
   const [sourceOfNews, setSourceOfNews] = useState<string[]>([]);
   const [isShowError, setIsShowError] = useState<boolean>(false);
   const [isShowConfirm, setIsShowConfirm] = useState<boolean>(false);
@@ -27,7 +33,50 @@ const Form: React.FC<Props> = ({ date, time, name, faculty }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const post = async () => {
+      const data: DTO = {
+        news_sources: sourceOfNews,
+      };
+
+      const res = await fetch(
+        `${
+          import.meta.env.PUBLIC_API_BASE_URL
+        }/schedules/${scheduleId}/register`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (res.ok) {
+        window.location.href = window.location.pathname + "/complete";
+      } else {
+        alert("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง");
+        window.location.href = window.location.pathname.split("/register")[0];
+      }
+    };
+
+    post();
   };
+
+  useEffect(() => {
+    const getCookie = (name: string) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts?.pop()?.split(";").shift();
+    };
+
+    const token = getCookie("token");
+    if (!token) {
+      alert("กรุณาเข้าสู่ระบบ");
+      window.location.href = "/login";
+      return;
+    }
+    setToken(token);
+  }, []);
 
   return (
     <form

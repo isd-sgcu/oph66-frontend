@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import CheckBox from "../CheckBox";
 import ConfirmModule from "./ConfirmModule";
@@ -13,7 +13,35 @@ import SourceOfNewsBox from "./SourceOfNewsBox";
 
 import type { FacultyInterested } from "@/types/form";
 
+interface DTO {
+  allergies: string;
+  birth_date: string;
+  country: string;
+  desired_round: string;
+  educational_level: string;
+  first_name: string;
+  interested_faculties: {
+    department_code: string;
+    faculty_code: string;
+    order: number;
+    section_code: string;
+  }[];
+  join_cu_reason: string;
+  last_name: string;
+  medical_condition: string;
+  news_sources: string[];
+  province: string;
+  status: string;
+  visiting_faculties: {
+    department_code: string;
+    faculty_code: string;
+    order: number;
+    section_code: string;
+  }[];
+}
+
 const Form = () => {
+  const [token, setToken] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [birthDay, setBirthDay] = useState<string>("");
@@ -28,7 +56,6 @@ const Form = () => {
   const [healthConditions, setHealthConditions] = useState<string>();
   const [sourceOfNews, setSourceOfNews] = useState<string[]>([] as string[]);
   const [roundOfAdmission, setRoundOfAdmission] = useState<string>();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [reasonForApplying, setReasonForApplying] = useState<string>("");
   const [facultiesInterested, setFacultiesInterested] = useState<
     FacultyInterested[]
@@ -82,7 +109,74 @@ const Form = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const post = async () => {
+      const data: DTO = {
+        allergies: allergies || "",
+        birth_date: `${birthYear}-${birthMonth}-${birthDay}`,
+        country,
+        desired_round: roundOfAdmission || "",
+        educational_level: studentStatus || "",
+        first_name: firstName,
+        interested_faculties: facultiesInterested.map((faculty) => ({
+          department_code: faculty.department,
+          faculty_code: faculty.faculty,
+          order: Number(faculty.number),
+          section_code: faculty.section,
+        })),
+        join_cu_reason: reasonForApplying,
+        last_name: lastName,
+        medical_condition: healthConditions || "",
+        news_sources: sourceOfNews,
+        province,
+        status: status || "",
+        visiting_faculties: facultiesPlannedToVisit.map((faculty) => ({
+          department_code: faculty.department,
+          faculty_code: faculty.faculty,
+          order: Number(faculty.number),
+          section_code: faculty.section,
+        })),
+      };
+
+      const res = await fetch(
+        import.meta.env.PUBLIC_API_BASE_URL + "/auth/register",
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (res.ok) {
+        setIsShowConfirm(false);
+        window.location.href = "/";
+      } else {
+        const error = await res.json();
+        alert(error?.message);
+        window.location.href = "/";
+      }
+    };
+
+    post();
   };
+
+  useEffect(() => {
+    const getCookie = (name: string) => {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts?.pop()?.split(";").shift();
+    };
+
+    const token = getCookie("token");
+    if (!token) {
+      alert("กรุณาเข้าสู่ระบบ");
+      window.location.href = "/login";
+      return;
+    }
+    setToken(token);
+  }, []);
 
   return (
     <form
