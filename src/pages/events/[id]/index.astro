@@ -3,7 +3,6 @@ export const prerender = false;
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { EnrollBox } from "@/components/Event/Card";
-import CurrentAttendee from "@/components/Event/CurrentAttendee";
 
 import type { Event } from "@/types/event";
 
@@ -14,6 +13,30 @@ const getData = async (id: string) => {
   const data = await res.json();
   return data.event;
 };
+
+let token;
+
+if (Astro.cookies.has("token")) token = Astro.cookies.get("token");
+
+let registered_events: {
+  id: number;
+  current_attendee: number;
+  starts_at: string;
+  ends_at: string;
+  period: string;
+}[];
+if (token) {
+  const res = await fetch(import.meta.env.PUBLIC_API_BASE_URL + "/auth/me", {
+    headers: {
+      Authorization: `Bearer ${token.value}`,
+    },
+  });
+
+  if (res.ok) {
+    const { user } = await res.json();
+    registered_events = user.registered_events;
+  }
+}
 
 const { id } = Astro.params;
 
@@ -84,35 +107,47 @@ const formatTime = (date: string) => {
                   <div class="w-full rounded-2xl bg-gradient-to-tr from-indigo-900 to-pink-550 p-2 font-semibold text-white">
                     20 January 2024
                   </div>
-                  {schedules20.map((schedule) => (
-                    <div class="flex w-full items-center justify-between gap-1 rounded-2xl border border-pink-550 px-1 py-2 text-sm font-medium">
-                      <p
-                        class:list={[
-                          "w-fit",
-                          { "mx-auto": !event.require_registration },
-                        ]}
-                      >
-                        {formatTime(schedule.starts_at)} -{" "}
-                        {formatTime(schedule.ends_at)}
-                      </p>
-                      {event.require_registration && (
-                        <>
-                          <div class="flex w-full max-w-20 items-center justify-center text-nowrap rounded-2xl border border-pink-550 py-1 text-center">
-                            {schedule.current_attendee} /{" "}
-                            {event.max_capacity === 999
-                              ? "∞"
-                              : event.max_capacity}
-                          </div>
-                          <a
-                            class="flex items-center justify-center rounded-2xl bg-pink-550 px-4 py-1 text-center text-white"
-                            href={`/events/${event.id}/register/${schedule.id}`}
-                          >
-                            ลงทะเบียน / Register
-                          </a>
-                        </>
-                      )}
-                    </div>
-                  ))}
+                  {schedules20.map((schedule) => {
+                    const alreadyRegistered =
+                      registered_events &&
+                      registered_events.find((e) => e.id === schedule.id);
+                    return (
+                      <div class="flex w-full items-center justify-between gap-1 rounded-2xl border border-pink-550 px-1 py-2 text-sm font-medium">
+                        <p
+                          class:list={[
+                            "w-fit",
+                            { "mx-auto": !event.require_registration },
+                          ]}
+                        >
+                          {formatTime(schedule.starts_at)} -{" "}
+                          {formatTime(schedule.ends_at)}
+                        </p>
+                        {event.require_registration && (
+                          <>
+                            <div class="flex w-full max-w-20 items-center justify-center text-nowrap rounded-2xl border border-pink-550 py-1 text-center">
+                              {schedule.current_attendee} /{" "}
+                              {event.max_capacity === 999
+                                ? "∞"
+                                : event.max_capacity}
+                            </div>
+                            {alreadyRegistered ||
+                            schedule.current_attendee >= event.max_capacity ? (
+                              <p class="pointer-events-none flex items-center justify-center rounded-2xl bg-pink-550 px-4 py-1 text-center text-white opacity-25">
+                                ลงทะเบียน / Register
+                              </p>
+                            ) : (
+                              <a
+                                class="flex items-center justify-center rounded-2xl bg-pink-550 px-4 py-1 text-center text-white"
+                                href={`/events/${event.id}/register/${schedule.id}`}
+                              >
+                                ลงทะเบียน / Register
+                              </a>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               )}
               {schedules21.length > 0 && (
@@ -120,35 +155,47 @@ const formatTime = (date: string) => {
                   <div class="w-full rounded-2xl bg-gradient-to-tr from-indigo-900 to-pink-550 p-2 font-semibold text-white">
                     21 January 2024
                   </div>
-                  {schedules21.map((schedule) => (
-                    <div class="flex w-full items-center justify-between gap-1 rounded-2xl border border-pink-550 px-1 py-2 text-sm font-medium">
-                      <p
-                        class:list={[
-                          "w-fit",
-                          { "mx-auto": !event.require_registration },
-                        ]}
-                      >
-                        {formatTime(schedule.starts_at)} -{" "}
-                        {formatTime(schedule.ends_at)}
-                      </p>
-                      {event.require_registration && (
-                        <>
-                          <CurrentAttendee
-                            maxCapacity={event.max_capacity}
-                            eventId={id}
-                            scheduleId={schedule.id}
-                            client:load
-                          />
-                          <a
-                            class="flex items-center justify-center rounded-2xl bg-pink-550 px-4 py-1 text-center text-white"
-                            href={`/events/${event.id}/register/${schedule.id}`}
-                          >
-                            ลงทะเบียน / Register
-                          </a>
-                        </>
-                      )}
-                    </div>
-                  ))}
+                  {schedules21.map((schedule) => {
+                    const alreadyRegistered =
+                      registered_events &&
+                      registered_events.find((e) => e.id === schedule.id);
+                    return (
+                      <div class="flex w-full items-center justify-between gap-1 rounded-2xl border border-pink-550 px-1 py-2 text-sm font-medium">
+                        <p
+                          class:list={[
+                            "w-fit",
+                            { "mx-auto": !event.require_registration },
+                          ]}
+                        >
+                          {formatTime(schedule.starts_at)} -{" "}
+                          {formatTime(schedule.ends_at)}
+                        </p>
+                        {event.require_registration && (
+                          <>
+                            <div class="flex w-full max-w-20 items-center justify-center text-nowrap rounded-2xl border border-pink-550 py-1 text-center">
+                              {schedule.current_attendee} /{" "}
+                              {event.max_capacity === 999
+                                ? "∞"
+                                : event.max_capacity}
+                            </div>
+                            {alreadyRegistered ||
+                            schedule.current_attendee >= event.max_capacity ? (
+                              <p class="pointer-events-none flex items-center justify-center rounded-2xl bg-pink-550 px-4 py-1 text-center text-white opacity-25">
+                                ลงทะเบียน / Register
+                              </p>
+                            ) : (
+                              <a
+                                class="flex items-center justify-center rounded-2xl bg-pink-550 px-4 py-1 text-center text-white"
+                                href={`/events/${event.id}/register/${schedule.id}`}
+                              >
+                                ลงทะเบียน / Register
+                              </a>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               )}
             </div>

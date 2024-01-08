@@ -42,10 +42,16 @@ const date = new Date(schedule.starts_at).toLocaleDateString("th-TH", {
   day: "numeric",
 });
 
-const time = new Date(schedule.starts_at).toLocaleTimeString("th-TH", {
-  hour: "2-digit",
-  minute: "2-digit",
-});
+const time =
+  new Date(schedule.starts_at).toLocaleTimeString("th-TH", {
+    hour: "2-digit",
+    minute: "2-digit",
+  }) +
+  " - " +
+  new Date(schedule.ends_at).toLocaleTimeString("th-TH", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 
 const faculty = event.faculty.name.th + " / " + event.faculty.name.en;
 const name = event.name.en ? event.name.en : event.name.th;
@@ -94,6 +100,7 @@ const location = event.location.th + " / " + event.location.en;
       name={name}
       faculty={event.faculty.name}
       scheduleId={scheduleId}
+      token={token.value}
       client:load
     />
   </div>

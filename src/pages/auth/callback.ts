@@ -9,7 +9,7 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
 
   const res = await fetch(
     import.meta.env.PUBLIC_API_BASE_URL +
-      "/auth/callback" +
+      "/auth/callback?" +
       new URLSearchParams({
         code: authCode,
       }),
@@ -25,5 +25,5 @@ export const GET: APIRoute = async ({ url, cookies, redirect }) => {
     path: "/",
   });
 
-  return redirect("/");
+  return redirect("/register");
 };

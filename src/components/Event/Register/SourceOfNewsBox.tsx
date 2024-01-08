@@ -30,7 +30,7 @@ const SourceOfNewsBox: React.FC<Props> = ({ setSourceOfNews, isShowError }) => {
       </div>
       <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center">
         <CheckBox
-          value="instragram"
+          value="instagram"
           name="sourceOfNews"
           id="instragramSource"
           setValue={setSourceOfNews}
@@ -39,7 +39,7 @@ const SourceOfNewsBox: React.FC<Props> = ({ setSourceOfNews, isShowError }) => {
       </div>
       <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center">
         <CheckBox
-          value="faculties"
+          value="faculty"
           name="sourceOfNews"
           id="facultiesSource"
           setValue={setSourceOfNews}
@@ -50,7 +50,7 @@ const SourceOfNewsBox: React.FC<Props> = ({ setSourceOfNews, isShowError }) => {
       </div>
       <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center">
         <CheckBox
-          value="chulaStudent"
+          value="chula-student"
           name="sourceOfNews"
           id="chulaStudentsSource"
           setValue={setSourceOfNews}
@@ -59,7 +59,7 @@ const SourceOfNewsBox: React.FC<Props> = ({ setSourceOfNews, isShowError }) => {
       </div>
       <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center">
         <CheckBox
-          value="friends"
+          value="friend"
           name="sourceOfNews"
           id="friendsSource"
           setValue={setSourceOfNews}
@@ -68,7 +68,7 @@ const SourceOfNewsBox: React.FC<Props> = ({ setSourceOfNews, isShowError }) => {
       </div>
       <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center">
         <CheckBox
-          value="parents"
+          value="parent"
           name="sourceOfNews"
           id="parentsSource"
           setValue={setSourceOfNews}
