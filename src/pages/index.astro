@@ -12,6 +12,22 @@ import logo from "@/assets/oph-logo.svg";
 import idcard_mobile from "@/assets/idcard-mobile.svg";
 import faqs_bg from "@/assets/faqs-mobile.svg";
 import Live from "@/components/Landing/Live";
+
+let token, fullName;
+if (Astro.cookies.has("token")) token = Astro.cookies.get("token");
+
+if (token) {
+  const res = await fetch(import.meta.env.PUBLIC_API_BASE_URL + "/auth/me", {
+    headers: {
+      Authorization: `Bearer ${token.value}`,
+    },
+  });
+
+  if (res.ok) {
+    const { user } = await res.json();
+    fullName = user.first_name + " " + user.last_name;
+  }
+}
 ---
 
 <BaseLayout>
@@ -25,7 +41,7 @@ import Live from "@/components/Landing/Live";
           Chula Open House 2024
         </h1>
         <p class="mb-10 text-base font-medium md:ml-10">20-21 January 2024</p>
-        <Register />
+        <Register client:load token={token?.value} fullName={fullName} />
       </div>
       <Day client:load />
     </div>

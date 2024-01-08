@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import CheckBox from "../CheckBox";
 import ConfirmModule from "./ConfirmModule";
@@ -11,6 +11,8 @@ import PlannedFacultyBox from "./PlannedFacultyBox";
 import RoundOfAdmissionBox from "./RoundOfAdmissionBox";
 import SourceOfNewsBox from "./SourceOfNewsBox";
 
+import { FACULTIES } from "@/data/faculties";
+import { MONTHS } from "@/data/form/datetime";
 import type { FacultyInterested } from "@/types/form";
 
 interface DTO {
@@ -40,8 +42,11 @@ interface DTO {
   }[];
 }
 
-const Form = () => {
-  const [token, setToken] = useState<string>("");
+interface Props {
+  token: string;
+}
+
+const Form: React.FC<Props> = ({ token }) => {
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [birthDay, setBirthDay] = useState<string>("");
@@ -110,32 +115,46 @@ const Form = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const getFacultyData = (faculties: FacultyInterested[]) => {
+      return faculties
+        .filter((faculty) => faculty.faculty)
+        .map(({ department, faculty, number, section }) => {
+          const facultyMatch = FACULTIES.find(
+            (f) => f.nameTH === faculty.split(" / ")[0]
+          );
+          const departmentMatch = facultyMatch?.departments.find(
+            (d) => d.nameTH === department.split(" / ")[0]
+          );
+          const sectionMatch = departmentMatch?.sections.find(
+            (s) => s.nameTH === section.split(" / ")[0]
+          );
+          return {
+            order: parseInt(number),
+            faculty_code: facultyMatch?.id || "",
+            department_code: departmentMatch?.id || "-",
+            section_code: sectionMatch?.id || "-",
+          };
+        });
+    };
+
     const post = async () => {
       const data: DTO = {
-        allergies: allergies || "",
-        birth_date: `${birthYear}-${birthMonth}-${birthDay}`,
-        country,
-        desired_round: roundOfAdmission || "",
-        educational_level: studentStatus || "",
         first_name: firstName,
-        interested_faculties: facultiesInterested.map((faculty) => ({
-          department_code: faculty.department,
-          faculty_code: faculty.faculty,
-          order: Number(faculty.number),
-          section_code: faculty.section,
-        })),
-        join_cu_reason: reasonForApplying,
         last_name: lastName,
-        medical_condition: healthConditions || "",
-        news_sources: sourceOfNews,
-        province,
+        birth_date: `${birthYear.split(" / ")[1]}-${
+          MONTHS.findIndex((m) => m === birthMonth) + 1
+        }-${birthDay}`,
+        province: residence === "Thailand" ? province : "",
+        country: residence === "Thailand" ? "ไทย" : country.split(" / ")[0],
         status: status || "",
-        visiting_faculties: facultiesPlannedToVisit.map((faculty) => ({
-          department_code: faculty.department,
-          faculty_code: faculty.faculty,
-          order: Number(faculty.number),
-          section_code: faculty.section,
-        })),
+        educational_level: studentStatus || "",
+        desired_round: roundOfAdmission || "",
+        join_cu_reason: reasonForApplying,
+        news_sources: sourceOfNews,
+        interested_faculties: getFacultyData(facultiesInterested),
+        visiting_faculties: getFacultyData(facultiesPlannedToVisit),
+        allergies: allergies || "",
+        medical_condition: healthConditions || "",
       };
 
       const res = await fetch(
@@ -150,33 +169,15 @@ const Form = () => {
       );
 
       if (res.ok) {
-        setIsShowConfirm(false);
         window.location.href = "/";
       } else {
-        const error = await res.json();
-        alert(error?.message);
-        window.location.href = "/";
+        alert("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง\n" + (await res.text()));
+        setIsShowConfirm(false);
       }
     };
 
     post();
   };
-
-  useEffect(() => {
-    const getCookie = (name: string) => {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts?.pop()?.split(";").shift();
-    };
-
-    const token = getCookie("token");
-    if (!token) {
-      alert("กรุณาเข้าสู่ระบบ");
-      window.location.href = "/login";
-      return;
-    }
-    setToken(token);
-  }, []);
 
   return (
     <form

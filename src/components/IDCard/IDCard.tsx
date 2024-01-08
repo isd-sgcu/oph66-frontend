@@ -41,15 +41,34 @@ const IDCard: React.FC<Props> = ({
     if (image) download(image, "id-card.png");
   };
 
+  const handleRefresh = () => {
+    if (!ref.current) return;
+
+    setImage("");
+
+    ref.current.style.display = "flex";
+    toPng(ref.current, {
+      pixelRatio: 3,
+      cacheBust: true,
+      filter: (element) => {
+        return element.id !== "overlay";
+      },
+    }).then((dataUrl) => {
+      if (!ref.current) return;
+      setImage(dataUrl);
+      window.localStorage.setItem("idcard", dataUrl);
+      ref.current.style.display = "none";
+    });
+  };
+
   useEffect(() => {
     const getImage = async () => {
-      const idCard = window.localStorage.getItem("idCard");
-      if (idCard) {
-        setImage(idCard);
+      const idcard = window.localStorage.getItem("idcard");
+      const fullname = window.localStorage.getItem("fullname");
+      if (idcard && fullname && fullname === fullName) {
+        setImage(idcard);
         setIsLoading(false);
-        if (ref.current) {
-          ref.current.style.display = "none";
-        }
+        if (ref.current) ref.current.style.display = "none";
         return;
       }
       if (ref.current) {
@@ -61,8 +80,9 @@ const IDCard: React.FC<Props> = ({
           },
         });
         setImage(dataUrl);
-        window.localStorage.setItem("idCard", dataUrl);
         ref.current.style.display = "none";
+        window.localStorage.setItem("idcard", dataUrl);
+        window.localStorage.setItem("fullname", fullName);
       }
     };
 
@@ -70,7 +90,7 @@ const IDCard: React.FC<Props> = ({
   }, []);
 
   return (
-    <>
+    <div className="flex w-full flex-col">
       {isLoading && (
         <div className="flex flex-col items-center justify-center text-center">
           <p className="text-lg font-medium text-white">Generating ID Card</p>
@@ -106,12 +126,12 @@ const IDCard: React.FC<Props> = ({
             <span className="col-span-1">1.</span>
             <span className="col-span-1">{firstThai}</span>
             <span className="col-start-2">{firstEng}</span>
-            <span className="col-span-1">2.</span>
-            <span className="col-span-1">{secondThai}</span>
-            <span className="col-start-2">{secondEng}</span>
-            <span className="col-span-1">3.</span>
-            <span className="col-span-1">{thirdThai}</span>
-            <span className="col-start-2">{thirdEng}</span>
+            <span className="col-span-1">{secondThai ? "2." : <br />}</span>
+            <span className="col-span-1">{secondThai || <br />}</span>
+            <span className="col-start-2">{secondEng || <br />}</span>
+            <span className="col-span-1">{thirdThai ? "3." : <br />}</span>
+            <span className="col-span-1">{thirdThai || <br />}</span>
+            <span className="col-start-2">{thirdEng || <br />}</span>
           </div>
           <div className="mt-auto flex justify-between">
             <div className="flex flex-col gap-2 place-self-end">
@@ -128,8 +148,13 @@ const IDCard: React.FC<Props> = ({
           </div>
         </div>
       </section>
-      <div className="flex flex-col items-center justify-center text-center md:w-96">
+      <div className="mt-8 flex flex-col items-center justify-center text-center md:w-96">
         <div className="flex w-full flex-col gap-5">
+          <p className="text-sm font-medium md:text-base">
+            *ID Card นี้จะต้องแสดงให้กับ Staff ของงาน
+            <br />
+            ก่อนเข้าร่วมกิจกรรมของทุกคณะ
+          </p>
           <button
             className={clsx(
               "flex w-full items-center justify-center gap-2 rounded-2xl border-2 border-white px-5 py-1 text-lg font-bold shadow-inner shadow-white backdrop-blur-2xl md:px-7 md:py-3 md:text-2xl",
@@ -140,21 +165,16 @@ const IDCard: React.FC<Props> = ({
             บันทึกภาพ / Save image
             <i className="text-2xlmd:text-3xl icon-[mdi--arrow-down-circle]"></i>
           </button>
-          <p className="text-xs font-medium md:text-base">
-            *ID Card นี้จะต้องแสดงให้กับ Staff ของงาน
-            <br />
-            ก่อนเข้าร่วมกิจกรรมของทุกคณะ
-          </p>
+          <button
+            className="flex w-full items-center justify-center gap-2 rounded-2xl border-2 border-white px-5 py-1 text-lg font-bold shadow-inner shadow-white backdrop-blur-2xl md:px-7 md:py-3 md:text-2xl"
+            onClick={handleRefresh}
+          >
+            <i className="text-2xlmd:text-3xl icon-[mdi--reload]"></i>
+            รีเฟรช / Refresh
+          </button>
         </div>
       </div>
-      <a
-        href="/"
-        className="flex items-center justify-center gap-1 px-4 py-2 text-center text-sm font-medium md:text-base"
-      >
-        <i className="icon-[mdi--arrow-left-circle] text-xl md:text-2xl"></i>
-        กลับหน้าแรก / Back to home page
-      </a>
-    </>
+    </div>
   );
 };
 

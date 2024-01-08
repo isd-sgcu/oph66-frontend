@@ -5,6 +5,14 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 let token;
 if (Astro.cookies.has("token")) token = Astro.cookies.get("token");
 if (!token) return Astro.redirect("/login");
+
+const res = await fetch(import.meta.env.PUBLIC_API_BASE_URL + "/auth/me", {
+  headers: {
+    Authorization: `Bearer ${token.value}`,
+  },
+});
+
+if (res.ok) return Astro.redirect("/");
 ---
 
 <BaseLayout withNav={false} withFooter={false}>
@@ -15,6 +23,6 @@ if (!token) return Astro.redirect("/login");
     >
       Registration
     </h2>
-    <Form client:load />
+    <Form client:load token={token.value} />
   </div>
 </BaseLayout>

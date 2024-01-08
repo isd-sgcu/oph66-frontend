@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import ErrorBox from "@/components/Registration/ErrorBox";
 import EventConfirmModule from "./ConfirmModule";
@@ -10,14 +10,21 @@ interface Props {
   name: string;
   faculty: { th: string; en: string };
   scheduleId: string;
+  token: string;
 }
 
 interface DTO {
   news_sources: string[];
 }
 
-const Form: React.FC<Props> = ({ date, time, name, faculty, scheduleId }) => {
-  const [token, setToken] = useState<string>("");
+const Form: React.FC<Props> = ({
+  date,
+  time,
+  name,
+  faculty,
+  scheduleId,
+  token,
+}) => {
   const [sourceOfNews, setSourceOfNews] = useState<string[]>([]);
   const [isShowError, setIsShowError] = useState<boolean>(false);
   const [isShowConfirm, setIsShowConfirm] = useState<boolean>(false);
@@ -33,6 +40,7 @@ const Form: React.FC<Props> = ({ date, time, name, faculty, scheduleId }) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const post = async () => {
       const data: DTO = {
         news_sources: sourceOfNews,
@@ -54,29 +62,13 @@ const Form: React.FC<Props> = ({ date, time, name, faculty, scheduleId }) => {
       if (res.ok) {
         window.location.href = window.location.pathname + "/complete";
       } else {
-        alert("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง");
+        alert("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง\n" + (await res.text()));
         window.location.href = window.location.pathname.split("/register")[0];
       }
     };
 
     post();
   };
-
-  useEffect(() => {
-    const getCookie = (name: string) => {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts?.pop()?.split(";").shift();
-    };
-
-    const token = getCookie("token");
-    if (!token) {
-      alert("กรุณาเข้าสู่ระบบ");
-      window.location.href = "/login";
-      return;
-    }
-    setToken(token);
-  }, []);
 
   return (
     <form
