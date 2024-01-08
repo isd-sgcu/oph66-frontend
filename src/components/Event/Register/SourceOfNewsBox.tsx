@@ -1,7 +1,8 @@
 import clsx from "clsx";
 import type React from "react";
 
-import CheckBox from "../CheckBox";
+import CheckBox from "@/components/CheckBox";
+
 interface Props {
   setSourceOfNews: React.Dispatch<React.SetStateAction<string[]>>;
   isShowError: boolean;
@@ -15,8 +16,8 @@ const SourceOfNewsBox: React.FC<Props> = ({ setSourceOfNews, isShowError }) => {
       )}
     >
       <p>
-        ทราบข่าวการจัดงานจากช่องทางใด (ตอบได้มากกว่า 1 ข้อ) / How did you hear
-        about the event? (Check all that apply)*
+        ทราบข่าวการจัดกิจกรรมนี้จากช่องทางใด (ตอบได้มากกว่า 1 ข้อ) / How did you
+        hear about the event? (Check all that apply)*
       </p>
       <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center">
         <CheckBox

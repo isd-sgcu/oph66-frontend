@@ -1,3 +1,5 @@
+import type React from "react";
+
 interface Props {
   options: string[];
   defaultVal: string;
@@ -8,13 +10,13 @@ interface Props {
   isSelectable?: boolean;
 }
 
-const DropDown = ({
+const DropDown: React.FC<Props> = ({
   options = [],
   defaultVal,
   value,
   setValue,
   isSelectable = true,
-}: Props) => {
+}) => {
   return (
     <div className="relative inline-block h-full w-full">
       <i className="icon-[mdi--chevron-down] pointer-events-none absolute right-0 top-1/2 flex -translate-y-1/2 items-center text-xl text-pink-400"></i>

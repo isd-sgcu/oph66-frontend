@@ -1,9 +1,12 @@
-import { DAYS, MONTHS, YEARS } from "@/data/form/datetime";
-import { COUNTRIES, PROVINCES } from "@/data/form/location";
 import clsx from "clsx";
+import type React from "react";
+
 import DropDown from "../DropDown";
 import RadioBox from "../RadioBox";
 import TextBox from "../TextBox";
+
+import { DAYS, MONTHS, YEARS } from "@/data/form/datetime";
+import { COUNTRIES, PROVINCES } from "@/data/form/location";
 
 interface Props {
   setFirstName: React.Dispatch<React.SetStateAction<string>>;
@@ -24,7 +27,7 @@ interface Props {
   firstName: string;
   lastName: string;
 }
-const PersonalInfoBox = ({
+const PersonalInfoBox: React.FC<Props> = ({
   setFirstName,
   setLastName,
   setBirthDay,
@@ -42,7 +45,7 @@ const PersonalInfoBox = ({
   country,
   firstName,
   lastName,
-}: Props) => {
+}) => {
   return (
     <div
       className={clsx(

@@ -13,7 +13,7 @@ const Card: React.FC<Faculty> = ({
   return (
     <motion.a
       href={"/faculties/" + id}
-      className="mx-4 my-2 flex h-full max-w-[29rem] flex-col justify-between rounded-2xl border-2 border-white bg-transparent bg-gradient-to-t from-pink-400/50 to-white/5 font-medium text-white shadow-inner shadow-white"
+      className="mx-4 my-2 flex h-full max-w-[29rem] flex-col justify-between rounded-2xl border-2 border-white bg-transparent bg-gradient-to-t from-pink-400/50 to-white/5 font-medium text-white shadow-inner shadow-white backdrop-blur-2xl"
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       transition={{

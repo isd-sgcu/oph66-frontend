@@ -1,10 +1,11 @@
+import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
+import Card from "./Card";
+
 import { FACULTIES } from "@/data/faculties";
 import type { Event } from "@/types/event";
-import clsx from "clsx";
-import Card from "./Card";
 
 interface Props {
   events: Event[];
@@ -85,7 +86,7 @@ const Container: React.FC<Props> = ({ events, faculty }) => {
           </div>
           <motion.input
             type="text"
-            className="w-full flex-1 appearance-none rounded-r-2xl border-2 border-white bg-transparent px-4 text-white shadow-inner shadow-white placeholder:text-white"
+            className="w-full flex-1 appearance-none rounded-r-2xl border-2 border-white bg-transparent px-4 text-white shadow-inner shadow-white backdrop-blur-2xl placeholder:text-white"
             placeholder="ค้นหา/search"
             value={searchQuery}
             onChange={handleSearchChange}

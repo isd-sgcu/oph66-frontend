@@ -3,6 +3,7 @@ import type { GetStaticPaths } from "astro";
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Department from "@/components/Faculty/Department";
+
 import { FACULTIES } from "@/data/faculties";
 
 export const getStaticPaths = (() => {
@@ -30,7 +31,7 @@ if (!faculty) {
     </div>
     <a
       href=`/events?faculty=${faculty.nameEN}`
-      class="flex w-fit items-center justify-center rounded-2xl border-2 border-white bg-gradient-to-t from-pink-550/50 to-pink-550/10 px-5 py-2 text-center font-bold shadow-inner shadow-white md:text-2xl"
+      class="flex w-fit items-center justify-center rounded-2xl border-2 border-white bg-gradient-to-t from-pink-550/50 to-pink-550/10 px-5 py-2 text-center font-bold shadow-inner shadow-white backdrop-blur-2xl md:text-2xl"
     >
       กิจกรรมทั้งหมด / All events
     </a>

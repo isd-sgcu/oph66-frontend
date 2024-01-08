@@ -1,9 +1,10 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 
-import { FACULTIES } from "@/data/faculties";
 import Card from "./Card.tsx";
 import Selector from "./Selector.tsx";
+
+import { FACULTIES } from "@/data/faculties";
 
 const options = FACULTIES.map((faculty) => {
   return {

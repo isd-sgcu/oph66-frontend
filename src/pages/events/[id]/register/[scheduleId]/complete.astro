@@ -4,9 +4,8 @@ export const prerender = false;
 import { Image } from "astro:assets";
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import EventBox from "@/components/Event/EventRegisterComplete/EventBox.astro";
-import type { Event } from "@/types/event";
 
+import type { Event } from "@/types/event";
 import ophLogo from "@/assets/oph-logo.svg";
 
 const getData = async (id: string) => {
@@ -71,14 +70,24 @@ const location = event.location.th + " / " + event.location.en;
         <p class="font-bold md:text-3xl">ลงทะเบียนกิจกรรมเสร็จสิ้น !</p>
         <p class="font-bold md:text-xl">Registration completed !</p>
       </div>
-      <EventBox
-        eventName={name}
-        eventFacultyEng={event.faculty.name.en}
-        eventFacultyTh={event.faculty.name.th}
-        eventPlace={location}
-        eventDate={date}
-        eventTime={time}
-      />
+
+      <div
+        class="flex h-fit w-72 max-w-full flex-col justify-between gap-2 rounded-2xl border-2 border-white p-4 text-white shadow-inner shadow-white backdrop-blur-2xl"
+      >
+        <h2 class="text-2xl font-bold">{name}</h2>
+        <div class="flex flex-col">
+          <p>{event.faculty.name.th}</p>
+          <p class="text-sm">{event.faculty.name.en}</p>
+        </div>
+        <div class="grid grid-cols-[30px_minmax(0,1fr)] gap-y-2">
+          <i class="icon-[mdi--calendar-blank-outline] text-2xl"></i>
+          <p>{date}</p>
+          <i class="icon-[mdi--alarm-clock] text-2xl"></i>
+          <p>{time}</p>
+          <i class="icon-[mdi--map-marker] text-2xl"></i>
+          <p>{location}</p>
+        </div>
+      </div>
     </div>
     <a
       class="flex items-center justify-center gap-2 px-4 py-2 underline underline-offset-2 hover:no-underline"

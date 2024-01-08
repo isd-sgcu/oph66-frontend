@@ -1,8 +1,9 @@
 import clsx from "clsx";
 import { useState } from "react";
 
-import type { FacultyInterested } from "@/types/form.ts";
 import FacultyDetailBox from "./FacultyDetailBox.tsx";
+
+import type { FacultyInterested } from "@/types/form.ts";
 
 interface Props {
   setFacultiesPlannedToVisit: React.Dispatch<
@@ -11,10 +12,10 @@ interface Props {
   facultiesPlannedToVisit: FacultyInterested[];
 }
 
-const PlannedFacultyBox = ({
+const PlannedFacultyBox: React.FC<Props> = ({
   setFacultiesPlannedToVisit,
   facultiesPlannedToVisit,
-}: Props) => {
+}) => {
   const [boxCount, setBoxCount] = useState<number>(1);
   const addBox = () => {
     setBoxCount(boxCount + 1);

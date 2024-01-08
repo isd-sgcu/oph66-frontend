@@ -21,7 +21,18 @@ interface Props {
   };
 }
 
-const IDCard = (props: Props) => {
+const IDCard: React.FC<Props> = ({
+  fullName,
+  userId,
+  faculties: {
+    firstThai,
+    firstEng,
+    secondThai,
+    secondEng,
+    thirdThai,
+    thirdEng,
+  },
+}) => {
   const ref = useRef<HTMLElement>(null);
   const [image, setImage] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -84,8 +95,8 @@ const IDCard = (props: Props) => {
         </section>
         <div className="flex h-48 w-full flex-col pl-8 pt-7">
           <img className="h-24 w-52" src={chula3.src} alt="" />
-          <p className="text-2xl font-bold">{props.fullName}</p>
-          <p className="font-medium">ID: {props.userId}</p>
+          <p className="text-2xl font-bold">{fullName}</p>
+          <p className="font-medium">ID: {userId}</p>
         </div>
         <div className="flex w-full flex-col px-8 pt-2">
           <div className="flex w-fit items-center break-words rounded-2xl bg-white px-4 py-1 font-medium text-pink-500">
@@ -93,14 +104,14 @@ const IDCard = (props: Props) => {
           </div>
           <div className="mt-3 grid w-fit grid-cols-[16px_1fr] font-medium">
             <span className="col-span-1">1.</span>
-            <span className="col-span-1">{props.faculties.firstThai}</span>
-            <span className="col-start-2">{props.faculties.firstEng}</span>
+            <span className="col-span-1">{firstThai}</span>
+            <span className="col-start-2">{firstEng}</span>
             <span className="col-span-1">2.</span>
-            <span className="col-span-1">{props.faculties.secondThai}</span>
-            <span className="col-start-2">{props.faculties.secondEng}</span>
+            <span className="col-span-1">{secondThai}</span>
+            <span className="col-start-2">{secondEng}</span>
             <span className="col-span-1">3.</span>
-            <span className="col-span-1">{props.faculties.thirdThai}</span>
-            <span className="col-start-2">{props.faculties.thirdEng}</span>
+            <span className="col-span-1">{thirdThai}</span>
+            <span className="col-start-2">{thirdEng}</span>
           </div>
           <div className="mt-auto flex justify-between">
             <div className="flex flex-col gap-2 place-self-end">
@@ -113,7 +124,7 @@ const IDCard = (props: Props) => {
               </span>
               <span className="text-xs font-medium">20-21 January 2024</span>
             </div>
-            <QRCode userId={props.userId} />
+            <QRCode userId={userId} />
           </div>
         </div>
       </section>
@@ -121,7 +132,7 @@ const IDCard = (props: Props) => {
         <div className="flex w-full flex-col gap-5">
           <button
             className={clsx(
-              "flex w-full items-center justify-center gap-2 rounded-2xl border-2 border-white px-5 py-1 text-lg font-bold shadow-inner shadow-white md:px-7 md:py-3 md:text-2xl",
+              "flex w-full items-center justify-center gap-2 rounded-2xl border-2 border-white px-5 py-1 text-lg font-bold shadow-inner shadow-white backdrop-blur-2xl md:px-7 md:py-3 md:text-2xl",
               !image && "hidden"
             )}
             onClick={handleDownload}

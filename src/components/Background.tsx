@@ -1,10 +1,12 @@
+import type React from "react";
+
 import bg from "@/assets/background.svg";
 
 interface Props {
   withJigsaw?: boolean;
 }
 
-const Background = ({ withJigsaw = true }: Props) => {
+const Background: React.FC<Props> = ({ withJigsaw = true }) => {
   return (
     // eslint-disable-next-line tailwindcss/migration-from-tailwind-2
     <div className="absolute left-1/2 top-0 -z-50 h-full w-full -translate-x-1/2 overflow-clip bg-pink-400">

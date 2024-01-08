@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+
 import RadioBox from "../RadioBox";
 import TextBox from "../TextBox";
 
@@ -8,11 +9,11 @@ interface Props {
   roundOfAdmission: string | undefined;
 }
 
-const RoundOfAdmissionBox = ({
+const RoundOfAdmissionBox: React.FC<Props> = ({
   setRoundOfAdmission,
   setReasonForApplying,
   roundOfAdmission,
-}: Props) => {
+}) => {
   const [otherWritable, setOtherWritable] = useState<boolean>(false);
   useEffect(() => {
     setOtherWritable(

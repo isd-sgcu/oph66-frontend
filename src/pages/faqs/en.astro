@@ -2,6 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import TextBox from "@/components/FAQs/TextBox.astro";
 import type { Props as TextBoxProps } from "@/components/FAQs/TextBox.astro";
+
 import { FAQS_ENG } from "@/data/FAQs";
 ---
 
@@ -17,7 +18,7 @@ import { FAQS_ENG } from "@/data/FAQs";
         href="/faqs"
         class:list={[
           "duration-200 hover:bg-white/25",
-          "mx-2 flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-white bg-transparent shadow-inner shadow-white",
+          "mx-2 flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-white bg-transparent shadow-inner shadow-white backdrop-blur-2xl",
         ]}
       >
         TH
@@ -26,7 +27,7 @@ import { FAQS_ENG } from "@/data/FAQs";
         href="/faqs/en"
         class:list={[
           "bg-white text-pink-800",
-          "mx-2 flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-white bg-transparent shadow-inner shadow-white",
+          "mx-2 flex h-16 w-16 items-center justify-center rounded-2xl border-2 border-white bg-transparent shadow-inner shadow-white backdrop-blur-2xl",
         ]}
       >
         EN

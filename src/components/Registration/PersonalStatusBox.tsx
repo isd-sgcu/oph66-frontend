@@ -10,13 +10,13 @@ interface Props {
   status: string | undefined;
   studentStatus: string | undefined;
 }
-const PersonalInfoBox = ({
+const PersonalInfoBox: React.FC<Props> = ({
   setStatus,
   setStudentStatus,
   isShowError,
   status,
   studentStatus,
-}: Props) => {
+}) => {
   const [otherStudentWritable, setOtherStudentWritable] =
     useState<boolean>(false);
   const [otherWritable, setOtherWritable] = useState<boolean>(false);

@@ -2,8 +2,8 @@
 export const prerender = false;
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import EventInfoBox from "@/components/Event/EventRegister/EventInfoBox.tsx";
-import EventForm from "@/components/Event/EventRegister/EventForm";
+import Form from "@/components/Event/Register/Form";
+
 import type { Event } from "@/types/event";
 
 const getData = async (id: string) => {
@@ -49,25 +49,46 @@ const location = event.location.th + " / " + event.location.en;
 ---
 
 <BaseLayout withNav={false} withFooter={false}>
-  <div class="flex w-full flex-col items-center font-medium text-white">
-    <h1 class="text-center text-3xl font-bold md:text-6xl">ลงทะเบียนกิจกรรม</h1>
-    <h2
-      class="mb-12 font-libre font-bold underline underline-offset-8 md:mb-12 md:text-3xl"
+  <div
+    class="flex w-full max-w-2xl flex-col items-center gap-8 px-4 py-8 font-medium text-white md:gap-16"
+  >
+    <div class="flex w-full flex-col items-center justify-center">
+      <h1 class="text-3xl font-bold md:text-6xl">ลงทะเบียนกิจกรรม</h1>
+      <h2 class="font-libre font-bold underline underline-offset-8 md:text-3xl">
+        Event Registration
+      </h2>
+    </div>
+    <div
+      class="flex w-full flex-col items-center justify-center gap-4 text-center"
     >
-      Event Registration
-    </h2>
-    <h1 class="mb-4 text-center text-5xl font-bold text-white">
-      {name}
-    </h1>
-    <h2 class="mb-10 text-center text-2xl font-bold text-white">
-      {faculty}
-    </h2>
-    <EventInfoBox eventDate={date} eventTime={time} eventLocation={location} />
-    <EventForm
-      eventDate={date}
-      eventTime={time}
-      eventName={name}
-      eventFaculty={faculty}
+      <h1 class="text-3xl font-bold text-white md:text-5xl">
+        {name}
+      </h1>
+      <h2 class="font-bold text-white md:text-2xl">
+        {faculty}
+      </h2>
+    </div>
+    <div
+      class="flex w-full max-w-xl flex-col justify-between gap-2 rounded-2xl border-2 border-white p-4 text-sm font-medium shadow-inner shadow-white backdrop-blur-2xl md:text-base"
+    >
+      <div class="grid grid-cols-[24px_minmax(0,1fr)] gap-2">
+        <i class="icon-[mdi--calendar-blank-outline] text-2xl"></i>
+        <p>{date}</p>
+      </div>
+      <div class="grid grid-cols-[24px_minmax(0,1fr)] gap-2">
+        <i class="icon-[mdi--alarm-clock] text-2xl"></i>
+        <p>{time}</p>
+      </div>
+      <div class="grid grid-cols-[24px_minmax(0,1fr)] gap-2">
+        <i class="icon-[mdi--location] text-2xl"></i>
+        <p>{location}</p>
+      </div>
+    </div>
+    <Form
+      date={date}
+      time={time}
+      name={name}
+      faculty={event.faculty.name}
       client:load
     />
   </div>

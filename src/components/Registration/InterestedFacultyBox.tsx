@@ -1,8 +1,9 @@
 import clsx from "clsx";
 import { useState } from "react";
 
-import type { FacultyInterested } from "@/types/form.ts";
 import FacultyDetailBox from "./FacultyDetailBox.tsx";
+
+import type { FacultyInterested } from "@/types/form.ts";
 
 interface Props {
   setFacultiesInterested: React.Dispatch<

@@ -3,8 +3,9 @@ export const prerender = false;
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { EnrollBox } from "@/components/Event/Card";
-import type { Event } from "@/types/event";
 import CurrentAttendee from "@/components/Event/CurrentAttendee";
+
+import type { Event } from "@/types/event";
 
 const getData = async (id: string) => {
   const res = await fetch(

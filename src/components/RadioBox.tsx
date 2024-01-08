@@ -11,13 +11,13 @@ interface Props {
   isBeingChecked: boolean;
 }
 
-const RadioBox = ({
+const RadioBox: React.FC<Props> = ({
   name,
   value,
   setValue,
   isSelectable = true,
   isBeingChecked,
-}: Props) => {
+}) => {
   const handleClick = (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
 

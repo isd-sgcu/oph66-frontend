@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+
+import DropDown from "../DropDown.tsx";
 
 import { FACULTIES } from "@/data/faculties.ts";
 import type { FacultyInterested } from "@/types/form.ts";
-import DropDown from "../DropDown.tsx";
 
 interface Props {
   onlyFaculty?: boolean;
@@ -10,12 +11,12 @@ interface Props {
   setValues: React.Dispatch<React.SetStateAction<FacultyInterested[]>>;
   faculties: FacultyInterested[];
 }
-const FacultyDetailBox = ({
+const FacultyDetailBox: React.FC<Props> = ({
   onlyFaculty = true,
   number,
   setValues,
   faculties,
-}: Props) => {
+}) => {
   const setFacultyDetail = (s: string) => {
     setValues((prevArray) =>
       prevArray.map((e) => (e.number === number ? { ...e, faculty: s } : e))
