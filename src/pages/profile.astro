@@ -2,16 +2,86 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import IDCard from "@/components/IDCard/IDCard";
 
-const fullName = "Untitled Untitled";
-const userId = "6701234599";
-const faculties = {
-  firstThai: "คณะนิติศาสตร์",
-  firstEng: "Law",
-  secondThai: "คณะอักษรศาสตร์",
-  secondEng: "Arts",
-  thirdThai: "คณะพาณิชยศาสตร์และการบัญชี",
-  thirdEng: "Commerce and Accountancy",
-};
+let token;
+if (Astro.cookies.has("token")) token = Astro.cookies.get("token");
+if (!token) return Astro.redirect("/login");
+
+const res = await fetch(import.meta.env.PUBLIC_API_BASE_URL + "/auth/me", {
+  headers: {
+    Authorization: `Bearer ${token}`,
+  },
+});
+
+if (!res.ok) {
+  return new Response("Unauthorized", { status: 401 });
+}
+
+const data = await res.json();
+const {
+  first_name,
+  last_name,
+  id,
+  interested_faculties,
+}: {
+  first_name: string;
+  last_name: string;
+  id: number;
+  interested_faculties: {
+    department: {
+      code: "string";
+      name: {
+        en: "string";
+        th: "string";
+      };
+    };
+    faculty: {
+      code: "string";
+      name: {
+        en: "string";
+        th: "string";
+      };
+    };
+    section: {
+      code: "string";
+      name: {
+        en: "string";
+        th: "string";
+      };
+    };
+  }[];
+} = data;
+const fullName = `${first_name} ${last_name}`;
+const userId = "67" + id.toString() + interested_faculties[0].faculty.code;
+const faculties: {
+  firstThai: string;
+  firstEng: string;
+  secondThai: string;
+  secondEng: string;
+  thirdThai: string;
+  thirdEng: string;
+} = interested_faculties.reduce(
+  (acc, curr, index) => {
+    if (index === 0) {
+      acc.firstThai = curr.faculty.name.th;
+      acc.firstEng = curr.faculty.name.en;
+    } else if (index === 1) {
+      acc.secondThai = curr.faculty.name.th;
+      acc.secondEng = curr.faculty.name.en;
+    } else if (index === 2) {
+      acc.thirdThai = curr.faculty.name.th;
+      acc.thirdEng = curr.faculty.name.en;
+    }
+    return acc;
+  },
+  {
+    firstThai: "",
+    firstEng: "",
+    secondThai: "",
+    secondEng: "",
+    thirdThai: "",
+    thirdEng: "",
+  }
+);
 ---
 
 <BaseLayout>

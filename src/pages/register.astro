@@ -1,6 +1,10 @@
 ---
 import Form from "@/components/Registration/Form";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+
+let token;
+if (Astro.cookies.has("token")) token = Astro.cookies.get("token");
+if (!token) return Astro.redirect("/login");
 ---
 
 <BaseLayout withNav={false} withFooter={false}>

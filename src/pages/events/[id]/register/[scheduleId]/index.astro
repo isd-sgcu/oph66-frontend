@@ -6,6 +6,10 @@ import Form from "@/components/Event/Register/Form";
 
 import type { Event } from "@/types/event";
 
+let token;
+if (Astro.cookies.has("token")) token = Astro.cookies.get("token");
+if (!token) return Astro.redirect("/login");
+
 const getData = async (id: string) => {
   const res = await fetch(
     import.meta.env.PUBLIC_API_BASE_URL + `/events/${id}`
@@ -89,6 +93,7 @@ const location = event.location.th + " / " + event.location.en;
       time={time}
       name={name}
       faculty={event.faculty.name}
+      scheduleId={scheduleId}
       client:load
     />
   </div>

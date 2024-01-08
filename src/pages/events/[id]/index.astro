@@ -155,12 +155,17 @@ const formatTime = (date: string) => {
           </div>
         )
       }
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-4">
         <h3 class="text-2xl font-bold text-pink-550">รายละเอียดกิจกรรม</h3>
-        <p class="font-medium text-indigo-950">{event.description.th}</p>
-        <p class="font-medium text-indigo-950">
-          {event.description.en}
-        </p>
+        <p
+          class="font-medium text-indigo-950"
+          set:html={event.description.th.replaceAll("\n", "<br />")}
+        />
+        <h3 class="text-2xl font-bold text-pink-550">Event's description</h3>
+        <p
+          class="font-medium text-indigo-950"
+          set:html={event.description.en.replaceAll("\n", "<br />")}
+        />
       </div>
     </section>
   </div>

@@ -14,7 +14,7 @@ const getData = async () => {
 
 const faculty = Astro.url.searchParams.get("faculty");
 
-const events: Event[] = await getData();
+const events: Event[] = (await getData()) ?? [];
 ---
 
 <BaseLayout>
