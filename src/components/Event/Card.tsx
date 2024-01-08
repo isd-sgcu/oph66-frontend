@@ -1,5 +1,7 @@
-import type { Event } from "@/types/event";
 import { motion } from "framer-motion";
+import type React from "react";
+
+import type { Event } from "@/types/event";
 
 export const EnrollBox: React.FC<{
   walkIn: boolean;
@@ -29,7 +31,7 @@ const Card: React.FC<Event> = ({
 }) => {
   return (
     <motion.a
-      className="w-72 rounded-2xl border-2 border-white bg-pink-500 shadow-inner shadow-white ring-4 ring-white/10"
+      className="w-72 rounded-2xl border-2 border-white bg-pink-500 shadow-inner shadow-white ring-4 ring-white/10 backdrop-blur-2xl"
       href={"/events/" + id}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
@@ -40,7 +42,7 @@ const Card: React.FC<Event> = ({
         duration: 0.3,
       }}
     >
-      <div className="flex flex-col gap-2 rounded-t-2xl bg-gradient-to-r from-indigo-900 to-pink-550 p-4 shadow-inner shadow-white">
+      <div className="flex flex-col gap-2 rounded-t-2xl bg-gradient-to-r from-indigo-900 to-pink-550 p-4 shadow-inner shadow-white backdrop-blur-2xl">
         <p className="text-xl font-bold uppercase text-white">
           {name.en ? name.en : name.th}
         </p>

@@ -1,8 +1,9 @@
 import clsx from "clsx";
 import { useState } from "react";
 
-import type { FacultyInterested } from "@/types/form.ts";
 import FacultyDetailBox from "./FacultyDetailBox.tsx";
+
+import type { FacultyInterested } from "@/types/form.ts";
 
 interface Props {
   setFacultiesInterested: React.Dispatch<
@@ -21,7 +22,7 @@ const InterestedFacultyBox: React.FC<Props> = ({
   };
 
   return (
-    <div className="flex h-fit w-full max-w-xl flex-col gap-2 rounded-2xl border-2 p-5 text-sm font-medium  shadow-inner shadow-white backdrop-blur-2xl">
+    <div className="flex h-fit w-full max-w-xl flex-col gap-2 rounded-2xl border-2 p-5 text-sm font-medium shadow-inner  shadow-white backdrop-blur-2xl md:text-base">
       <p>
         คณะที่สนใจที่สุด (ไม่เกิน 3 คณะ) / Faculties interested (maximum: 3)
       </p>

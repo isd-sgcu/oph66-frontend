@@ -1,15 +1,17 @@
 import { useState } from "react";
 
-import type { FacultyInterested } from "@/types/form";
 import CheckBox from "../CheckBox";
 import ConfirmModule from "./ConfirmModule";
 import ErrorBox from "./ErrorBox";
+import HealthConditionBox from "./HealthConditionBox";
 import InterestedFacultyBox from "./InterestedFacultyBox";
 import PersonalInfoBox from "./PersonalInfoBox";
 import PersonalStatusBox from "./PersonalStatusBox";
 import PlannedFacultyBox from "./PlannedFacultyBox";
 import RoundOfAdmissionBox from "./RoundOfAdmissionBox";
 import SourceOfNewsBox from "./SourceOfNewsBox";
+
+import type { FacultyInterested } from "@/types/form";
 
 const Form = () => {
   const [firstName, setFirstName] = useState<string>("");
@@ -22,6 +24,8 @@ const Form = () => {
   const [country, setCountry] = useState<string>("");
   const [status, setStatus] = useState<string>();
   const [studentStatus, setStudentStatus] = useState<string>();
+  const [allergies, setAllergies] = useState<string>();
+  const [healthConditions, setHealthConditions] = useState<string>();
   const [sourceOfNews, setSourceOfNews] = useState<string[]>([] as string[]);
   const [roundOfAdmission, setRoundOfAdmission] = useState<string>();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -47,6 +51,7 @@ const Form = () => {
     false,
     false,
     false,
+    false,
   ]);
   const [isShowConfirm, setIsShowConfirm] = useState<boolean>(false);
 
@@ -60,6 +65,7 @@ const Form = () => {
         !residence ||
         !(province || country),
       !status || (status === "student" && !studentStatus),
+      !allergies || !healthConditions,
       sourceOfNews.length === 0,
       !agreedToTerms.includes("agreed"),
       !agreedToTerms.includes("agreedPhoto"),
@@ -109,9 +115,16 @@ const Form = () => {
         status={status}
         studentStatus={studentStatus}
       />
+      <HealthConditionBox
+        setAllergies={setAllergies}
+        setHealthConditions={setHealthConditions}
+        allergies={allergies}
+        healthConditions={healthConditions}
+        isShowError={isShowError[2]}
+      />
       <SourceOfNewsBox
         setSourceOfNews={setSourceOfNews}
-        isShowError={isShowError[2]}
+        isShowError={isShowError[3]}
       />
       <RoundOfAdmissionBox
         setRoundOfAdmission={setRoundOfAdmission}
@@ -126,16 +139,16 @@ const Form = () => {
         setFacultiesPlannedToVisit={setFacultiesPlannedToVisit}
         facultiesPlannedToVisit={facultiesPlannedToVisit}
       />
-      <div className="flex flex-col gap-2">
+      <div className="flex max-w-xl flex-col gap-2">
         <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center gap-1">
           <CheckBox
             name="agreement"
             value="agreed"
             id="agreement"
             setValue={setAgreedToTerms}
-            isShowError={isShowError[3]}
+            isShowError={isShowError[4]}
           />
-          <label className="text-base">
+          <label className="text-sm md:text-base">
             ยอมรับ
             <a
               href="https://docs.google.com/document/d/1Juw2skFkg1lD8lV7NguLJylBKWMCxnicwbJJ0PKyDRI/edit?usp=sharing"
@@ -153,9 +166,9 @@ const Form = () => {
             value="agreedPhoto"
             id="agreementPhoto"
             setValue={setAgreedToTerms}
-            isShowError={isShowError[4]}
+            isShowError={isShowError[5]}
           />
-          <label className="text-base">
+          <label className="text-sm md:text-base">
             ยอมรับให้คณะผู้จัดงานขออนุญาตบันทึกภาพ วิดีโอ
             และถ่ายทอดสดกิจกรรมผ่านช่องทางออนไลน์
           </label>
@@ -164,7 +177,7 @@ const Form = () => {
       {isShowError.includes(true) && <ErrorBox />}
       {isShowConfirm && <ConfirmModule setIsShowConfirm={setIsShowConfirm} />}
       <button
-        className="rounded-2xl border-2 border-white px-5 py-2 text-xl font-bold shadow-inner shadow-white"
+        className="rounded-2xl border-2 border-white px-5 py-2 text-xl font-bold shadow-inner shadow-white backdrop-blur-2xl"
         onClick={validateData}
         type="button"
       >

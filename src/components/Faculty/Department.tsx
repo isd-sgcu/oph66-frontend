@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import type { FC } from "react";
 
 import type { Department as DepartmentType } from "@/types/faculty";
 
@@ -33,7 +32,7 @@ const sectionVariants = {
   },
 };
 
-const Department: FC<Props> = ({ departments }) => {
+const Department: React.FC<Props> = ({ departments }) => {
   return (
     <motion.ul
       className="mx-auto mt-16 flex w-full max-w-xl flex-col gap-4"
@@ -60,7 +59,7 @@ const Department: FC<Props> = ({ departments }) => {
           <ul className="mx-auto flex w-4/5 flex-col gap-2.5">
             {department.sections.map((section) => (
               <motion.li
-                className="mx-auto flex w-full flex-col items-center justify-center rounded-2xl border-2 border-white bg-gradient-to-t from-pink-550/50 to-pink-550/15 px-3 py-2 text-center shadow-inner shadow-white"
+                className="mx-auto flex w-full flex-col items-center justify-center rounded-2xl border-2 border-white bg-gradient-to-t from-pink-550/50 to-pink-550/15 px-3 py-2 text-center shadow-inner shadow-white backdrop-blur-2xl"
                 variants={sectionVariants}
                 key={section.id}
               >

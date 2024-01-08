@@ -10,13 +10,13 @@ interface Props {
   status: string | undefined;
   studentStatus: string | undefined;
 }
-const PersonalInfoBox = ({
+const PersonalInfoBox: React.FC<Props> = ({
   setStatus,
   setStudentStatus,
   isShowError,
   status,
   studentStatus,
-}: Props) => {
+}) => {
   const [otherStudentWritable, setOtherStudentWritable] =
     useState<boolean>(false);
   const [otherWritable, setOtherWritable] = useState<boolean>(false);
@@ -37,7 +37,7 @@ const PersonalInfoBox = ({
   return (
     <div
       className={clsx(
-        "flex h-fit w-full max-w-xl flex-col gap-2 rounded-2xl border-2 p-5 text-sm font-medium text-white shadow-inner shadow-white backdrop-blur-2xl",
+        "flex h-fit w-full max-w-xl flex-col gap-2 rounded-2xl border-2 p-5 text-sm font-medium text-white shadow-inner shadow-white backdrop-blur-2xl md:text-base",
         isShowError ? "border-[#F55572] ring-4 ring-[#F55572]" : "border-white"
       )}
     >

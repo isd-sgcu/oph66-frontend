@@ -1,19 +1,36 @@
+import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import Card from "./Card";
 
 import { FACULTIES } from "@/data/faculties";
 import type { Event } from "@/types/event";
-import clsx from "clsx";
-import Card from "./Card";
 
 interface Props {
   events: Event[];
+  faculty: string | null;
 }
 
-const Container: React.FC<Props> = ({ events }) => {
+const Container: React.FC<Props> = ({ events, faculty }) => {
   const [selectedFaculty, setSelectedFaculty] = useState<number>(0);
   const [currEvents, setCurrEvents] = useState<Event[]>(events);
   const [searchQuery, setSearchQuery] = useState<string>("");
+
+  useEffect(() => {
+    if (faculty) {
+      const facultyCode = FACULTIES.find(
+        (facultyObj) => facultyObj.nameEN === faculty
+      )?.id;
+      if (facultyCode) {
+        setSelectedFaculty(parseInt(facultyCode));
+        const filteredEvents = events.filter(
+          (event) => parseInt(event.faculty.code) === parseInt(facultyCode)
+        );
+        setCurrEvents(filteredEvents);
+      }
+    }
+  }, [faculty]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newSearchQuery = e.target.value;
@@ -69,7 +86,7 @@ const Container: React.FC<Props> = ({ events }) => {
           </div>
           <motion.input
             type="text"
-            className="w-full flex-1 appearance-none rounded-r-2xl border-2 border-white bg-transparent px-4 text-white shadow-inner shadow-white placeholder:text-white"
+            className="w-full flex-1 appearance-none rounded-r-2xl border-2 border-white bg-transparent px-4 text-white shadow-inner shadow-white backdrop-blur-2xl placeholder:text-white"
             placeholder="ค้นหา/search"
             value={searchQuery}
             onChange={handleSearchChange}
