@@ -1,0 +1,107 @@
+---
+export const prerender = false;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Form from "@/components/Event/Register/Form";
+
+import type { Event } from "@/types/event";
+
+let token;
+if (Astro.cookies.has("token")) token = Astro.cookies.get("token");
+if (!token) return Astro.redirect("/login");
+
+const getData = async (id: string) => {
+  const res = await fetch(
+    import.meta.env.PUBLIC_API_BASE_URL + `/events/${id}`
+  );
+  const data = await res.json();
+  return data.event;
+};
+
+const { id, scheduleId } = Astro.params;
+
+if (!id || !scheduleId) {
+  return new Response("Event not found", { status: 404 });
+}
+
+const event: Event = await getData(id);
+
+if (!event) {
+  return new Response("Event not found", { status: 404 });
+}
+
+const schedule = event.schedules.find((s) => s.id === parseInt(scheduleId));
+
+if (!schedule) {
+  return new Response("Event not found", { status: 404 });
+}
+
+const date = new Date(schedule.starts_at).toLocaleDateString("th-TH", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+const time =
+  new Date(schedule.starts_at).toLocaleTimeString("th-TH", {
+    hour: "2-digit",
+    minute: "2-digit",
+  }) +
+  " - " +
+  new Date(schedule.ends_at).toLocaleTimeString("th-TH", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+const faculty = event.faculty.name.th + " / " + event.faculty.name.en;
+const name = event.name.en ? event.name.en : event.name.th;
+const location = event.location.th + " / " + event.location.en;
+---
+
+<BaseLayout withNav={false} withFooter={false}>
+  <div
+    class="flex w-full max-w-2xl flex-col items-center gap-8 px-4 py-8 font-medium text-white md:gap-16"
+  >
+    <div class="flex w-full flex-col items-center justify-center">
+      <h1 class="text-3xl font-bold md:text-6xl">ลงทะเบียนกิจกรรม</h1>
+      <h2 class="font-libre font-bold underline underline-offset-8 md:text-3xl">
+        Event Registration
+      </h2>
+    </div>
+    <div
+      class="flex w-full flex-col items-center justify-center gap-4 text-center"
+    >
+      <h1 class="text-3xl font-bold text-white md:text-5xl">
+        {name}
+      </h1>
+      <h2 class="font-bold text-white md:text-2xl">
+        {faculty}
+      </h2>
+    </div>
+    <div
+      class="flex w-full max-w-xl flex-col justify-between gap-2 rounded-2xl border-2 border-white p-4 text-sm font-medium shadow-inner shadow-white backdrop-blur-2xl md:text-base"
+    >
+      <div class="grid grid-cols-[24px_minmax(0,1fr)] gap-2">
+        <i class="icon-[mdi--calendar-blank-outline] text-2xl"></i>
+        <p>{date}</p>
+      </div>
+      <div class="grid grid-cols-[24px_minmax(0,1fr)] gap-2">
+        <i class="icon-[mdi--alarm-clock] text-2xl"></i>
+        <p>{time}</p>
+      </div>
+      <div class="grid grid-cols-[24px_minmax(0,1fr)] gap-2">
+        <i class="icon-[mdi--location] text-2xl"></i>
+        <p>{location}</p>
+      </div>
+    </div>
+    <Form
+      date={date}
+      time={time}
+      name={name}
+      faculty={event.faculty.name}
+      scheduleId={scheduleId}
+      token={token.value}
+      client:load
+    />
+  </div>
+</BaseLayout>

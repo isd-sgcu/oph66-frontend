@@ -1,17 +1,26 @@
 ---
-import Nav from "@/components/Nav.astro";
+import "@fontsource/ibm-plex-sans-thai/400.css";
+import "@fontsource/ibm-plex-sans-thai/500.css";
+import "@fontsource/ibm-plex-sans-thai/600.css";
+import "@fontsource/ibm-plex-sans-thai/700.css";
+
+import Nav from "@/components/Nav";
 import Footer from "@/components/Footer.astro";
+import Background from "@/components/Background";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   pageTitle?: string;
   withNav?: boolean;
   withFooter?: boolean;
+  withJigsaw?: boolean;
 }
 
 const {
   pageTitle = "Openhouse Chula",
   withNav = true,
   withFooter = true,
+  withJigsaw = true,
 } = Astro.props;
 ---
 
@@ -22,12 +31,20 @@ const {
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
+    <ViewTransitions />
   </head>
   <body>
-    {withNav && <Nav />}
-    <main class="flex w-full flex-col items-center">
-      <slot />
-    </main>
-    {withFooter && <Footer />}
+    <section
+      class="relative flex h-full min-h-screen w-full flex-col items-center"
+    >
+      {withNav && <Nav client:only="react" />}
+      <main
+        class="flex min-h-[calc(100vh-580px)] w-full flex-col items-center pb-16 pt-8 md:min-h-[calc(100vh-356px)]"
+      >
+        <slot />
+      </main>
+      {withFooter && <Footer transition:persist />}
+      <Background withJigsaw={withJigsaw} transition:persist />
+    </section>
   </body>
 </html>

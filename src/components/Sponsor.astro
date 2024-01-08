@@ -1,0 +1,22 @@
+---
+import { Image } from "astro:assets";
+
+import camphub from "@/assets/icons/camphub.svg";
+import centralretail from "@/assets/icons/centralretail.svg";
+---
+
+<div class="flex flex-col items-center justify-center gap-2 text-center">
+  <p class="font-medium md:ml-auto">Sponsored by</p>
+  <div class="grid grid-cols-2 items-center gap-8">
+    <div
+      class="flex aspect-square w-28 items-center justify-center bg-white p-2"
+    >
+      <Image src={centralretail} alt="Central Retail" />
+    </div>
+    <div
+      class="flex aspect-square w-28 items-center justify-center bg-white p-2"
+    >
+      <Image src={camphub} alt="CampHub" />
+    </div>
+  </div>
+</div>

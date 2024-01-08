@@ -1,0 +1,219 @@
+---
+export const prerender = false;
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { EnrollBox } from "@/components/Event/Card";
+
+import type { Event } from "@/types/event";
+
+const getData = async (id: string) => {
+  const res = await fetch(
+    import.meta.env.PUBLIC_API_BASE_URL + `/events/${id}`
+  );
+  const data = await res.json();
+  return data.event;
+};
+
+let token;
+
+if (Astro.cookies.has("token")) token = Astro.cookies.get("token");
+
+let registered_events: {
+  id: number;
+  current_attendee: number;
+  starts_at: string;
+  ends_at: string;
+  period: string;
+}[];
+if (token) {
+  const res = await fetch(import.meta.env.PUBLIC_API_BASE_URL + "/auth/me", {
+    headers: {
+      Authorization: `Bearer ${token.value}`,
+    },
+  });
+
+  if (res.ok) {
+    const { user } = await res.json();
+    registered_events = user.registered_events;
+  }
+}
+
+const { id } = Astro.params;
+
+if (!id) {
+  return new Response("Event not found", { status: 404 });
+}
+
+const event: Event = await getData(id);
+
+if (!event) {
+  return new Response("Event not found", { status: 404 });
+}
+
+const schedules20 = event.schedules.filter((schedule) =>
+  schedule.period.startsWith("20-")
+);
+const schedules21 = event.schedules.filter((schedule) =>
+  schedule.period.startsWith("21-")
+);
+
+const formatTime = (date: string) => {
+  const d = new Date(date);
+  return `${d.getHours().toString().padStart(2, "0")}:${d
+    .getMinutes()
+    .toString()
+    .padStart(2, "0")}`;
+};
+---
+
+<BaseLayout withJigsaw={false}>
+  <div
+    class="mx-auto mb-16 flex w-full max-w-5xl flex-col gap-2 px-8 pt-24 text-white md:gap-8 md:pt-36"
+  >
+    <div class="flex flex-col gap-2">
+      <h1 class="text-3xl font-bold md:text-5xl">
+        {event.name.en || event.name.th}
+      </h1>
+      <h2 class="font-bold md:text-2xl">
+        {event.faculty.name.th} / {event.faculty.name.en}
+      </h2>
+    </div>
+    <EnrollBox
+      walkIn={!event.require_registration}
+      maxCapacity={event.max_capacity}
+    />
+    <div
+      class="grid w-full grid-cols-[24px_minmax(0,1fr)] items-center rounded-2xl border-2 border-white p-3 md:w-1/2"
+    >
+      <i class="icon-[mdi--map-marker] text-2xl"></i>
+      <p class="text-xs font-medium">
+        {event.location.th} / {event.location.en}
+      </p>
+    </div>
+  </div>
+  <div
+    class="w-full flex-1 bg-white bg-gradient-to-t from-pink-400/50 to-white py-6 text-pink-550"
+  >
+    <section class="mx-auto flex w-full max-w-5xl flex-col gap-4 px-8">
+      {
+        event.schedules.length > 0 && (
+          <div class="flex flex-col gap-2">
+            <h3 class="text-2xl font-bold text-pink-550">
+              รอบกิจกรรม / Schedule
+            </h3>
+            <div class="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {schedules20.length > 0 && (
+                <div class="flex w-full flex-col gap-2">
+                  <div class="w-full rounded-2xl bg-gradient-to-tr from-indigo-900 to-pink-550 p-2 font-semibold text-white">
+                    20 January 2024
+                  </div>
+                  {schedules20.map((schedule) => {
+                    const alreadyRegistered =
+                      registered_events &&
+                      registered_events.find((e) => e.id === schedule.id);
+                    return (
+                      <div class="flex w-full items-center justify-between gap-1 rounded-2xl border border-pink-550 px-1 py-2 text-sm font-medium">
+                        <p
+                          class:list={[
+                            "w-fit",
+                            { "mx-auto": !event.require_registration },
+                          ]}
+                        >
+                          {formatTime(schedule.starts_at)} -{" "}
+                          {formatTime(schedule.ends_at)}
+                        </p>
+                        {event.require_registration && (
+                          <>
+                            <div class="flex w-full max-w-20 items-center justify-center text-nowrap rounded-2xl border border-pink-550 py-1 text-center">
+                              {schedule.current_attendee} /{" "}
+                              {event.max_capacity === 999
+                                ? "∞"
+                                : event.max_capacity}
+                            </div>
+                            {alreadyRegistered ||
+                            schedule.current_attendee >= event.max_capacity ? (
+                              <p class="pointer-events-none flex items-center justify-center rounded-2xl bg-pink-550 px-4 py-1 text-center text-white opacity-25">
+                                ลงทะเบียน / Register
+                              </p>
+                            ) : (
+                              <a
+                                class="flex items-center justify-center rounded-2xl bg-pink-550 px-4 py-1 text-center text-white"
+                                href={`/events/${event.id}/register/${schedule.id}`}
+                              >
+                                ลงทะเบียน / Register
+                              </a>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+              {schedules21.length > 0 && (
+                <div class="flex w-full flex-col gap-2">
+                  <div class="w-full rounded-2xl bg-gradient-to-tr from-indigo-900 to-pink-550 p-2 font-semibold text-white">
+                    21 January 2024
+                  </div>
+                  {schedules21.map((schedule) => {
+                    const alreadyRegistered =
+                      registered_events &&
+                      registered_events.find((e) => e.id === schedule.id);
+                    return (
+                      <div class="flex w-full items-center justify-between gap-1 rounded-2xl border border-pink-550 px-1 py-2 text-sm font-medium">
+                        <p
+                          class:list={[
+                            "w-fit",
+                            { "mx-auto": !event.require_registration },
+                          ]}
+                        >
+                          {formatTime(schedule.starts_at)} -{" "}
+                          {formatTime(schedule.ends_at)}
+                        </p>
+                        {event.require_registration && (
+                          <>
+                            <div class="flex w-full max-w-20 items-center justify-center text-nowrap rounded-2xl border border-pink-550 py-1 text-center">
+                              {schedule.current_attendee} /{" "}
+                              {event.max_capacity === 999
+                                ? "∞"
+                                : event.max_capacity}
+                            </div>
+                            {alreadyRegistered ||
+                            schedule.current_attendee >= event.max_capacity ? (
+                              <p class="pointer-events-none flex items-center justify-center rounded-2xl bg-pink-550 px-4 py-1 text-center text-white opacity-25">
+                                ลงทะเบียน / Register
+                              </p>
+                            ) : (
+                              <a
+                                class="flex items-center justify-center rounded-2xl bg-pink-550 px-4 py-1 text-center text-white"
+                                href={`/events/${event.id}/register/${schedule.id}`}
+                              >
+                                ลงทะเบียน / Register
+                              </a>
+                            )}
+                          </>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
+        )
+      }
+      <div class="flex flex-col gap-4">
+        <h3 class="text-2xl font-bold text-pink-550">รายละเอียดกิจกรรม</h3>
+        <p
+          class="font-medium text-indigo-950"
+          set:html={event.description.th.replaceAll("\n", "<br />")}
+        />
+        <h3 class="text-2xl font-bold text-pink-550">Event's description</h3>
+        <p
+          class="font-medium text-indigo-950"
+          set:html={event.description.en.replaceAll("\n", "<br />")}
+        />
+      </div>
+    </section>
+  </div>
+</BaseLayout>

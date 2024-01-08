@@ -1,5 +1,15 @@
 ---
-
+import Credit from "./Credit.astro";
+import Sponsor from "./Sponsor.astro";
 ---
 
-<footer>Footer</footer>
+<footer
+  class="flex w-full items-center justify-center bg-pink-400 px-5 py-6 text-white"
+>
+  <div
+    class="flex w-full max-w-5xl flex-col items-center justify-between gap-4 md:flex-row md:items-start"
+  >
+    <Credit />
+    <Sponsor />
+  </div>
+</footer>

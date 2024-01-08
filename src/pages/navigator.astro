@@ -1,0 +1,33 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Guide from "@/components/Navigator/Guide";
+
+import Map from "@/assets/map.png";
+
+const images = await Astro.glob<{ default: ImageMetadata }>(
+  "/src/assets/map/**/*.{JPG,jpeg,jpg}"
+);
+---
+
+<BaseLayout withJigsaw={false}>
+  <section class="flex w-full max-w-4xl flex-col items-center px-4 text-center">
+    <div class="flex w-fit flex-col items-center text-center">
+      <h1 class="text-6xl font-bold text-white">Chula Navigator</h1>
+      <h2 class="text-3xl font-medium text-white">
+        แผนที่และวิธีการเดินทางทั่วจุฬาฯ
+      </h2>
+      <hr class="mb-14 mt-2 w-full border border-white" />
+    </div>
+    <Image src={Map} class="rounded-2xl" alt="" />
+    <hr class="mb-16 mt-14 w-full border border-white" />
+    <div class="flex w-fit flex-col items-center text-center text-white">
+      <h1 class="text-6xl font-bold">Chula Walk-through</h1>
+      <h2 class="text-3xl font-medium">พาเดินเท้าทัวร์ทั่วจุฬาฯ</h2>
+      <hr class="mb-14 mt-2 w-full border border-white" />
+    </div>
+    <Guide client:load images={images} />
+  </section>
+</BaseLayout>
