@@ -49,6 +49,7 @@ const Selector: FC<Props> = ({
               <motion.button
                 className="group absolute right-0 flex items-center justify-center p-2 text-center"
                 onClick={handleClear}
+                key="clear"
                 initial={{ x: 0 }}
                 animate={{ x: "100%" }}
                 exit={{ x: 0 }}
