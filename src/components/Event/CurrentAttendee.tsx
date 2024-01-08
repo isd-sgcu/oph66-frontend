@@ -1,5 +1,6 @@
+import { useEffect, useState } from "react";
+
 import type { Event } from "@/types/event";
-import { useEffect, useState, type FC } from "react";
 
 interface Props {
   eventId: string;
@@ -7,7 +8,11 @@ interface Props {
   maxCapacity: number;
 }
 
-const CurrentAttendee: FC<Props> = ({ eventId, scheduleId, maxCapacity }) => {
+const CurrentAttendee: React.FC<Props> = ({
+  eventId,
+  scheduleId,
+  maxCapacity,
+}) => {
   const [currentAttendee, setCurrentAttendee] = useState<number>(0);
 
   useEffect(() => {

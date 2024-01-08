@@ -8,13 +8,13 @@ interface Props {
   isShowError?: boolean;
 }
 
-const CheckBox = ({
+const CheckBox: React.FC<Props> = ({
   name,
   value,
   id,
   setValue,
   isShowError = false,
-}: Props) => {
+}) => {
   const [isChecked, setIsChecked] = useState<boolean>(false);
   const handleClickButton = (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();

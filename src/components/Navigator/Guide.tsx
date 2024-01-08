@@ -67,7 +67,7 @@ const Guide: FC<Props> = ({ images }) => {
           <i className="icon-[mdi--chevron-down] pointer-events-none absolute right-0 top-1/2 -translate-y-1/2 text-3xl text-pink-500 "></i>
         </div>
       </div>
-      <div className="relative h-full w-full flex-col rounded-2xl border-2 border-white bg-gradient-to-t from-pink-550/50 pb-8 pt-4 text-white shadow-inner shadow-white">
+      <div className="relative h-full w-full flex-col rounded-2xl border-2 border-white bg-gradient-to-t from-pink-550/50 pb-8 pt-4 text-white shadow-inner shadow-white backdrop-blur-2xl">
         <div className="flex justify-between gap-8 px-6 py-4">
           <div className="flex flex-1 flex-col items-start gap-2 text-left">
             <p className="line-clamp-2 w-full text-2xl font-bold">

@@ -5,7 +5,7 @@ const SignInButton = () => {
 
   return (
     <button
-      className="flex w-auto items-center justify-center gap-2 rounded-2xl border-2 px-5 py-3 text-center shadow-inner shadow-white sm:w-80 sm:py-2"
+      className="flex w-auto items-center justify-center gap-2 rounded-2xl border-2 px-5 py-3 text-center shadow-inner shadow-white backdrop-blur-2xl sm:w-80 sm:py-2"
       onClick={handleClick}
     >
       <div className="flex items-center justify-center rounded-full bg-white p-1 text-center">

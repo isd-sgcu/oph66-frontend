@@ -1,8 +1,9 @@
 import clsx from "clsx";
 import { useState } from "react";
 
-import type { FacultyInterested } from "@/types/form.ts";
 import FacultyDetailBox from "./FacultyDetailBox.tsx";
+
+import type { FacultyInterested } from "@/types/form.ts";
 
 interface Props {
   setFacultiesPlannedToVisit: React.Dispatch<
@@ -11,16 +12,16 @@ interface Props {
   facultiesPlannedToVisit: FacultyInterested[];
 }
 
-const PlannedFacultyBox = ({
+const PlannedFacultyBox: React.FC<Props> = ({
   setFacultiesPlannedToVisit,
   facultiesPlannedToVisit,
-}: Props) => {
+}) => {
   const [boxCount, setBoxCount] = useState<number>(1);
   const addBox = () => {
     setBoxCount(boxCount + 1);
   };
   return (
-    <div className="flex h-fit w-full max-w-xl flex-col gap-2 rounded-2xl border-2 p-5 text-sm font-medium  shadow-inner shadow-white backdrop-blur-2xl">
+    <div className="flex h-fit w-full max-w-xl flex-col gap-2 rounded-2xl border-2 p-5 text-sm font-medium shadow-inner  shadow-white backdrop-blur-2xl md:text-base">
       <p>
         คณะที่อยากไปในวันงาน (ไม่เกิน 3 คณะ) / Faculties planned to visit
         (maximum: 3)

@@ -1,11 +1,11 @@
 import QR from "qrcode";
+import React, { useEffect, useRef } from "react";
 
-import { useEffect, useRef } from "react";
 interface Props {
   userId: string;
 }
 
-const QRCode = ({ userId }: Props) => {
+const QRCode: React.FC<Props> = ({ userId }) => {
   const ref = useRef<HTMLCanvasElement>(null);
 
   const generateQRCode = async () => {

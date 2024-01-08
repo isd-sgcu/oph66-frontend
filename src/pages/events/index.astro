@@ -1,6 +1,9 @@
 ---
+export const prerender = false;
+
 import Container from "@/components/Event/Container";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+
 import type { Event } from "@/types/event";
 
 const getData = async () => {
@@ -8,6 +11,8 @@ const getData = async () => {
   const data = await res.json();
   return data.events;
 };
+
+const faculty = Astro.url.searchParams.get("faculty");
 
 const events: Event[] = await getData();
 ---
@@ -21,6 +26,6 @@ const events: Event[] = await getData();
       <p class="text-3xl font-medium">กิจกรรมต่าง ๆ ในงาน</p>
       <hr class="mt-2 w-full border border-white" />
     </div>
-    <Container events={events} client:load />
+    <Container events={events} faculty={faculty} client:load />
   </div>
 </BaseLayout>
