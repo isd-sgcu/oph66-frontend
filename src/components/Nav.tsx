@@ -72,12 +72,13 @@ const Nav = () => {
         </span>
         <div className="hidden gap-6 font-semibold md:flex">
           {links.map((link) => {
-            const path = link === "Home" ? "/" : "/" + link.toLowerCase();
-            const isCurrentPath = path === window.location.pathname;
+            const path = link === "Home" ? "" : link.toLowerCase();
+            const isCurrentPath =
+              path === window.location.pathname.replaceAll("/", "");
             return (
               <a
                 key={link}
-                href={path}
+                href={"/" + path}
                 className={clsx(
                   "capitalize text-white underline-offset-2 hover:underline",
                   isCurrentPath && "underline"
@@ -112,6 +113,7 @@ const Nav = () => {
               initial="initial"
               animate="animate"
               exit="initial"
+              key="overlay"
               transition={{
                 delayChildren: 0.2,
                 staggerChildren: 0.1,
@@ -122,12 +124,13 @@ const Nav = () => {
             >
               <div className="flex flex-col gap-8 text-center text-xl font-semibold">
                 {links.map((link) => {
-                  const path = link === "Home" ? "/" : "/" + link.toLowerCase();
-                  const isCurrentPath = path === window.location.pathname;
+                  const path = link === "Home" ? "" : link.toLowerCase();
+                  const isCurrentPath =
+                    path === window.location.pathname.replaceAll("/", "");
                   return (
                     <motion.a
                       key={link}
-                      href={path}
+                      href={"/" + path}
                       variants={menuVariants}
                       transition={{
                         type: "spring",
