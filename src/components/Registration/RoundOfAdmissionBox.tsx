@@ -68,7 +68,7 @@ const RoundOfAdmissionBox: React.FC<Props> = ({
           <div className="ml-6 h-8 w-1/2">
             <TextBox
               value={roundOfAdmission}
-              placeHolder="โปรดระบุ / Please specify"
+              placeHolder="โปรดระบุ / Please specify (ไม่เกิน 40 ตัวอักษร / 40 characters maximum)"
               setValue={setRoundOfAdmission}
               isSelectable={otherWritable}
             />
@@ -79,7 +79,7 @@ const RoundOfAdmissionBox: React.FC<Props> = ({
       <textarea
         className="flex h-20 w-full rounded-2xl p-2 text-xs text-pink-550 placeholder:text-pink-400 md:text-sm"
         onChange={(e) => setReasonForApplying(e.target.value)}
-        placeholder="โปรดระบุ / Please specify"
+        placeholder="โปรดระบุ / Please specify (ไม่เกิน 600 ตัวอักษร / 600 characters maximum)"
       />
     </div>
   );

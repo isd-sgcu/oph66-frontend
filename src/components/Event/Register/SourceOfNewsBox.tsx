@@ -84,6 +84,15 @@ const SourceOfNewsBox: React.FC<Props> = ({ setSourceOfNews, isShowError }) => {
         />
         <label htmlFor="schoolSource">โรงเรียน / School</label>
       </div>
+      <div className="grid grid-cols-[24px_minmax(0,1fr)] items-center">
+        <CheckBox
+          value="camphub"
+          name="sourceOfNews"
+          id="camphubSource"
+          setValue={setSourceOfNews}
+        />
+        <label htmlFor="camphubSource">แคมป์ฮับ / CAMPHUB</label>
+      </div>
       <p className="absolute -bottom-2 right-0 translate-y-full text-xs text-white">
         จำเป็นต้องกรอก / Must be filled*
       </p>
