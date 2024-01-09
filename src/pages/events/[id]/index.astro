@@ -50,12 +50,16 @@ if (!event) {
   return new Response("Event not found", { status: 404 });
 }
 
-const schedules20 = event.schedules.filter((schedule) =>
-  schedule.period.startsWith("20-")
-);
-const schedules21 = event.schedules.filter((schedule) =>
-  schedule.period.startsWith("21-")
-);
+const schedules20 = event.schedules
+  .filter((schedule) => schedule.period.startsWith("20-"))
+  .sort(
+    (a, b) => new Date(a.starts_at).getTime() - new Date(b.starts_at).getTime()
+  );
+const schedules21 = event.schedules
+  .filter((schedule) => schedule.period.startsWith("21-"))
+  .sort(
+    (a, b) => new Date(a.starts_at).getTime() - new Date(b.starts_at).getTime()
+  );
 
 const formatTime = (date: string) => {
   return new Date(date).toLocaleTimeString("th-TH", {
