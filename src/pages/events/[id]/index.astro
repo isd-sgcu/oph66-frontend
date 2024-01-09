@@ -114,7 +114,9 @@ const formatTime = (date: string) => {
                   {schedules20.map((schedule) => {
                     const alreadyRegistered =
                       registered_events &&
-                      registered_events.find((e) => e.id === schedule.id);
+                      registered_events.find(
+                        (e) => e.period === schedule.period
+                      );
                     return (
                       <div class="flex w-full items-center justify-between gap-1 rounded-2xl border border-pink-550 px-1 py-2 text-sm font-medium">
                         <p
@@ -162,7 +164,9 @@ const formatTime = (date: string) => {
                   {schedules21.map((schedule) => {
                     const alreadyRegistered =
                       registered_events &&
-                      registered_events.find((e) => e.id === schedule.id);
+                      registered_events.find(
+                        (e) => e.period === schedule.period
+                      );
                     return (
                       <div class="flex w-full items-center justify-between gap-1 rounded-2xl border border-pink-550 px-1 py-2 text-sm font-medium">
                         <p
