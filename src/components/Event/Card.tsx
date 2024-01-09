@@ -10,7 +10,8 @@ export const EnrollBox: React.FC<{
   <div className="flex flex-col items-start gap-3 text-white">
     <div className="rounded-full bg-pink-500 px-2 py-1">
       <p className="text-xs">
-        จำนวนที่นั่งต่อรอบ/ Capacity per session: {maxCapacity}
+        จำนวนที่นั่งต่อรอบ/ Capacity per session:{" "}
+        {maxCapacity === 999 ? "ไม่ระบุ" : maxCapacity}
       </p>
     </div>
     {walkIn && (

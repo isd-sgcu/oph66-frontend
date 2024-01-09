@@ -58,11 +58,10 @@ const schedules21 = event.schedules.filter((schedule) =>
 );
 
 const formatTime = (date: string) => {
-  const d = new Date(date);
-  return `${d.getHours().toString().padStart(2, "0")}:${d
-    .getMinutes()
-    .toString()
-    .padStart(2, "0")}`;
+  return new Date(date).toLocaleTimeString("th-TH", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
 };
 ---
 
@@ -127,7 +126,7 @@ const formatTime = (date: string) => {
                             <div class="flex w-full max-w-20 items-center justify-center text-nowrap rounded-2xl border border-pink-550 py-1 text-center">
                               {schedule.current_attendee} /{" "}
                               {event.max_capacity === 999
-                                ? "∞"
+                                ? "ไม่ระบุ"
                                 : event.max_capacity}
                             </div>
                             {alreadyRegistered ||
@@ -175,7 +174,7 @@ const formatTime = (date: string) => {
                             <div class="flex w-full max-w-20 items-center justify-center text-nowrap rounded-2xl border border-pink-550 py-1 text-center">
                               {schedule.current_attendee} /{" "}
                               {event.max_capacity === 999
-                                ? "∞"
+                                ? "ไม่ระบุ"
                                 : event.max_capacity}
                             </div>
                             {alreadyRegistered ||
