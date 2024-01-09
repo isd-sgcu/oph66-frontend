@@ -1,5 +1,6 @@
 const defaultTheme = require("tailwindcss/defaultTheme");
 const plugin = require("tailwindcss/plugin");
+const { addDynamicIconSelectors } = require("@iconify/tailwind");
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -42,5 +43,10 @@ export default {
         },
       })
     ),
+    addDynamicIconSelectors({
+      iconSets: {
+        custom: "./src/assets/icons/custom.json",
+      },
+    }),
   ],
 };

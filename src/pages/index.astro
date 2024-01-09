@@ -2,24 +2,159 @@
 import { Image } from "astro:assets";
 
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Day from "@/components/Day";
-import ComingSoon from "@/components/ComingSoon";
+import Day from "@/components/Landing/Day";
+import Card from "@/components/Landing/Card.astro";
+import Register from "@/components/Landing/Register";
 
-import logo from "@/assets/logo.svg";
+import faqs from "@/assets/faqs.svg";
+import idcard from "@/assets/idcard.svg";
+import logo from "@/assets/oph-logo.svg";
+import idcard_mobile from "@/assets/idcard-mobile.svg";
+import faqs_bg from "@/assets/faqs-mobile.svg";
+import Live from "@/components/Landing/Live";
+
+let token, fullName;
+if (Astro.cookies.has("token")) token = Astro.cookies.get("token");
+
+if (token) {
+  const res = await fetch(import.meta.env.PUBLIC_API_BASE_URL + "/auth/me", {
+    headers: {
+      Authorization: `Bearer ${token.value}`,
+    },
+  });
+
+  if (res.ok) {
+    const { user } = await res.json();
+    fullName = user.first_name + " " + user.last_name;
+  }
+}
 ---
 
 <BaseLayout>
-  <div
-    class="flex min-h-screen w-full flex-col items-center justify-center gap-4 px-4 py-8 text-white md:gap-7"
-  >
-    <Image src={logo} alt="logo" class="w-80 max-w-full md:w-96" />
-    <div class="flex flex-col items-center justify-center">
-      <h1 class="font-libre text-lg font-bold md:text-3xl">
-        Chula Open House 2024
-      </h1>
-      <p class="font-libre font-medium md:text-lg">20-21 January 2024</p>
+  <div class="flex min-h-svh w-full flex-col justify-center px-4 text-white">
+    <div class="flex flex-col items-center justify-evenly md:flex-row">
+      <div class="flex flex-col items-center md:items-start">
+        <div class="my-2.5 mb-8 h-28 w-80 md:mb-0 md:h-auto md:w-auto">
+          <Image src={logo} alt="logo" width="522" height="233" />
+        </div>
+        <h1 class="mt-2.5 font-libre text-base font-bold md:ml-10 md:text-3xl">
+          Chula Open House 2024
+        </h1>
+        <p class="mb-10 text-base font-medium md:ml-10">20-21 January 2024</p>
+        <Register client:load token={token?.value} fullName={fullName} />
+      </div>
+      <Day client:load />
     </div>
-    <ComingSoon client:load />
-    <Day client:load />
+    <div class="mt-24 flex flex-col items-center justify-center md:mt-0">
+      <div
+        class="mb-12 mt-16 w-3/5 text-center text-base font-medium md:w-2/5 md:text-lg"
+      >
+        <p>
+          ทุกความฝันที่สวยงามล้วนเริ่มต้นจากชิ้นส่วนเล็ก ๆ เสมอ
+          ไม่เป็นอะไรเลยถ้าตอนนี้ทุกคนยังไม่เห็นภาพเส้นทางที่จะเดินไปในอนาคต
+          เพราะการมางาน CU Open House 2024
+          จะช่วยเติมเต็มภาพเหล่านั้นให้ชัดเจนขึ้นได้แน่นอน
+          อย่าลืมมาร่วมต่อชิ้นส่วนแห่งความฝันและตัวตนไปด้วยกันนะ!
+        </p>
+      </div>
+      <Live client:load />
+    </div>
+    <div
+      class="mb-20 flex w-full flex-col items-center justify-center md:h-96 md:flex-row md:items-end"
+    >
+      <Card
+        imageNo={0}
+        title="CHULA"
+        title_sub="NAVIGATOR"
+        link="/navigator"
+        text="แผนที่และวิธีการเดินทางทั่วจุฬาฯ"
+      />
+      <Card
+        imageNo={1}
+        title="EVENTS"
+        text="กิจกรรมต่าง ๆ ในงาน"
+        link="/events"
+      />
+      <Card
+        imageNo={2}
+        title="FACULTIES"
+        link="/faculties"
+        text="รวมข้อมูลทุกคณะในจุฬาฯ"
+      />
+    </div>
+    <div class="mb-6 flex flex-col justify-center md:flex-row">
+      <a href="/profile" class="group">
+        <div class="mb-2 flex justify-center">
+          <picture>
+            <source media="(min-width: 768px)" srcset={idcard.src} />
+            <Image
+              src={idcard_mobile}
+              alt="idcard background"
+              class="h-auto w-auto"
+            />
+          </picture>
+          <div
+            class="absolute translate-y-40 font-libre text-4xl font-bold md:translate-y-16"
+          >
+            <p class="text-xl font-medium md:text-2xl">Your</p>
+            <p>Chula</p>
+            <p>Open House</p>
+            <p>2024</p>
+            <p>Profile</p>
+            <div
+              class="group mt-2 flex w-fit items-center gap-1 rounded-2xl bg-white px-3 py-1 font-ibm"
+            >
+              <p class="text-sm text-pink-550 duration-200 group-hover:pr-4">
+                คลิกที่นี่/ Click here
+              </p>
+              <i
+                class="icon-[mdi--arrow-right-bold-circle] text-xl text-pink-550"
+              ></i>
+            </div>
+          </div>
+        </div>
+      </a>
+      <a href="/faqs" class="group flex justify-center">
+        <picture>
+          <source media="(min-width: 768px)" srcset={faqs.src} />
+          <Image src={faqs_bg} alt="faqs background" class="h-auto w-auto" />
+        </picture>
+        <div
+          class="absolute flex translate-y-1/2 flex-col items-center justify-center text-4xl font-bold"
+        >
+          <p
+            class="mb-20 translate-y-6 text-[13rem] font-medium duration-200 group-hover:font-bold md:mb-20 md:text-[15rem]"
+          >
+            ?
+          </p>
+          <p class="font-libre md:mt-3.5">FAQs</p>
+          <div class="mt-2 rounded-2xl bg-white">
+            <p class="px-3 py-1 text-sm text-pink-550">รวมข้อมูลเกี่ยวกับงาน</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div
+      class:list={[
+        "mx-auto grid w-fit grid-cols-1 justify-center gap-4 md:grid-cols-2",
+        // NOTE: Not ready yet
+        "hidden",
+      ]}
+    >
+      <a
+        href="#"
+        class="flex w-full flex-col items-center justify-center rounded-2xl border-2 border-white px-20 py-1 text-center shadow-inner shadow-white backdrop-blur-2xl duration-200 hover:bg-white/25"
+      >
+        <span class="text-xl font-bold">สูจิบัตร</span>
+        <span class="font-libre font-bold">Program</span>
+      </a>
+      <a
+        href="#"
+        class="flex w-full flex-col items-center justify-center rounded-2xl border-2 border-white px-20 py-1 text-center shadow-inner shadow-white backdrop-blur-2xl duration-200 hover:bg-white/25"
+      >
+        <span class="text-xl font-bold">แบบประเมิน</span>
+        <span class="font-libre font-bold">Feedback Form</span>
+      </a>
+    </div>
   </div>
 </BaseLayout>

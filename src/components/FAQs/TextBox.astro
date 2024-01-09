@@ -1,0 +1,18 @@
+---
+export interface Props {
+  question: string;
+  answer: string;
+}
+
+const { question, answer } = Astro.props;
+---
+
+<div
+  class="mx-4 my-8 rounded-2xl border-2 border-white bg-transparent px-10 py-7 text-white shadow-inner shadow-white backdrop-blur-2xl md:px-20"
+>
+  <span class="font-bold">Q:</span>
+  {question}
+  <br />
+  <span class="font-bold">A:</span>
+  {answer}
+</div>

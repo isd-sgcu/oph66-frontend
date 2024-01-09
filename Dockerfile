@@ -1,11 +1,14 @@
-FROM ghcr.io/isd-sgcu/astro-dyn-config:v0.0.2
-
+FROM node:20-bookworm-slim AS runtime
 WORKDIR /app
 
-COPY package*.json astro.config.mjs tailwind.config.mjs tsconfig.json ./
+COPY package.json ./
+RUN npm install --ignore-scripts
 
-RUN npm i
+COPY . .
+COPY scripts/docker-entrypoint.sh /docker-entrypoint.sh
 
-COPY src ./src
-
-COPY public ./public
+ENV HOST=0.0.0.0
+ENV PORT=8080
+EXPOSE 8080
+ENTRYPOINT [ "sh" ]
+CMD [ "/docker-entrypoint.sh" ]

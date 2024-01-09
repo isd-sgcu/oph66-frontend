@@ -1,0 +1,218 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import IDCard from "@/components/IDCard/IDCard";
+
+import type { Event } from "@/types/event";
+
+let token;
+if (Astro.cookies.has("token")) token = Astro.cookies.get("token");
+if (!token) return Astro.redirect("/login");
+
+const res = await fetch(import.meta.env.PUBLIC_API_BASE_URL + "/auth/me", {
+  headers: {
+    Authorization: `Bearer ${token.value}`,
+  },
+});
+
+if (!res.ok) {
+  const data = await res.json();
+  if (data.title === "user-not-found") {
+    return Astro.redirect("/register");
+  }
+  return Astro.redirect("/login");
+}
+
+const data = await res.json();
+const {
+  first_name,
+  last_name,
+  id,
+  interested_faculties,
+  registered_events,
+}: {
+  first_name: string;
+  last_name: string;
+  id: number;
+  interested_faculties: {
+    department: {
+      code: "string";
+      name: {
+        en: "string";
+        th: "string";
+      };
+    };
+    faculty: {
+      code: "string";
+      name: {
+        en: "string";
+        th: "string";
+      };
+    };
+    section: {
+      code: "string";
+      name: {
+        en: "string";
+        th: "string";
+      };
+    };
+  }[];
+  registered_events: {
+    id: number;
+    current_attendee: number;
+    starts_at: string;
+    ends_at: string;
+    period: string;
+  }[];
+} = data.user;
+const fullName = `${first_name} ${last_name}`;
+const userId = "67" + id + interested_faculties[0]?.faculty.code ?? "99";
+const faculties: {
+  firstThai: string;
+  firstEng: string;
+  secondThai: string;
+  secondEng: string;
+  thirdThai: string;
+  thirdEng: string;
+} = interested_faculties.reduce(
+  (acc, curr, index) => {
+    if (index === 0) {
+      acc.firstThai = curr.faculty.name.th;
+      acc.firstEng = curr.faculty.name.en;
+    } else if (index === 1) {
+      acc.secondThai = curr.faculty.name.th;
+      acc.secondEng = curr.faculty.name.en;
+    } else if (index === 2) {
+      acc.thirdThai = curr.faculty.name.th;
+      acc.thirdEng = curr.faculty.name.en;
+    }
+    return acc;
+  },
+  {
+    firstThai: "",
+    firstEng: "",
+    secondThai: "",
+    secondEng: "",
+    thirdThai: "",
+    thirdEng: "",
+  }
+);
+const getData = async () => {
+  const res = await fetch(import.meta.env.PUBLIC_API_BASE_URL + "/events");
+  const data = await res.json();
+  return data.events;
+};
+
+const events: Event[] = await getData();
+---
+
+<BaseLayout>
+  <div
+    class="flex w-full max-w-4xl flex-col items-center gap-14 px-4 text-white"
+  >
+    <section
+      class="flex w-full flex-col items-center justify-center text-center font-bold"
+    >
+      <h1 class="text-3xl md:text-6xl">Your Profile</h1>
+      <h2 class="font-libre underline underline-offset-8 md:text-3xl">
+        Chula Open House 2024
+      </h2>
+    </section>
+    <p id="loading">Loading...</p>
+    <div class="flex flex-col gap-x-16 gap-y-10 md:flex-row">
+      <IDCard
+        fullName={fullName}
+        userId={userId}
+        faculties={faculties}
+        client:only
+      />
+      <div class="flex w-full flex-col items-center gap-6 text-center">
+        <section
+          class="flex w-full flex-col items-center justify-center text-center font-bold"
+        >
+          <h3 class="text-2xl">กิจกรรมที่ลงทะเบียนแล้ว</h3>
+          <h4 class="font-libre underline underline-offset-8">
+            Registered workshops
+          </h4>
+        </section>
+        {
+          registered_events.map((event) => {
+            const eventMatch = events.find((e) => {
+              const result = e.schedules.find((s) => {
+                if (s.id === event.id) return true;
+                return false;
+              });
+
+              return result;
+            });
+
+            if (!eventMatch) return <p>Event not found</p>;
+
+            const name = eventMatch.name.en
+              ? eventMatch.name.en
+              : eventMatch.name.th;
+
+            const location =
+              eventMatch.location.th + " / " + eventMatch.location.en;
+
+            const date = new Date(event.starts_at).toLocaleDateString("th-TH", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+              timeZone: "Asia/Bangkok",
+            });
+
+            const time =
+              new Date(event.starts_at).toLocaleTimeString("th-TH", {
+                hour: "2-digit",
+                minute: "2-digit",
+                timeZone: "Asia/Bangkok",
+              }) +
+              " - " +
+              new Date(event.ends_at).toLocaleTimeString("th-TH", {
+                hour: "2-digit",
+                minute: "2-digit",
+                timeZone: "Asia/Bangkok",
+              });
+
+            const { th: facTH, en: facEN } = eventMatch.faculty.name;
+
+            return (
+              <a
+                href={`/events/${eventMatch.id}`}
+                class="flex h-fit w-72 max-w-full flex-col justify-between gap-2 rounded-2xl border-2 border-white p-4 text-left text-white shadow-inner shadow-white backdrop-blur-2xl"
+              >
+                <h2 class="text-2xl font-bold">{name}</h2>
+                <div class="flex flex-col">
+                  <p class="font-bold">{facTH}</p>
+                  <p class="text-sm font-medium">{facEN}</p>
+                </div>
+                <div class="grid grid-cols-[30px_minmax(0,1fr)] gap-y-2">
+                  <i class="icon-[mdi--calendar-blank-outline] text-2xl" />
+                  <p>{date}</p>
+                  <i class="icon-[mdi--alarm-clock] text-2xl" />
+                  <p>{time}</p>
+                  <i class="icon-[mdi--map-marker] text-2xl" />
+                  <p>{location}</p>
+                </div>
+              </a>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+  <a
+    href="/"
+    class="mt-8 flex items-center justify-center gap-1 px-4 py-2 text-center text-sm font-medium text-white md:text-base"
+  >
+    <i class="icon-[mdi--arrow-left-circle] text-xl md:text-2xl"></i>
+    กลับหน้าแรก / Back to home page
+  </a>
+</BaseLayout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const loading = document.getElementById("loading");
+    loading?.remove();
+  });
+</script>

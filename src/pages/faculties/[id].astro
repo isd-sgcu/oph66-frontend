@@ -1,0 +1,84 @@
+---
+export const prerender = true;
+
+import type { GetStaticPaths } from "astro";
+
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Department from "@/components/Faculty/Department";
+
+import { FACULTIES } from "@/data/faculties";
+
+export const getStaticPaths = (() => {
+  return FACULTIES.map((faculty) => ({
+    params: { id: faculty.id },
+  }));
+}) satisfies GetStaticPaths;
+
+const { id } = Astro.params;
+
+const faculty = FACULTIES.find((faculty) => faculty.id === id);
+if (!faculty) {
+  Astro.redirect("/faculties");
+  return;
+}
+---
+
+<BaseLayout>
+  <section
+    class="mx-auto flex w-full max-w-5xl flex-col gap-4 px-8 pt-16 text-white"
+  >
+    <div class="flex flex-col gap-2 font-bold">
+      <h1 class="text-2xl md:text-5xl">{faculty.nameTH}</h1>
+      <h2 class="md:text-3xl">{faculty.nameEN}</h2>
+    </div>
+    <a
+      href=`/events?faculty=${faculty.nameEN}`
+      class="flex w-fit items-center justify-center rounded-2xl border-2 border-white bg-gradient-to-t from-pink-550/50 to-pink-550/10 px-5 py-2 text-center font-bold shadow-inner shadow-white backdrop-blur-2xl md:text-2xl"
+    >
+      กิจกรรมทั้งหมด / All events
+    </a>
+    <div
+      class="grid grid-cols-1 items-center justify-center gap-2 md:grid-cols-2"
+    >
+      {
+        faculty.location && (
+          <p class="flex items-center gap-2">
+            <i class="icon-[mdi--map-marker] shrink-0 text-2xl md:text-3xl" />
+            <span class="text-sm font-medium md:text-xl">
+              {faculty.location}
+            </span>
+          </p>
+        )
+      }
+      {
+        faculty.activeTime && (
+          <p class="flex items-center gap-2">
+            <i class="icon-[mdi--alarm] shrink-0 text-2xl md:text-3xl" />
+            <span class="text-sm font-medium md:text-xl">
+              {faculty.activeTime}
+            </span>
+          </p>
+        )
+      }
+      <a
+        href={"https://www.instagram.com/" + faculty.instagram}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-2"
+      >
+        <i class="icon-[mdi--instagram] shrink-0 text-2xl"></i>
+        <span class="text-sm font-medium md:text-xl">
+          {faculty.instagram ?? "-"}
+        </span>
+      </a>
+
+      <p class="flex items-center gap-2">
+        <i class="icon-[mdi--facebook] shrink-0 text-2xl md:text-3xl"></i>
+        <span class="text-sm font-medium md:text-xl">
+          {faculty.facebook ?? "-"}
+        </span>
+      </p>
+    </div>
+    <Department departments={faculty.departments} client:load />
+  </section>
+</BaseLayout>
