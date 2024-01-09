@@ -13,6 +13,13 @@ const res = await fetch(import.meta.env.PUBLIC_API_BASE_URL + "/auth/me", {
 });
 
 if (res.ok) return Astro.redirect("/");
+else {
+  const error = await res.json();
+  if (error.title === "invalid-token") {
+    alert("กรุณาเข้าสู่ระบบใหม่อีกครั้ง");
+    return Astro.redirect("/login");
+  }
+}
 ---
 
 <BaseLayout withNav={false} withFooter={false}>

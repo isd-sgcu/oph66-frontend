@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -92,16 +91,27 @@ const Container: React.FC<Props> = ({ events, faculty }) => {
             onChange={handleSearchChange}
           />
         </motion.div>
-        <div
-          className={clsx(
-            "relative flex w-full",
-            (selectedFaculty !== 0 || searchQuery !== "") && "pr-8"
-          )}
+        <motion.div
+          className="relative flex w-full"
+          initial={{
+            paddingRight: "0rem",
+          }}
+          animate={{
+            paddingRight:
+              selectedFaculty === 0 && searchQuery === "" ? "0rem" : "2rem",
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 120,
+            damping: 20,
+            duration: 0.1,
+            ease: "easeInOut",
+          }}
         >
           <select
             name="Faculty"
             id="Faculty"
-            className="w-full max-w-xs rounded-2xl px-4 py-2 text-pink-500"
+            className="w-full max-w-xs appearance-none rounded-2xl py-2 pl-4 pr-8 text-pink-500"
             onChange={handleFacultyChange}
             value={selectedFaculty}
           >
@@ -112,6 +122,24 @@ const Container: React.FC<Props> = ({ events, faculty }) => {
               </option>
             ))}
           </select>
+          <motion.i
+            className="icon-[mdi--chevron-down] pointer-events-none absolute right-0 top-1/2 text-3xl text-pink-500"
+            initial={{
+              translateX: "0%",
+              translateY: "-50%",
+            }}
+            animate={{
+              translateX:
+                selectedFaculty === 0 && searchQuery === "" ? "0%" : "-100%",
+            }}
+            transition={{
+              type: "spring",
+              stiffness: 120,
+              damping: 20,
+              duration: 0.1,
+              ease: "easeInOut",
+            }}
+          ></motion.i>
           <AnimatePresence>
             {(selectedFaculty !== 0 || searchQuery !== "") && (
               <motion.button
@@ -135,7 +163,7 @@ const Container: React.FC<Props> = ({ events, faculty }) => {
               </motion.button>
             )}
           </AnimatePresence>
-        </div>
+        </motion.div>
       </div>
       <motion.div
         className="grid grid-cols-1 items-start justify-start gap-6 text-start lg:grid-cols-3"

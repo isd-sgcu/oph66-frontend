@@ -171,6 +171,12 @@ const Form: React.FC<Props> = ({ token }) => {
       if (res.ok) {
         window.location.href = "/";
       } else {
+        const error = await res.json();
+        if (error.title === "invalid-token") {
+          alert("กรุณาเข้าสู่ระบบอีกครั้ง");
+          window.location.href = "/login";
+          return;
+        }
         alert("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง\n" + (await res.text()));
         setIsShowConfirm(false);
       }
