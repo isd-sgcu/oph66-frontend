@@ -158,17 +158,20 @@ const events: Event[] = await getData();
               year: "numeric",
               month: "long",
               day: "numeric",
+              timeZone: "Asia/Bangkok",
             });
 
             const time =
               new Date(event.starts_at).toLocaleTimeString("th-TH", {
                 hour: "2-digit",
                 minute: "2-digit",
+                timeZone: "Asia/Bangkok",
               }) +
               " - " +
               new Date(event.ends_at).toLocaleTimeString("th-TH", {
                 hour: "2-digit",
                 minute: "2-digit",
+                timeZone: "Asia/Bangkok",
               });
 
             const { th: facTH, en: facEN } = eventMatch.faculty.name;

@@ -38,12 +38,21 @@ const date = new Date(schedule.starts_at).toLocaleDateString("th-TH", {
   year: "numeric",
   month: "long",
   day: "numeric",
+  timeZone: "Asia/Bangkok",
 });
 
-const time = new Date(schedule.starts_at).toLocaleTimeString("th-TH", {
-  hour: "2-digit",
-  minute: "2-digit",
-});
+const time =
+  new Date(schedule.starts_at).toLocaleTimeString("th-TH", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Asia/Bangkok",
+  }) +
+  " - " +
+  new Date(schedule.ends_at).toLocaleTimeString("th-TH", {
+    hour: "2-digit",
+    minute: "2-digit",
+    timeZone: "Asia/Bangkok",
+  });
 
 const name = event.name.en ? event.name.en : event.name.th;
 const location = event.location.th + " / " + event.location.en;
