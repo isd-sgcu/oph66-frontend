@@ -24,7 +24,7 @@ let registered_events: {
   starts_at: string;
   ends_at: string;
   period: string;
-}[];
+}[] = [];
 if (token) {
   const res = await fetch(import.meta.env.PUBLIC_API_BASE_URL + "/auth/me", {
     headers: {
@@ -49,6 +49,10 @@ const event: Event = await getData(id);
 if (!event) {
   return new Response("Event not found", { status: 404 });
 }
+
+const isUserRegisterThis = registered_events
+  ? registered_events.some((e) => event.schedules.some((s) => s.id === e.id))
+  : false;
 
 const schedules20 = event.schedules
   .filter((schedule) => schedule.period.startsWith("20-"))
@@ -113,11 +117,11 @@ const formatTime = (date: string) => {
                   </div>
                   {schedules20.map((schedule) => {
                     const alreadyRegistered =
+                      isUserRegisterThis &&
                       registered_events &&
                       registered_events.some(
                         (e) => e.period === schedule.period
-                      ) &&
-                      registered_events.some((e) => e.id === schedule.id);
+                      );
                     return (
                       <div class="flex w-full items-center justify-between gap-1 rounded-2xl border border-pink-550 px-1 py-2 text-sm font-medium">
                         <p
@@ -164,11 +168,11 @@ const formatTime = (date: string) => {
                   </div>
                   {schedules21.map((schedule) => {
                     const alreadyRegistered =
+                      isUserRegisterThis &&
                       registered_events &&
                       registered_events.some(
                         (e) => e.period === schedule.period
-                      ) &&
-                      registered_events.some((e) => e.id === schedule.id);
+                      );
                     return (
                       <div class="flex w-full items-center justify-between gap-1 rounded-2xl border border-pink-550 px-1 py-2 text-sm font-medium">
                         <p

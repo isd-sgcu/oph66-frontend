@@ -88,6 +88,54 @@ const Form: React.FC<Props> = ({ token }) => {
   const [isShowConfirm, setIsShowConfirm] = useState<boolean>(false);
 
   const validateData = () => {
+    if (firstName.length > 80) {
+      alert(
+        "ชื่อต้องไม่เกิน 80 ตัวอักษร / First name must not exceed 80 characters"
+      );
+      return;
+    }
+    if (lastName.length > 80) {
+      alert(
+        "นามสกุลต้องไม่เกิน 80 ตัวอักษร / Last name must not exceed 80 characters"
+      );
+      return;
+    }
+    if (reasonForApplying.length > 600) {
+      alert(
+        "เหตุผลที่อยากเข้าจุฬาต้องไม่เกิน 600 ตัวอักษร / Reason for applying must not exceed 600 characters"
+      );
+      return;
+    }
+    if (status && status.length > 80) {
+      alert(
+        "สถานภาพต้องไม่เกิน 80 ตัวอักษร / Status must not exceed 80 characters"
+      );
+      return;
+    }
+    if (studentStatus && studentStatus.length > 80) {
+      alert(
+        "ระดับการศึกษาต้องไม่เกิน 80 ตัวอักษร / Educational level must not exceed 80 characters"
+      );
+      return;
+    }
+    if (roundOfAdmission && roundOfAdmission.length > 40) {
+      alert(
+        "รอบที่ต้องการเข้าต้องไม่เกิน 40 ตัวอักษร / Desired round must not exceed 40 characters"
+      );
+      return;
+    }
+    if (allergies && allergies.length > 120) {
+      alert(
+        "อาหารและยาที่แพ้ต้องไม่เกิน 120 ตัวอักษร ในกรณีที่ต้องการป้อนข้อมูลมากกว่า 120 ตัวอักษร กรุณาติดต่อเรา / Allergies must not exceed 120 characters. If you want to input more than 120 characters, please contact us."
+      );
+      return;
+    }
+    if (healthConditions && healthConditions.length > 120) {
+      alert(
+        "โรคประจำตัวต้องไม่เกิน 120 ตัวอักษร ในกรณีที่ต้องการป้อนข้อมูลมากกว่า 120 ตัวอักษร กรุณาติดต่อเรา / Medical conditions must not exceed 120 characters. If you want to input more than 120 characters, please contact us."
+      );
+      return;
+    }
     const error = [
       !firstName ||
         !lastName ||
