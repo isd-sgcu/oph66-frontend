@@ -32,6 +32,22 @@ const {
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <ViewTransitions />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XS7R5RN3G1"
+    ></script>
+    <script is:inline>
+      // @ts-expect-error google tag
+      window.dataLayer = window.dataLayer || [];
+      // @ts-expect-error google tag
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      // @ts-expect-error google tag
+      gtag("js", new Date());
+      // @ts-expect-error google tag
+      gtag("config", "G-XS7R5RN3G1");
+    </script>
   </head>
   <body>
     <section
