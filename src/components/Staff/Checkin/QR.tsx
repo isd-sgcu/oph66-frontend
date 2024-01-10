@@ -19,9 +19,9 @@ const QR = () => {
         <p className="text-xl font-bold">แสกน QR Code เพื่อเช็คอิน</p>
         <p className="font-medium">Scan QR Code to check-in</p>
       </div>
-      <div className="mt-6 w-4/5">
-        <div className="text-sm">เลข ID / ID Number</div>
-        <textarea className="h-12 w-full rounded-2xl p-3 align-middle text-black"></textarea>
+      <div className="mt-6 w-4/5 max-w-2xl">
+        <div className="w-full text-sm">เลข ID / ID Number</div>
+        <textarea className="h-12 w-full rounded-2xl p-3 text-black"></textarea>
       </div>
       <button className="mt-8 rounded-2xl border-2 border-white px-3 py-2 text-xl font-bold shadow-inner shadow-white backdrop-blur-2xl">
         เช็คอิน / Check-in
