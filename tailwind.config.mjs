@@ -28,7 +28,7 @@ export default {
         },
       },
       fontFamily: {
-        libre: ["Libre Baskerville", ...defaultTheme.fontFamily.serif],
+        libre: ["LibreBaskerville", ...defaultTheme.fontFamily.serif],
         ibm: ["IBM Plex Sans Thai", ...defaultTheme.fontFamily.sans],
         sans: ["IBM Plex Sans Thai", ...defaultTheme.fontFamily.sans],
       },
