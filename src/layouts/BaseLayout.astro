@@ -51,11 +51,11 @@ const {
   </head>
   <body>
     <section
-      class="relative flex h-full min-h-svh w-full flex-col items-center"
+      class="relative flex h-full min-h-dvh w-full flex-col items-center"
     >
       {withNav && <Nav client:only="react" />}
       <main
-        class="flex min-h-[calc(100vh-580px)] w-full flex-col items-center pb-16 pt-8 md:min-h-[calc(100vh-356px)]"
+        class="flex min-h-[calc(100dvh-580px)] w-full flex-col items-center pb-16 pt-8 md:min-h-[calc(100dvh-356px)]"
       >
         <slot />
       </main>
