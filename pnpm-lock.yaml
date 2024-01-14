@@ -23,6 +23,9 @@ dependencies:
   '@fontsource/ibm-plex-sans-thai':
     specifier: ^5.0.8
     version: 5.0.8
+  '@zxing/library':
+    specifier: 0.20.0
+    version: 0.20.0
   astro:
     specifier: ^4.0.8
     version: 4.0.8(@types/node@20.10.5)(typescript@5.3.3)
@@ -1788,6 +1791,15 @@ packages:
 
   /@zxing/library@0.18.6:
     resolution: {integrity: sha512-bulZ9JHoLFd9W36pi+7e7DnEYNJhljYjZ1UTsKPOoLMU3qtC+REHITeCRNx40zTRJZx18W5TBRXt5pq2Uopjsw==}
+    engines: {node: '>= 10.4.0'}
+    dependencies:
+      ts-custom-error: 3.3.1
+    optionalDependencies:
+      '@zxing/text-encoding': 0.9.0
+    dev: false
+
+  /@zxing/library@0.20.0:
+    resolution: {integrity: sha512-6Ev6rcqVjMakZFIDvbUf0dtpPGeZMTfyxYg4HkVWioWeN7cRcnUWT3bU6sdohc82O1nPXcjq6WiGfXX2Pnit6A==}
     engines: {node: '>= 10.4.0'}
     dependencies:
       ts-custom-error: 3.3.1
