@@ -78,5 +78,11 @@
       "eslint --fix",
       "prettier --write"
     ]
+  },
+  "overrides": {
+    "react-qr-reader": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
   }
 }
