@@ -1,0 +1,53 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import QR from "@/components/Staff/Checkin/QR";
+import { FACULTIES } from "@/data/faculties";
+import type { Faculty } from "@/types/faculty";
+
+const { token } = Astro.params;
+
+if (!token) {
+  return Astro.redirect("/");
+}
+
+let representation: string;
+let facultyId: string, role: string, faculty: Faculty | undefined;
+try {
+  role = JSON.parse(atob(token.split(".")[1]))["role"];
+  facultyId = JSON.parse(atob(token.split(".")[1]))["faculty"];
+  if (role === "faculty-staff") {
+    faculty = FACULTIES.find((f) => f.id === facultyId);
+    representation = faculty ? faculty.nameTH : "Invalid Faculty";
+  } else if (role === "central-staff") {
+    representation = "ส่วนกลาง";
+  } else {
+    return Astro.redirect("/");
+  }
+} catch (e) {
+  return Astro.redirect("/");
+}
+---
+
+<BaseLayout withNav={false} withFooter={false} withJigsaw={false}>
+  <nav
+    class="grid h-14 w-full -translate-y-8 grid-cols-[minmax(0,1fr),64px,minmax(0,1fr)] items-center gap-1 bg-indigo-950 px-1 text-white"
+  >
+    <p class="line-clamp-1 text-center font-libre font-bold">CU OPH 2024</p>
+    <p
+      class="flex w-16 items-center justify-center rounded-2xl bg-white px-3 py-1 text-center font-libre text-sm font-bold text-indigo-950"
+    >
+      Staff
+    </p>
+    <p class="line-clamp-2 text-center">
+      {representation}
+    </p>
+  </nav>
+  <section class="mb-12 flex w-full max-w-xl flex-col items-center px-4">
+    <div class="relative flex w-fit flex-col items-center text-center">
+      <h1 class="text-3xl font-bold text-white">Your Staff Profile</h1>
+      <h2 class="font-medium text-white">Chula Open House 2024</h2>
+      <hr class="mt-2 w-full border border-white" />
+    </div>
+  </section>
+  <QR client:only token={token} />
+</BaseLayout>
