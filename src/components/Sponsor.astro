@@ -3,11 +3,16 @@ import { Image } from "astro:assets";
 
 import camphub from "@/assets/icons/camphub.svg";
 import centralretail from "@/assets/icons/centralretail.svg";
+import gulf from "@/assets/icons/gulf.svg";
+import anywheel from "@/assets/icons/anywheel.svg";
+import heartbeat from "@/assets/icons/heartbeat.svg";
+import unif from "@/assets/icons/unif.svg";
+import bualoyParinya from "@/assets/icons/bualoy-parinya.svg";
 ---
 
 <div class="flex flex-col items-center justify-center gap-2 text-center">
   <p class="font-medium md:ml-auto">Sponsored by</p>
-  <div class="grid grid-cols-1 items-center gap-8 md:grid-cols-2">
+  <div class="grid grid-cols-2 items-center gap-8 md:grid-cols-4">
     <div
       class="flex aspect-square w-28 items-center justify-center bg-white p-2"
     >
@@ -16,7 +21,32 @@ import centralretail from "@/assets/icons/centralretail.svg";
     <div
       class="flex aspect-square w-28 items-center justify-center bg-white p-2"
     >
-      <Image src={camphub} alt="CampHub" />
+      <Image src={camphub} alt="CAMPHUB" />
+    </div>
+    <div
+      class="flex aspect-square w-28 items-center justify-center bg-white p-2"
+    >
+      <Image src={gulf} alt="GULF" />
+    </div>
+    <div
+      class="flex aspect-square w-28 items-center justify-center bg-white p-2"
+    >
+      <Image src={anywheel} alt="Anywheel" />
+    </div>
+    <div
+      class="flex aspect-square w-28 items-center justify-center bg-white p-2"
+    >
+      <Image src={heartbeat} alt="HeartBeat" />
+    </div>
+    <div
+      class="flex aspect-square w-28 items-center justify-center bg-white p-2"
+    >
+      <Image src={unif} alt="Unif" />
+    </div>
+    <div
+      class="flex aspect-square w-28 items-center justify-center bg-white p-2"
+    >
+      <Image src={bualoyParinya} alt="Bualoy Parinya" />
     </div>
   </div>
 </div>
