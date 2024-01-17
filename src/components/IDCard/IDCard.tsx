@@ -45,6 +45,7 @@ const IDCard: React.FC<Props> = ({
     if (!ref.current) return;
 
     setImage("");
+    window.localStorage.removeItem("idcard");
 
     ref.current.style.display = "flex";
     toPng(ref.current, {

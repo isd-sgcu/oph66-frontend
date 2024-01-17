@@ -14,6 +14,7 @@ import SourceOfNewsBox from "./SourceOfNewsBox";
 import { FACULTIES } from "@/data/faculties";
 import { MONTHS } from "@/data/form/datetime";
 import type { FacultyInterested } from "@/types/form";
+import { useToast } from "../ui/use-toast";
 
 interface DTO {
   allergies: string;
@@ -47,6 +48,7 @@ interface Props {
 }
 
 const Form: React.FC<Props> = ({ token }) => {
+  const { toast } = useToast();
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
   const [birthDay, setBirthDay] = useState<string>("");
@@ -89,51 +91,75 @@ const Form: React.FC<Props> = ({ token }) => {
 
   const validateData = () => {
     if (firstName.length > 80) {
-      alert(
-        "ชื่อต้องไม่เกิน 80 ตัวอักษร / First name must not exceed 80 characters"
-      );
+      toast({
+        variant: "destructive",
+        title: "Invalid first name",
+        description:
+          "ชื่อต้องไม่เกิน 80 ตัวอักษร / First name must not exceed 80 characters",
+      });
       return;
     }
     if (lastName.length > 80) {
-      alert(
-        "นามสกุลต้องไม่เกิน 80 ตัวอักษร / Last name must not exceed 80 characters"
-      );
+      toast({
+        variant: "destructive",
+        title: "Invalid last name",
+        description:
+          "นามสกุลต้องไม่เกิน 80 ตัวอักษร / Last name must not exceed 80 characters",
+      });
       return;
     }
     if (reasonForApplying.length > 600) {
-      alert(
-        "เหตุผลที่อยากเข้าจุฬาต้องไม่เกิน 600 ตัวอักษร / Reason for applying must not exceed 600 characters"
-      );
+      toast({
+        variant: "destructive",
+        title: "Invalid reason for applying",
+        description:
+          "เหตุผลที่อยากเข้าจุฬาต้องไม่เกิน 600 ตัวอักษร / Reason for applying must not exceed 600 characters",
+      });
       return;
     }
     if (status && status.length > 80) {
-      alert(
-        "สถานภาพต้องไม่เกิน 80 ตัวอักษร / Status must not exceed 80 characters"
-      );
+      toast({
+        variant: "destructive",
+        title: "Invalid status",
+        description:
+          "สถานภาพต้องไม่เกิน 80 ตัวอักษร / Status must not exceed 80 characters",
+      });
       return;
     }
     if (studentStatus && studentStatus.length > 80) {
-      alert(
-        "ระดับการศึกษาต้องไม่เกิน 80 ตัวอักษร / Educational level must not exceed 80 characters"
-      );
+      toast({
+        variant: "destructive",
+        title: "Invalid educational level",
+        description:
+          "ระดับการศึกษาต้องไม่เกิน 80 ตัวอักษร / Educational level must not exceed 80 characters",
+      });
       return;
     }
     if (roundOfAdmission && roundOfAdmission.length > 40) {
-      alert(
-        "รอบที่ต้องการเข้าต้องไม่เกิน 40 ตัวอักษร / Desired round must not exceed 40 characters"
-      );
+      toast({
+        variant: "destructive",
+        title: "Invalid desired round",
+        description:
+          "รอบที่ต้องการเข้าต้องไม่เกิน 40 ตัวอักษร / Desired round must not exceed 40 characters",
+      });
       return;
     }
     if (allergies && allergies.length > 120) {
-      alert(
-        "อาหารและยาที่แพ้ต้องไม่เกิน 120 ตัวอักษร ในกรณีที่ต้องการป้อนข้อมูลมากกว่า 120 ตัวอักษร กรุณาติดต่อเรา / Allergies must not exceed 120 characters. If you want to input more than 120 characters, please contact us."
-      );
+      toast({
+        variant: "destructive",
+        title: "Invalid allergies",
+        description:
+          "อาหารและยาที่แพ้ต้องไม่เกิน 120 ตัวอักษร ในกรณีที่ต้องการป้อนข้อมูลมากกว่า 120 ตัวอักษร กรุณาติดต่อเรา / Allergies must not exceed 120 characters",
+      });
       return;
     }
     if (healthConditions && healthConditions.length > 120) {
-      alert(
-        "โรคประจำตัวต้องไม่เกิน 120 ตัวอักษร ในกรณีที่ต้องการป้อนข้อมูลมากกว่า 120 ตัวอักษร กรุณาติดต่อเรา / Medical conditions must not exceed 120 characters. If you want to input more than 120 characters, please contact us."
-      );
+      toast({
+        variant: "destructive",
+        title: "Invalid medical conditions",
+        description:
+          "โรคประจำตัวต้องไม่เกิน 120 ตัวอักษร ในกรณีที่ต้องการป้อนข้อมูลมากกว่า 120 ตัวอักษร กรุณาติดต่อเรา / Medical conditions must not exceed 120 characters. If you want to input more than 120 characters, please contact us.",
+      });
       return;
     }
     const error = [
@@ -221,11 +247,19 @@ const Form: React.FC<Props> = ({ token }) => {
       } else {
         const error = await res.json();
         if (error.title === "invalid-token") {
-          alert("กรุณาเข้าสู่ระบบอีกครั้ง");
+          toast({
+            variant: "destructive",
+            title: "Invalid token",
+            description: "กรุณาเข้าสู่ระบบอีกครั้ง / Please log in again",
+          });
           window.location.href = "/login";
           return;
         }
-        alert("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง\n" + (await res.text()));
+        toast({
+          variant: "destructive",
+          title: "Error",
+          description: "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง",
+        });
         setIsShowConfirm(false);
       }
     };
