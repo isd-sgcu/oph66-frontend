@@ -26,12 +26,14 @@ if (token) {
   if (res.ok) {
     const { user } = await res.json();
     fullName = user.first_name + " " + user.last_name;
+  } else {
+    Astro.cookies.delete("token");
   }
 }
 ---
 
 <BaseLayout>
-  <div class="flex min-h-svh w-full flex-col justify-center px-4 text-white">
+  <div class="flex min-h-dvh w-full flex-col justify-center px-4 text-white">
     <div class="flex flex-col items-center justify-evenly md:flex-row">
       <div class="flex flex-col items-center md:items-start">
         <div class="my-2.5 mb-8 h-28 w-80 md:mb-0 md:h-auto md:w-auto">
@@ -134,27 +136,12 @@ if (token) {
         </div>
       </a>
     </div>
-    <div
-      class:list={[
-        "mx-auto grid w-fit grid-cols-1 justify-center gap-4 md:grid-cols-2",
-        // NOTE: Not ready yet
-        "hidden",
-      ]}
+    <a
+      href="/feedback"
+      class="mx-auto flex w-full max-w-xl flex-col items-center justify-center rounded-2xl border-2 border-white px-16 py-4 text-center shadow-inner shadow-white backdrop-blur-2xl duration-200 hover:bg-white/25"
     >
-      <a
-        href="#"
-        class="flex w-full flex-col items-center justify-center rounded-2xl border-2 border-white px-20 py-1 text-center shadow-inner shadow-white backdrop-blur-2xl duration-200 hover:bg-white/25"
-      >
-        <span class="text-xl font-bold">สูจิบัตร</span>
-        <span class="font-libre font-bold">Program</span>
-      </a>
-      <a
-        href="#"
-        class="flex w-full flex-col items-center justify-center rounded-2xl border-2 border-white px-20 py-1 text-center shadow-inner shadow-white backdrop-blur-2xl duration-200 hover:bg-white/25"
-      >
-        <span class="text-xl font-bold">แบบประเมิน</span>
-        <span class="font-libre font-bold">Feedback Form</span>
-      </a>
-    </div>
+      <span class="text-xl font-bold">แบบประเมิน</span>
+      <span class="font-libre font-bold">Feedback Form</span>
+    </a>
   </div>
 </BaseLayout>

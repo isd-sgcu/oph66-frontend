@@ -2,7 +2,15 @@ import clsx from "clsx";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 
-const links = ["Home", "Navigator", "Events", "Faculties", "FAQs", "Profile"];
+const links = [
+  "Home",
+  "Navigator",
+  "Events",
+  "Faculties",
+  "FAQs",
+  "Feedback",
+  "Profile",
+];
 const overlayVariants = {
   initial: {
     opacity: 0,

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import ErrorBox from "@/components/Registration/ErrorBox";
+import { useToast } from "@/components/ui/use-toast";
 import EventConfirmModule from "./ConfirmModule";
 import SourceOfNewsBox from "./SourceOfNewsBox";
 
@@ -25,6 +26,7 @@ const Form: React.FC<Props> = ({
   scheduleId,
   token,
 }) => {
+  const { toast } = useToast();
   const [sourceOfNews, setSourceOfNews] = useState<string[]>([]);
   const [isShowError, setIsShowError] = useState<boolean>(false);
   const [isShowConfirm, setIsShowConfirm] = useState<boolean>(false);
@@ -62,7 +64,11 @@ const Form: React.FC<Props> = ({
       if (res.ok) {
         window.location.href = window.location.pathname + "/complete";
       } else {
-        alert("เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง\n" + (await res.text()));
+        toast({
+          variant: "destructive",
+          title: "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง",
+          description: await res.text(),
+        });
         window.location.href = window.location.pathname.split("/register")[0];
       }
     };
