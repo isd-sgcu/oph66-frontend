@@ -1,0 +1,26 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+---
+
+<BaseLayout withFooter={false} withNav={false}>
+  <div
+    class="absolute left-1/2 top-1/2 flex w-full max-w-xl -translate-x-1/2 -translate-y-1/2 items-center justify-center px-4"
+  >
+    <a
+      class="group flex w-full flex-col rounded-2xl border-2 border-white bg-transparent px-4 py-8 text-center font-medium text-white shadow-inner shadow-white backdrop-blur-2xl"
+      href="/"
+    >
+      <span class="text-lg font-bold">คุณได้ทำแบบสอบถามเรียบร้อยแล้ว</span>
+      <span class="text-lg">You have completed the feedback form.</span>
+      <br />
+      <p
+        class="flex w-full items-center justify-center text-center underline underline-offset-2"
+      >
+        <span
+          class="icon-[mdi--arrow-left] duration-150 group-hover:-translate-x-1/2"
+        ></span>
+        กลับสู่หน้าแรก / Back to home
+      </p>
+    </a>
+  </div>
+</BaseLayout>
