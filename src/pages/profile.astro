@@ -65,7 +65,7 @@ const {
   }[];
 } = data.user;
 const fullName = `${first_name} ${last_name}`;
-const userId = "67" + id + interested_faculties[0]?.faculty.code ?? "99";
+const userId = "67" + id + (interested_faculties[0]?.faculty?.code ?? "99");
 const faculties: {
   firstThai: string;
   firstEng: string;
