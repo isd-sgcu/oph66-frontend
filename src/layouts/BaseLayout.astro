@@ -3,11 +3,14 @@ import "@fontsource/ibm-plex-sans-thai/400.css";
 import "@fontsource/ibm-plex-sans-thai/500.css";
 import "@fontsource/ibm-plex-sans-thai/600.css";
 import "@fontsource/ibm-plex-sans-thai/700.css";
+import { ViewTransitions } from "astro:transitions";
 
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer.astro";
 import Background from "@/components/Background";
-import { ViewTransitions } from "astro:transitions";
+import { Toaster } from "@/components/ui/toaster";
+
+import "@/styles/global.css";
 
 interface Props {
   pageTitle?: string;
@@ -32,19 +35,36 @@ const {
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
     <ViewTransitions />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XS7R5RN3G1"
+    ></script>
+    <script is:inline>
+      // @ts-expect-error google tag
+      window.dataLayer = window.dataLayer || [];
+      // @ts-expect-error google tag
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      // @ts-expect-error google tag
+      gtag("js", new Date());
+      // @ts-expect-error google tag
+      gtag("config", "G-XS7R5RN3G1");
+    </script>
   </head>
   <body>
     <section
-      class="relative flex h-full min-h-svh w-full flex-col items-center"
+      class="relative flex h-full min-h-dvh w-full flex-col items-center"
     >
       {withNav && <Nav client:only="react" />}
       <main
-        class="flex min-h-[calc(100vh-580px)] w-full flex-col items-center pb-16 pt-8 md:min-h-[calc(100vh-356px)]"
+        class="flex min-h-[calc(100dvh-580px)] w-full flex-col items-center pb-16 pt-8 md:min-h-[calc(100dvh-356px)]"
       >
         <slot />
       </main>
       {withFooter && <Footer transition:persist />}
       <Background withJigsaw={withJigsaw} transition:persist />
     </section>
+    <Toaster client:load />
   </body>
 </html>

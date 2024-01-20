@@ -1,0 +1,63 @@
+---
+import Form from "@/components/Feedback/Form";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+let token;
+if (Astro.cookies.has("token")) token = Astro.cookies.get("token");
+if (!token) return Astro.redirect("/login");
+
+const res = await fetch(import.meta.env.PUBLIC_API_BASE_URL + "/auth/me", {
+  headers: {
+    Authorization: `Bearer ${token.value}`,
+  },
+});
+
+if (!res.ok) {
+  const data = await res.json();
+  if (data.title === "user-not-found") {
+    return Astro.redirect("/register");
+  }
+  return Astro.redirect("/login");
+} else {
+  const { user } = await res.json();
+  if (user.feedback_submitted) {
+    return Astro.redirect("/feedback/submitted");
+  }
+}
+---
+
+<BaseLayout withNav={false} withFooter={false}>
+  <section
+    class="mb-12 flex w-full flex-col items-center px-4 pt-16 text-center"
+  >
+    <h1 class="text-2xl font-bold text-white md:text-6xl">
+      แบบประเมินความพึงพอใจ
+    </h1>
+    <h2 class="font-medium text-white underline underline-offset-8 md:text-3xl">
+      Feedback Form
+    </h2>
+  </section>
+  <div class="mb-8 flex w-full flex-col items-center text-white">
+    <section class="flex gap-4 text-2xl font-bold md:text-3xl">
+      <a
+        href="/feedback"
+        class:list={[
+          "duration-200 hover:bg-white/25",
+          "flex aspect-square w-12 items-center justify-center rounded-2xl border-2 border-white bg-transparent shadow-inner shadow-white backdrop-blur-2xl md:w-16",
+        ]}
+      >
+        TH
+      </a>
+      <a
+        href="/feedback/en"
+        class:list={[
+          "bg-white text-pink-800",
+          "flex aspect-square w-12 items-center justify-center rounded-2xl border-2 border-white bg-transparent shadow-inner shadow-white backdrop-blur-2xl md:w-16",
+        ]}
+      >
+        EN
+      </a>
+    </section>
+  </div>
+  <Form language="en" client:load token={token.value} />
+</BaseLayout>

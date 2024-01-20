@@ -45,6 +45,7 @@ const IDCard: React.FC<Props> = ({
     if (!ref.current) return;
 
     setImage("");
+    window.localStorage.removeItem("idcard");
 
     ref.current.style.display = "flex";
     toPng(ref.current, {
@@ -119,11 +120,15 @@ const IDCard: React.FC<Props> = ({
           <p className="font-medium">ID: {userId}</p>
         </div>
         <div className="flex w-full flex-col px-8 pt-2">
-          <div className="flex w-fit items-center break-words rounded-2xl bg-white px-4 py-1 font-medium text-pink-500">
-            คณะที่สนใจที่สุด / Faculties interested
-          </div>
+          {firstThai ? (
+            <div className="flex w-fit items-center break-words rounded-2xl bg-white px-4 py-1 font-medium text-pink-500">
+              คณะที่สนใจที่สุด / Faculties interested
+            </div>
+          ) : (
+            <br />
+          )}
           <div className="mt-3 grid w-fit grid-cols-[16px_1fr] font-medium">
-            <span className="col-span-1">1.</span>
+            <span className="col-span-1">{firstThai ? "1. " : <br />}</span>
             <span className="col-span-1">{firstThai}</span>
             <span className="col-start-2">{firstEng}</span>
             <span className="col-span-1">{secondThai ? "2." : <br />}</span>
